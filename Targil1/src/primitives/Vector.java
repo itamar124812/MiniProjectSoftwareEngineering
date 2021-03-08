@@ -26,11 +26,11 @@ public class Vector {
 	public Vector scale(double scalar) {
 		return new Vector(head.x.coord * scalar,head.y.coord* scalar,head.z.coord* scalar);
 	}
-	public double crossProduct(Vector other)
+	public double dotProduct(Vector other)
 	{
 		return head.x.coord*other.head.x.coord +head.y.coord*other.head.y.coord+head.z.coord*other.head.z.coord;
 	}
-	public Vector dotProduct(Vector other)
+	public Vector crossProduct(Vector other)
 	{
 		return new Vector(head.y.coord *other.head.z.coord-head.z.coord*other.head.y.coord , head.z.coord*other.head.x.coord-head.x.coord*other.head.z.coord ,head.x.coord*other.head.y.coord-head.y.coord*other.head.x.coord);
 	}
@@ -41,6 +41,10 @@ public class Vector {
 	public double length()
 	{
 		return Math.sqrt(this.lengthSquared());
+	}
+	@Override
+	public String toString() {
+		return "Vector [head=" + head + "]";
 	}
 
 }
