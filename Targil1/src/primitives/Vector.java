@@ -63,7 +63,15 @@ public class Vector {
 			return false;
 		return true;
 	}
-	
+	public Vector normalize() {
+		 this.head=new Point3D(scale(Math.sqrt(this.dotProduct(this))).head.x,scale(Math.sqrt(this.dotProduct(this))).head.y,
+				 scale(Math.sqrt(this.dotProduct(this))).head.z);
+		 return this;
+	}
+	public Vector normalized() {
+		Vector temp=this.normalize();
+		return new Vector(temp.getHead());
+	}
 
 }
 ;
