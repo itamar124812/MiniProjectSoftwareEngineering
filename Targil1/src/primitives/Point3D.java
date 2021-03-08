@@ -1,9 +1,9 @@
 package primitives;
 
 public final class Point3D {
-	private final Coordinate x;
-	private final Coordinate y;
-	private final Coordinate z;
+	 final Coordinate x;
+	 final Coordinate y;
+	 final Coordinate z;
 	
 	final static Point3D ZERO =new Point3D(0,0,0);
 
@@ -18,15 +18,6 @@ public final class Point3D {
 		this.x = new Coordinate(x);
 		this.y = new Coordinate(y);
 		this.z = new Coordinate(z);
-	}
-	public Coordinate getX() {
-		return x;
-	}
-	public Coordinate getY() {
-		return y;
-	}
-	public Coordinate getZ() {
-		return z;
 	}
 	 @Override
 	 public boolean equals(Object obj) {
@@ -47,7 +38,7 @@ public final class Point3D {
 		 
 	}
 	public double distanceSquared(Point3D point2) {
-		 return this.x
+		 return Math. ((this.x-point2.x)*(this.x-point2.x)+(this.y-point2.y)*(this.y-point2.y)+(this.z-point2.z)*(this.z-point2.z));
 	}
 	public double distance(Point3D point2) {
 		 
