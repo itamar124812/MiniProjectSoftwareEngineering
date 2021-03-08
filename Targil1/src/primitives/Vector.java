@@ -3,15 +3,18 @@ package primitives;
 public class Vector {
 	private Point3D head;
 	public Vector(double x,double y,double z) {
+		if(x==0&& y==0&& z==0)throw new IllegalArgumentException("Do not enter a vector whose values ​​are 0.");
 		head=new Point3D(x,y,z);
 	}
     public Vector(Coordinate a,Coordinate b,Coordinate c)
     {
+    	if(a.coord==0&& b.coord==0&& c.coord==0)throw new IllegalArgumentException("Do not enter a vector whose values ​​are 0.");
 	head=new Point3D(a,b,c);
     }
-	public Vector(Point3D head) {
+	public Vector(Point3D Head) {
 		super();
-		this.head = head;
+		if(Head.equals(new Point3D(0,0,0)))throw new IllegalArgumentException("Do not enter a vector whose values ​​are 0.");
+		this.head = Head;
 	}
 
 	public Point3D getHead() {
@@ -45,7 +48,22 @@ public class Vector {
 	@Override
 	public String toString() {
 		return "Vector [head=" + head + "]";
+	}	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Vector))
+			return false;
+		Vector other = (Vector) obj;
+		if (head == null) {
+			if (other.head != null)
+				return false;
+		} else if (!head.equals(other.head))
+			return false;
+		return true;
 	}
+	
 
 }
 ;
