@@ -24,7 +24,7 @@ public final class Coordinate {
     public Coordinate(double coord) {
         // if it too close to zero make it zero
         this.coord = alignZero(coord);
-    }
+    }  
 
     /*************** Admin *****************/
     @Override

@@ -55,7 +55,7 @@ public abstract class Util {
 	 */
 	public static boolean checkSign(double n1, double n2) {
 		return (n1 < 0 && n2 < 0) || (n1 > 0 && n2 > 0);
-	}
+	} 
 	
 	/**
 	 * Provide a real random number in range between min and max
