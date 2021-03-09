@@ -3,6 +3,12 @@ package geometries;
 import primitives.Point3D;
 import primitives.Vector;
 
+/**
+ * Sphere class is geometries class which represents a Sphere by radius and center point
+ * 
+ * @author Itamar and Raz
+ *
+ */
 public class Sphere implements Geometry {
 private Point3D center;
 private double radius;

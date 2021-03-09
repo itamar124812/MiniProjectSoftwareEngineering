@@ -4,6 +4,12 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
+/**
+ * Cylinder class is geometries class which represents a cylinder by radius and tube
+ * 
+ * @author Itamar and Raz
+ *
+ */
 public class Cylinder extends Tube implements Geometry{
 	private double height;
 	

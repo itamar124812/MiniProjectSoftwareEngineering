@@ -1,5 +1,11 @@
 package primitives;
 
+/**
+ * Ray class is class that represents a beam by the zero point direction vector
+ * 
+ * @author Itamar and Raz
+ *
+ */
 public class Ray {
 private Point3D p0;
 private Vector dir;

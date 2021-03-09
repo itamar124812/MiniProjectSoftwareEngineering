@@ -1,5 +1,11 @@
 package primitives;
 
+/**
+ * Point Displays a point in space by 3 coordinates
+ * 
+ * @author Itamar and Raz
+ *
+ */
 public final class Point3D {
 	 final Coordinate x;
 	 final Coordinate y;
@@ -31,19 +37,43 @@ public final class Point3D {
 	public String toString() {
 		return "Point3D [ x= " + x.toString() + " , y= " + y.toString() + " , z= " + z.toString() + " ]";
 	}
+	/**
+     * Vector subtraction
+     * 
+     * @param point
+     * @return Vector from the second point to the point on which it is performed the action
+     */
 	public Vector subtract(Point3D point2) {
 	 Vector res=new Vector((this.x.coord-point2.x.coord),(this.y.coord-point2.y.coord),(this.z.coord-point2.z.coord));
 	 return res;
 	}
+	/**
+     * Add a vector to a dot
+     * 
+     * @param vector
+     * @return A new point
+     */
 	public Point3D add(Vector vector) {
 		Point3D res=  new Point3D(this.x.coord+vector.getHead().x.coord,this.y.coord+vector.getHead().y.coord,
 				 this.z.coord+vector.getHead().z.coord);
 		return res;
 	}
+	/**
+     * Calculate the distance between two points or more squared
+     * 
+     * @param point
+     * @return the distance between two points squared
+     */
 	public double distanceSquared(Point3D point2) {
 		return ((this.x.coord-point2.x.coord)*(this.x.coord-point2.x.coord))+((this.y.coord-point2.y.coord)*(this.y.coord-point2.y.coord))
 				+((this.z.coord-point2.z.coord)*(this.z.coord-point2.z.coord));
 	}
+	/**
+     * Calculate distance between two points by the previous function
+     * 
+     * @param point
+     * @return distance between two points
+     */
 	public double distance(Point3D point2) {
 		 return  Math.sqrt(this.distanceSquared(point2));
 	}

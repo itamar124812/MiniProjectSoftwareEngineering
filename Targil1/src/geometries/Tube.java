@@ -1,7 +1,12 @@
 package geometries;
 
 import primitives.*;
-
+/**
+ * Tube class is geometries class which represents a tube by radius and ray
+ * 
+ * @author Itamar and Raz
+ *
+ */
 public class Tube implements Geometry {
 private Ray axisRay;
 private double radius;
