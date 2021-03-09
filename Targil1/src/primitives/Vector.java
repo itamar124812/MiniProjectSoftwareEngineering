@@ -64,14 +64,13 @@ public class Vector {
 		return true;
 	}
 	public Vector normalize() {
-		 this.head=new Point3D(scale(Math.sqrt(this.dotProduct(this))).head.x,scale(Math.sqrt(this.dotProduct(this))).head.y,
-				 scale(Math.sqrt(this.dotProduct(this))).head.z);
+		 this.head=new Point3D(this.scale(1/this.length()).head.x,this.scale(1/this.length()).head.y,
+				 this.scale(1/this.length()).head.z);
 		 return this;
 	}
 	public Vector normalized() {
 		Vector temp=this.normalize();
 		return new Vector(temp.getHead());
 	}
-
 }
 ;
