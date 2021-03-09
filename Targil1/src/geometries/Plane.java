@@ -10,7 +10,7 @@ public Plane(Point3D a,Point3D b,Point3D c)
 	Vector A =a.subtract(b);
 	Vector B=a.subtract(c);
 	if(A.normalize().equals(B.normalize())||A.normalize().equals(B.normalize().scale(-1)))	throw new  IllegalArgumentException("Three points must not be on the same straight line.");
-	else 
+	else  
 	{
 		normal =A.crossProduct(B);
 	}
