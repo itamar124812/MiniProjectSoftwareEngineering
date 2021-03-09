@@ -1,52 +1,10 @@
-package primitives;
+package geometries;
 
-<<<<<<< Upstream, based on branch 'main' of https://github.com/itamar124812/MiniProjectSoftwareEngineering.git
-=======
 import java.util.List;
 import primitives.*;
->>>>>>> 4428e4e Hash
 import static primitives.Util.*;
 
 /**
-<<<<<<< Upstream, based on branch 'main' of https://github.com/itamar124812/MiniProjectSoftwareEngineering.git
- * Class Coordinate is the basic class representing a coordinate for Cartesian
- * coordinate system. The class is based on Util controlling the accuracy.
- * 
- * @author Dan Zilberstein
- * @version 5780B updated according to new requirements
- */
-public final class Coordinate {
-    /**
-     * Coordinate value, intentionally "package-friendly" due to performance
-     * constraints
-     */
-    final double coord;
-
-    /**
-     * Coordinate constructor receiving a coordinate value
-     * 
-     * @param coord coordinate value
-     */
-    public Coordinate(double coord) {
-        // if it too close to zero make it zero
-        this.coord = alignZero(coord);
-    }
-
-    /*************** Admin *****************/
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (!(obj instanceof Coordinate)) return false;
-        Coordinate other = (Coordinate)obj;
-        return isZero(coord - other.coord);
-    }
-
-    @Override
-    public String toString() {
-        return "" + coord;
-    }
-=======
  * Polygon class represents two-dimensional polygon in 3D Cartesian coordinate
  * system
  * 
@@ -127,6 +85,4 @@ public class Polygon implements Geometry {
 	public Vector getNormal(Point3D point) {
 		return plane.getNormal();
 	}
->>>>>>> 4428e4e Hash
 }
-
