@@ -9,6 +9,7 @@ public Plane(Point3D a,Point3D b,Point3D c)
 	q0=a;
 	Vector A =a.subtract(b);
 	Vector B=a.subtract(c);
+	
 }
 
 @Override
