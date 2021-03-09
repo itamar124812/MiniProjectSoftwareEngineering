@@ -32,15 +32,19 @@ public final class Point3D {
 		return "Point3D [ x= " + x.toString() + " , y= " + y.toString() + " , z= " + z.toString() + " ]";
 	}
 	public Vector subtract(Point3D point2) {
-	 
+	 Vector res=new Vector((this.x.coord-point2.x.coord),(this.y.coord-point2.y.coord),(this.z.coord-point2.z.coord));
+	 return res;
 	}
 	public Point3D add(Vector vector) {
-		 
+		Point3D res=  new Point3D(this.x.coord+vector.getHead().x.coord,this.y.coord+vector.getHead().y.coord,
+				 this.z.coord+vector.getHead().z.coord);
+		return res;
 	}
 	public double distanceSquared(Point3D point2) {
-		 return Math. ((this.x-point2.x)*(this.x-point2.x)+(this.y-point2.y)*(this.y-point2.y)+(this.z-point2.z)*(this.z-point2.z));
+		return ((this.x.coord-point2.x.coord)*(this.x.coord-point2.x.coord))+((this.y.coord-point2.y.coord)*(this.y.coord-point2.y.coord))
+				+((this.z.coord-point2.z.coord)*(this.z.coord-point2.z.coord));
 	}
 	public double distance(Point3D point2) {
-		 
+		 return  Math.sqrt(this.distanceSquared(point2));
 	}
 }
