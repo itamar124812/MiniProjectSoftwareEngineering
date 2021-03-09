@@ -23,7 +23,7 @@ public Plane(Point3D Q0,Vector Normal)
 @Override
 public String toString() {
 	return "Plane [normal=" + normal + ", q0=" + q0 + "]";
-}
+} 
 @Override
 public Vector getNormal(Point3D point) {
 	// TODO Auto-generated method stub
