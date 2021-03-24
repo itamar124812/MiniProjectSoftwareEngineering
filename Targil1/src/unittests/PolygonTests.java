@@ -1,7 +1,7 @@
 /**
  * 
  */
-package unittests.geometries;
+package unittests;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -17,7 +17,7 @@ import primitives.*;
  */
 public class PolygonTests {
 
-    /**
+    /* bn* 
      * Test method for
      * {@link geometries.Polygon#Polygon(primitives.Point3D, primitives.Point3D, primitives.Point3D, primitives.Point3D)}.
      */
