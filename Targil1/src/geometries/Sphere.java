@@ -30,7 +30,6 @@ public String toString() {
 }
 	@Override
 	public Vector getNormal(Point3D point) {
-		// TODO Auto-generated method stub
-		return null;
+		return (center.subtract(point)).normalize();
 	}
 }

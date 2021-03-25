@@ -14,10 +14,7 @@ public final class Point3D {
 	public final static Point3D ZERO =new Point3D(0,0,0);
 
 	public Point3D(Coordinate x, Coordinate y, Coordinate z) {
-		super();
-		this.x = x;
-		this.y = y;
-		this.z = z;
+		this(x.coord,y.coord,z.coord);
 	}
 	public Point3D(double x, double y, double z) {
 		super();
@@ -44,8 +41,7 @@ public final class Point3D {
      * @return Vector from the second point to the point on which it is performed the action
      */
 	public Vector subtract(Point3D point2) {
-	 Vector res=new Vector((this.x.coord-point2.x.coord),(this.y.coord-point2.y.coord),(this.z.coord-point2.z.coord));
-	 return res;
+		return new Vector((this.x.coord-point2.x.coord),(this.y.coord-point2.y.coord),(this.z.coord-point2.z.coord));
 	}
 	/**
      * Add a vector to a dot
@@ -54,9 +50,8 @@ public final class Point3D {
      * @return A new point
      */
 	public Point3D add(Vector vector) {
-		Point3D res=  new Point3D(this.x.coord+vector.getHead().x.coord,this.y.coord+vector.getHead().y.coord,
+	return new Point3D(this.x.coord+vector.getHead().x.coord,this.y.coord+vector.getHead().y.coord,
 				 this.z.coord+vector.getHead().z.coord);
-		return res;
 	}
 	/**
      * Calculate the distance between two points or more squared
