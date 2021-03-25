@@ -22,10 +22,10 @@ public Plane(Point3D a,Point3D b,Point3D c)
 	q0=a;
 	Vector A =a.subtract(b);
 	Vector B=a.subtract(c);
-	if(A.normalize().equals(B.normalize())||A.normalize().equals(B.normalize().scale(-1)))	throw new  IllegalArgumentException("Three points must not be on the same straight line.");
+	if(A.normalized().equals(B.normalized())||A.normalized().equals(B.normalized().scale(-1)))	throw new  IllegalArgumentException("Three points must not be on the same straight line.");
 	else  
 	{
-		normal =A.crossProduct(B);
+		normal =(A.crossProduct(B)).normalize();
 	}
 }
 //Constructor that accepts parameters and sets them
@@ -41,7 +41,7 @@ public String toString() {
 @Override
 public Vector getNormal(Point3D point) {
 	// TODO Auto-generated method stub
-	return null;
+	return normal;
 }
 //Getters
 public Vector getNormal() {
