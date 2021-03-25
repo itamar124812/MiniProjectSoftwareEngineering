@@ -3,9 +3,14 @@
  */
 package unittests;
 
+import static java.lang.System.out;
 import static org.junit.Assert.*;
+import static primitives.Util.isZero;
+
 
 import org.junit.Test;
+
+import primitives.Vector;
 
 /**
  * @author USER
@@ -16,25 +21,45 @@ public class VectorTest {
 	/**
 	 * Test method for {@link primitives.Vector#add(primitives.Vector)}.
 	 */
-	@Test
+	@Test(expected =IllegalArgumentException.class)
 	public void testAdd() {
-		fail("Not yet implemented");
+		 // ============ Equivalence Partitions Tests ==============
+		 Vector v1 = new Vector(1, 2, 3);
+	     Vector v2 = new Vector(-2, -4, -6);	  
+	     Vector v3 = new Vector(0, 3, -2);
+	     assertEquals(v1.add(v2),new Vector(-1,-2,-3));
+	     assertEquals(v1.add(v3),new Vector(1,5,1)); 
+	     //=============== Boundary Values Tests ==================
+	     v1.scale(2).add(v2);
 	}
 
 	/**
 	 * Test method for {@link primitives.Vector#subtract(primitives.Vector)}.
 	 */
-	@Test
+	@Test(expected =IllegalArgumentException.class)
 	public void testSubtract() {
-		fail("Not yet implemented");
+		 // ============ Equivalence Partitions Tests ==============
+		 Vector v1 = new Vector(1, 2, 3);
+	     Vector v2 = new Vector(-2, -4, -6);	  
+	     Vector v3 = new Vector(0, 3, -2);
+	     assertEquals(v1.subtract(v2),new Vector(3,6,9));
+	     assertEquals(v1.subtract(v3),new Vector(1,-1,5));
+	     // =============== Boundary Values Tests ==================
+	     v1.subtract(v1);
 	}
 
 	/**
 	 * Test method for {@link primitives.Vector#scale(double)}.
 	 */
-	@Test
+	@Test(expected =IllegalArgumentException.class)
 	public void testScale() {
-		fail("Not yet implemented");
+		 // ============ Equivalence Partitions Tests ==============
+		 //...
+		Vector v1=new Vector(1,2,3);
+		assertEquals(v1.scale(2), new Vector(2,4,6));
+		assertEquals(v1.scale(-2), new Vector(-2,-4,-6));
+	    // =============== Boundary Values Tests ==================
+	    v1.scale(0);
 	}
 
 	/**
@@ -42,15 +67,27 @@ public class VectorTest {
 	 */
 	@Test
 	public void testDotProduct() {
-		fail("Not yet implemented");
+		// ============ Equivalence Partitions Tests ==============
+		 Vector v1 = new Vector(1, 2, 3);
+	     Vector v2 = new Vector(-2, -4, -6);	  
+	     Vector v3 = new Vector(0, 3, -2);
+		assertEquals(isZero(v1.dotProduct(v3)), true);
+		assertEquals(isZero(v1.dotProduct(v2) + 28),true);
 	}
 
 	/**
 	 * Test method for {@link primitives.Vector#crossProduct(primitives.Vector)}.
 	 */
-	@Test
+	@Test(expected =IllegalArgumentException.class)
 	public void testCrossProduct() {
-		fail("Not yet implemented");
+		 Vector v1 = new Vector(1, 2, 3);
+	     Vector v2 = new Vector(-2, -4, -6);	  
+	     Vector v3 = new Vector(0, 3, -2); 
+         v1.crossProduct(v2);
+
+        Vector vr = v1.crossProduct(v3);
+       assertEquals(isZero(vr.length() - v1.length() * v3.length()),true);
+       assertEquals(isZero(vr.dotProduct(v1)) || !isZero(vr.dotProduct(v3)),true);
 	}
 
 	/**
@@ -58,7 +95,8 @@ public class VectorTest {
 	 */
 	@Test
 	public void testLengthSquared() {
-		fail("Not yet implemented");
+		Vector v1 =new 	Vector(1,2,3);
+		assertEquals(isZero(v1.lengthSquared() - 14),true);
 	}
 
 	/**
@@ -66,7 +104,7 @@ public class VectorTest {
 	 */
 	@Test
 	public void testLength() {
-		fail("Not yet implemented");
+	assertEquals(isZero(new Vector(0, 3, 4).length() - 5),true);
 	}
 
 	/**
@@ -74,7 +112,11 @@ public class VectorTest {
 	 */
 	@Test
 	public void testNormalize() {
-		fail("Not yet implemented");
+	        Vector v = new Vector(1, 2, 3);
+	        Vector vCopy = new Vector(v.getHead());
+	        Vector vCopyNormalize = vCopy.normalize();
+	        assertEquals(vCopy != vCopyNormalize,false);
+	        assertEquals(isZero(vCopyNormalize.length() - 1),true);
 	}
 
 	/**
@@ -82,7 +124,9 @@ public class VectorTest {
 	 */
 	@Test
 	public void testNormalized() {
-		fail("Not yet implemented");
+		Vector v = new Vector(1, 2, 3);
+        Vector u = v.normalized();
+        assertEquals((u == v),false);
 	}
 
 }
