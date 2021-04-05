@@ -25,6 +25,12 @@ public class Cylinder extends Tube implements Geometry{
 		return "Cylinder [height=" + height + ", toString()=" + super.toString() + "]";
 	}
 	@Override
+	/**
+	 * Calculate the normal for points on the bases and axis of a final cylinder.
+	 * 
+	 * @param point
+	 * @return Calculate the normal for points on the bases and axis of a final cylinder.
+	 */
 	public Vector getNormal(Point3D point) {
 		if(point.equals(getAxisRay().getP0())||point.equals(getAxisRay().getP0().add(getAxisRay().getDir().scale(height))))return this.getAxisRay().getDir();
 		Vector a=(point.subtract(this.getAxisRay().getP0()));
