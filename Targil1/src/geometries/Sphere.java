@@ -28,6 +28,12 @@ public double getRadius() {
 public String toString() {
 	return "Sphere [center=" + center + ", radius=" + radius + "]";
 }
+	/**
+	 * 	Calculate the normal at a certain point on the circle
+	 * 
+	 * @param point
+	 * @return the normal on point on the The wall of the Sphere
+	 */
 	@Override
 	public Vector getNormal(Point3D point) {
 		return (center.subtract(point)).normalize();

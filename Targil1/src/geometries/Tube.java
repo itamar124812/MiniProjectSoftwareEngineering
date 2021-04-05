@@ -26,11 +26,14 @@ public String toString() {
 public double getRadius() {
 	return radius;
 }
+/**
+ * Calculate the normal on point on the The wall of the Tube
+ * 
+ * @param point
+ * @return the normal on point on the The wall of the Tube
+ */
 	@Override
 	public Vector getNormal(Point3D point) {
-
-		
-
 		double temp=axisRay.getDir().dotProduct(point.subtract(axisRay.getP0()));
 		if(temp==0)
 		return (point.subtract(Point3D.ZERO)).normalize();
