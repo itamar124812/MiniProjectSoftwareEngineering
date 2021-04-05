@@ -10,7 +10,7 @@ import geometries.Plane;
 import primitives.Point3D;
 import primitives.Vector;
 /**
- * @author USER
+ * @author Raz Shely && Itamar Cohen 
  *
  */
 public class PlaneTests {
@@ -24,7 +24,10 @@ public class PlaneTests {
 		Point3D p2=new Point3D(2,4,6);
 		Point3D p3=new Point3D(-1,-1,1);
 		Plane p=new Plane(p1,p2,p3);
+        // ============ Equivalence Partitions Tests ==============
+		//Check that the Length of the normal equals to 1
 		assertEquals(isZero(p.getNormal().length()-1),true);
+		//Check the the normal of some plane
 		assertEquals(p.getNormal(),new Vector(5,-4,1).normalize());
 	}
 
