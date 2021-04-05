@@ -26,8 +26,16 @@ public class Cylinder extends Tube implements Geometry{
 	}
 	@Override
 	public Vector getNormal(Point3D point) {
+		if(point.equals(getAxisRay().getP0())||point.equals(getAxisRay().getP0().add(getAxisRay().getDir().scale(height))))return this.getAxisRay().getDir();
+		Vector a=(point.subtract(this.getAxisRay().getP0()));
+		Vector b=point.subtract(this.getAxisRay().getP0()).subtract(this.getAxisRay().getDir().scale(height));
+		if(a.dotProduct(this.getAxisRay().getDir())==0 || b.dotProduct(this.getAxisRay().getDir())==0 )
+		{
+			return this.getAxisRay().getDir();
+		}
+		else if(super.getNormal(point)!=null) return super.getNormal(point);
+		else throw new IllegalArgumentException("The point is not on the cylinder.");		
 		
-		return null;
-	}
+		}
 
 }

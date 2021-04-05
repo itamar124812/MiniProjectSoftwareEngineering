@@ -29,7 +29,6 @@ public double getRadius() {
 	@Override
 	public Vector getNormal(Point3D point) {
 		
-		return null;
 	}
 
 

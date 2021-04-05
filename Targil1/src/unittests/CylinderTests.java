@@ -21,10 +21,16 @@
 		@Test
 		public void testGetNormal() {
 			Point3D pP0=new Point3D(0,0,2);
-			Vector vDir=new Vector(0,0,4);
+			Vector vDir=new Vector(0,0,1);
 			Ray rVal=new Ray(pP0,vDir);
 			Cylinder cTest=new Cylinder(rVal,3,4);
-			assertEquals(new Vector(0,1,0),cTest.getNormal(new Point3D(0,2,2)));	
+	        // ============ Equivalence Partitions Tests ==============	        
+			assertEquals(new Vector(0,0,1),cTest.getNormal(new Point3D(0,2,2)));
+			assertEquals(new Vector(0,0,1),cTest.getNormal(new Point3D(0,2,6)));
+			assertEquals(new Vector(0,1,0),cTest.getNormal(new Point3D(0,3,5)));
+			// =============== Boundary Values Tests ==================        
+			assertEquals(new Vector(0,0,1),cTest.getNormal(new Point3D(0,0,2)));
+			assertEquals(new Vector(0,0,1),cTest.getNormal(new Point3D(0,0,6)));
 		}
 
 	}

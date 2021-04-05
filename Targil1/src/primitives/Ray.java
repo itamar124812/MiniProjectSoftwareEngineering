@@ -13,7 +13,7 @@ private Vector dir;
 public Ray(Point3D p0, Vector dir) {
 	super();
 	this.p0 = p0;
-	if(this.dir.length()==1)
+	if(dir.length()==1)
 	this.dir = dir;
 	else
 		this.dir.normalize();
