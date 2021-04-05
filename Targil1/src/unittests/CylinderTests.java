@@ -31,7 +31,7 @@
 			//Checks the normal to some point on the cylinder side.
 			assertEquals(new Vector(0,1,0),cTest.getNormal(new Point3D(0,3,5)));
 			// =============== Boundary Values Tests ================== 
-			//Checks the normal to center points on the cylinder bases.
+			//Checks the normal to central points on the cylinder bases.
 			assertEquals(new Vector(0,0,1),cTest.getNormal(new Point3D(0,0,2)));
 			assertEquals(new Vector(0,0,1),cTest.getNormal(new Point3D(0,0,6)));
 		}
