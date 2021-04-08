@@ -16,6 +16,15 @@ public final class Point3D {
 	public Point3D(Coordinate x, Coordinate y, Coordinate z) {
 		this(x.coord,y.coord,z.coord);
 	}
+	public double getX() {
+		return x.coord;
+	}
+	public double getY() {
+		return y.coord;
+	}
+	public double getZ() {
+		return z.coord;
+	}
 	public Point3D(double x, double y, double z) {
 		super();
 		this.x = new Coordinate(x);

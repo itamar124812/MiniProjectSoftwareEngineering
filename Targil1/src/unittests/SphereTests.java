@@ -47,11 +47,11 @@ public class SphereTests {
 	 assertEquals("Wrong number of points", 2, result.size());
 	 if (result.get(0).getX() > result.get(1).getX())
 	 result = List.of(result.get(1), result.get(0));
-	 assertEquals("Ray crosses sphere", List.of(p1, p2), result);
+	 assertEquals("Ray crosses sphere", List.of(p1, p2), result);;
 	 // TC03: Ray starts inside the sphere (1 point)
-	 ...
+	 
 	 // TC04: Ray starts after the sphere (0 points)
-	 ...
+	 
 	 // =============== Boundary Values Tests ==================
 	 // **** Group: Ray's line crosses the sphere (but not the center)
 	 // TC11: Ray starts at sphere and goes inside (1 points)
