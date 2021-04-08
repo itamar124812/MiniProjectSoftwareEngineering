@@ -1,5 +1,7 @@
 package geometries;
 
+import java.util.List;
+
 import primitives.*;
 /**
  * Tube class is geometries class which represents a tube by radius and ray
@@ -41,6 +43,11 @@ public double getRadius() {
 		return (point.subtract(O)).normalize();
 
 	}
+@Override
+public List<Point3D> findIntsersections(Ray ray) {
+	// TODO Auto-generated method stub
+	return null;
+}
 
 
 }

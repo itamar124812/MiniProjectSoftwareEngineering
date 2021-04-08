@@ -1,6 +1,10 @@
 package geometries;
 import primitives.Vector;
+
+import java.util.List;
+
 import primitives.Point3D;
+import primitives.Ray;
 /**
  * Represents a plane in space with the help of a normal vector and a reference point
 */
@@ -50,6 +54,11 @@ public Vector getNormal() {
 
 public Point3D getQ0() {
 	return q0;
+}
+@Override
+public List<Point3D> findIntsersections(Ray ray) {
+	// TODO Auto-generated method stub
+	return null;
 }
 
 }

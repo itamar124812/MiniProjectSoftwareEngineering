@@ -1,6 +1,9 @@
 package geometries;
 
+import java.util.List;
+
 import primitives.Point3D;
+import primitives.Ray;
 import primitives.Vector;
 
 /**
@@ -37,5 +40,10 @@ public String toString() {
 	@Override
 	public Vector getNormal(Point3D point) {
 		return (center.subtract(point)).normalize();
+	}
+	@Override
+	public List<Point3D> findIntsersections(Ray ray) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
