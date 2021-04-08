@@ -7,6 +7,6 @@ import primitives.*;
  * @author Itamar and Raz
  *
  */
-public interface Geometry {
+public interface Geometry extends Intersectable {
 public Vector getNormal(Point3D point); 
 }
