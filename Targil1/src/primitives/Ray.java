@@ -37,4 +37,7 @@ if (!(obj instanceof Ray)) return false;
 Ray other = (Ray)obj;
 return this.p0.equals(other.p0) && this.dir.equals(other.dir);
 }
+public Point3D getPoint(double t) {
+	return this.p0.add(this.dir.scale(t));
+}
 }
