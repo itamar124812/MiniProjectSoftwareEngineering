@@ -3,6 +3,7 @@
  */
 package geometries;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import primitives.Point3D;
@@ -20,7 +21,7 @@ public class Geometries implements Intersectable {
 	{
 		intersectable.add(geometrie);
 	}
-	public Geometries(List<Intersectable> intersectable) {
+	public Geometries(ArrayList<Intersectable> intersectable) {
 		this.intersectable = intersectable;
 	}
 	@Override
