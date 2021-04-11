@@ -5,16 +5,29 @@ package geometries;
 
 import java.util.List;
 
+import primitives.Point3D;
+import primitives.Ray;
+import primitives.Vector;
+
 /**
  * @author USER
  *
  */
-public class Geometries {
+public class Geometries implements Intersectable {
 
 	private List<Intersectable> intersectable;
-
+	public void add(Intersectable geometrie)
+	{
+		intersectable.add(geometrie);
+	}
 	public Geometries(List<Intersectable> intersectable) {
 		this.intersectable = intersectable;
 	}
+	@Override
+	public List<Point3D> findIntsersections(Ray ray) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	
 }
