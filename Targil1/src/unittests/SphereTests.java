@@ -2,9 +2,7 @@
  * 
  */
 package unittests;
-
 import static org.junit.Assert.*;
-
 import java.util.List;
 
 import geometries.Sphere;
@@ -30,7 +28,7 @@ public class SphereTests {
 		assertEquals(new Vector(0.6,-Math.sqrt(8)/5,-Math.sqrt(8)/5),sTest.getNormal(new Point3D(0,Math.sqrt(8),Math.sqrt(8))));
 	}
 	/**
-	 * Test method for {@link geometries.Sphere#findIntersections(primitives.Ray)}.
+	 * Test method for {@link geometries.Sphere#findIntsersections(primitives.Ray)}.
 	 */
 	 @Test
 	 public void testFindIntsersections() {
@@ -49,8 +47,14 @@ public class SphereTests {
 	 result = List.of(result.get(1), result.get(0));
 	 assertEquals("Ray crosses sphere", List.of(p1, p2), result);;
 	 // TC03: Ray starts inside the sphere (1 point)
-	 
+	 p1 = new Point3D(1.3559964222368532, 0.3559964222368531,  0.864021466578881);
+	 result = sphere.findIntsersections(new Ray(new Point3D(1.5, 0.5, 0),
+	 new Vector(-0.5, -0.5, 3)));
+	 assertEquals("Wrong number of points", 1, result.size());
+	 assertEquals("Ray crosses sphere", List.of(p1), result);;
 	 // TC04: Ray starts after the sphere (0 points)
+	 assertNull("Ray's line after the sphere",
+	 sphere.findIntsersections(new Ray(new Point3D(1.5, 0, 2), new Vector(0.25, 0, 1))));
 	 
 	 // =============== Boundary Values Tests ==================
 	 // **** Group: Ray's line crosses the sphere (but not the center)

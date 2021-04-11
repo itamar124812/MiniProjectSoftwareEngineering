@@ -1,10 +1,12 @@
 package geometries;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
+import static primitives.Util.*;
 
 /**
  * Sphere class is geometries class which represents a Sphere by radius and center point
@@ -43,7 +45,20 @@ public String toString() {
 	}
 	@Override
 	public List<Point3D> findIntsersections(Ray ray) {
-		// TODO Auto-generated method stub
+		Vector u=this.center.subtract(ray.getP0());
+		double tm=ray.getDir().dotProduct(u);
+		double d=Math.sqrt(u.lengthSquared() - tm*tm);
+		if(d>=this.radius)
 		return null;
+		double th=Math.sqrt(this.radius*this.radius-d*d);
+		double t1=alignZero(th+tm),t2=alignZero(tm-th);
+		List<Point3D> res=new ArrayList<Point3D>();
+		if(t1>0)
+			res.add(ray.getPoint(t1));
+		if(t2>0)
+			res.add(ray.getPoint(t2));
+		if(isZero(res.size()))
+			return null;
+		return res;
 	}
 }

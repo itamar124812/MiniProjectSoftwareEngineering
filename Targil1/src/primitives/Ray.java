@@ -16,7 +16,7 @@ public Ray(Point3D p0, Vector dir) {
 	if(dir.length()==1)
 	this.dir = dir;
 	else
-		this.dir.normalize();
+		this.dir=dir.normalize();
 }
 
 public Point3D getP0() {
