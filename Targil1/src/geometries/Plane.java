@@ -1,6 +1,7 @@
 package geometries;
 import primitives.Vector;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import primitives.Point3D;
@@ -36,7 +37,7 @@ public Plane(Point3D a,Point3D b,Point3D c)
 public Plane(Point3D Q0,Vector Normal) 
 {
 	q0=Q0;
-	normal=Normal;
+	normal=Normal.normalize();
 }
 @Override
 public String toString() {
@@ -57,8 +58,24 @@ public Point3D getQ0() {
 }
 @Override
 public List<Point3D> findIntsersections(Ray ray) {
-	// TODO Auto-generated method stub
-	return null;
+	if(ray.getP0().equals(this.q0)) return null;
+	else {
+		double t=normal.dotProduct((this.q0).subtract(ray.getP0()));
+		if(t==0) return null;
+		if(normal.dotProduct(ray.getDir())!=0)
+			{
+			t/=normal.dotProduct(ray.getDir());
+			if(t>0)
+			{
+			List<Point3D> result=new ArrayList<Point3D>();
+			result.add(ray.getP0().add(ray.getDir().scale(t)));
+			return result;
+			}
+			else return null;
+			}
+		else return null;
+		
+	}
 }
 
 }

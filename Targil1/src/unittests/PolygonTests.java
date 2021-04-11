@@ -78,6 +78,14 @@ public class PolygonTests {
         } catch (IllegalArgumentException e) {}
 
     }
+    /**
+     * Test method for {@link geometries.Polygon#findIntsersections(Ray ray)}.
+     */
+    @Test
+    public void testFindIntsersections() 
+    {
+    	
+    }
 
     /**
      * Test method for {@link geometries.Polygon#getNormal(primitives.Point3D)}.
@@ -91,6 +99,7 @@ public class PolygonTests {
         double sqrt3 = Math.sqrt(1d / 3);
         assertEquals("Bad normal to trinagle", new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point3D(0, 0, 1)));
     }
+    
 
 }
 
