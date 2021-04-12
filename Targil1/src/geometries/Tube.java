@@ -49,6 +49,7 @@ public List<Point3D> findIntersections(Ray ray) {
 	double a=ray.getDir().getHead().getX()*ray.getDir().getHead().getX()+ray.getDir().getHead().getY()*ray.getDir().getHead().getY();
 	double b=2*(ray.getDir().getHead().getX()*ray.getP0().getX()+ray.getDir().getHead().getY()*ray.getP0().getY());
 	double c=ray.getP0().getY()*ray.getP0().getY()+ray.getP0().getX()*ray.getP0().getX()-this.radius;
+	if(Util.isZero(a))return null;
 	 if(Util.isZero(b*b-4*a*c)) {
 		ArrayList<Point3D> result=new ArrayList<Point3D> ();
 		result.add(ray.getPoint(-b/(2*a)));

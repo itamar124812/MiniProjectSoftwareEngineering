@@ -40,7 +40,10 @@ public class TubeTest {
 	 * Test method for {@link geometries.Tube#findIntersections(primitives.Point3D)}.
 	 */ 
 	@Test
-	public void testFindIntersersections() {
-		
+	public void testFindIntersersections() {	
+		Tube t=new Tube(new Ray(new Point3D(0,0,1),new Vector(0,0,1)),1d);
+		// ============ Equivalence Partitions Tests ==============
+		//
+		assertNull(t.findIntersections(new Ray(new Point3D(0,0,2),new Vector(0,0,1))));
 	}
 }
