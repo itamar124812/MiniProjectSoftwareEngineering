@@ -6,6 +6,7 @@ import java.util.List;
 
 import primitives.Point3D;
 import primitives.Ray;
+import primitives.Util;
 /**
  * Represents a plane in space with the help of a normal vector and a reference point
 */
@@ -58,7 +59,7 @@ public Point3D getQ0() {
 }
 @Override
 public List<Point3D> findIntsersections(Ray ray) {
-	if(ray.getP0().equals(this.q0)) return null;
+	if(ray.getP0().equals(this.q0) || Util.isZero(ray.getP0().subtract(q0).dotProduct(normal))) return null;
 	else {
 		double t=normal.dotProduct((this.q0).subtract(ray.getP0()));
 		if(t==0) return null;
