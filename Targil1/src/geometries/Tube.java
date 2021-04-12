@@ -1,5 +1,6 @@
 package geometries;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import primitives.*;
@@ -45,8 +46,23 @@ public double getRadius() {
 	}
 @Override
 public List<Point3D> findIntersections(Ray ray) {
-	// TODO Auto-generated method stub
-	return null;
+	double a=ray.getDir().getHead().getX()*ray.getDir().getHead().getX()+ray.getDir().getHead().getY()*ray.getDir().getHead().getY();
+	double b=2*(ray.getDir().getHead().getX()*ray.getP0().getX()+ray.getDir().getHead().getY()*ray.getP0().getY());
+	double c=ray.getP0().getY()*ray.getP0().getY()+ray.getP0().getX()*ray.getP0().getX()-this.radius;
+	 if(Util.isZero(b*b-4*a*c)) {
+		ArrayList<Point3D> result=new ArrayList<Point3D> ();
+		result.add(ray.getPoint(-b/(2*a)));
+		return result;
+	 }
+	 else if((b*b-4*a*c)<0) return null;		
+	 else
+	 {
+		double d=Math.sqrt(b*b-4*a*c);
+		ArrayList<Point3D> result=new ArrayList<Point3D> ();
+		result.add(ray.getPoint((-b-d)/(2*a)));
+		result.add(ray.getPoint((-b+d)/(2*a)));
+	    return result;
+	 }
 }
 
 

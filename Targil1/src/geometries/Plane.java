@@ -69,7 +69,7 @@ public List<Point3D> findIntersections(Ray ray) {
 			if(t>0)
 			{
 			List<Point3D> result=new ArrayList<Point3D>();
-			result.add(ray.getP0().add(ray.getDir().scale(t)));
+			result.add(ray.getPoint(t));
 			return result;
 			}
 			else return null;

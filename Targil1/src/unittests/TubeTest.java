@@ -40,7 +40,7 @@ public class TubeTest {
 	 * Test method for {@link geometries.Tube#findIntersections(primitives.Point3D)}.
 	 */ 
 	@Test
-	public void testFindIntsersections() {
+	public void testFindIntersersections() {
 		
 	}
 }
