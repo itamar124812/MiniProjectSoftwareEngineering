@@ -21,7 +21,7 @@
 		@Test
 		public void testGetNormal() {
 			Point3D pP0=new Point3D(0,0,2);
-			Vector vDir=new Vector(0,0,1);
+			Vector vDir=new Vector(0,0,1); 
 			Ray rVal=new Ray(pP0,vDir);
 			Cylinder cTest=new Cylinder(rVal,3,4);
 	        // ============ Equivalence Partitions Tests ==============

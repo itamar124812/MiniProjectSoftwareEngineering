@@ -102,7 +102,7 @@ public class PolygonTests {
     	 assertNull(p.findIntsersections(ray));
     	 //TC05: p0 is one of the vertices(null)
     	 ray =new Ray(new Point3D(0,0,5),new Vector(1,0,0));
-    	 assertNull(p.findIntsersections(ray));
+    	 assertNull(p.findIntsersections(ray)); 
     	 //TC06:The ray is normal for the Polygon p0 before the polygon(one point)
     	 ray =new Ray(new Point3D(1,2,3),new Vector(-5,0,1));
     	 assertTrue(p.findIntsersections(ray).size()==1&& new Point3D(-0.3461538461538,2,3.269230769231).equals( p.findIntsersections(ray).get(0)));
@@ -115,9 +115,9 @@ public class PolygonTests {
     	 //TC09:p0 on the polygon(null requirement)
     	 ray =new Ray(new Point3D(-0.5,2,2.5),new Vector(1,1,1));
     	 assertNull(p.findIntsersections(ray));
-    	 ////TC09: The ray intersect one of the edges(null requirement)
-    	 ray =new Ray(new Point3D(-1.5,2,2.5),new Vector(1,0,0));
-    	 assertNull(p.findIntsersections(ray));
+    	 //TC10: The ray intersect one of the edges(null requirement)
+    	 ray =new Ray(new Point3D(-1.5,4,2.5),new Vector(1,0,0));
+    	 assertNull(p.findIntsersections(ray));  	 
     	 }
 
     /**
