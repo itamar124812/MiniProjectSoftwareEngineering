@@ -94,18 +94,18 @@ public class Polygon implements Geometry {
 		else {
 			double t=plane.getNormal().dotProduct(plane.getQ0().subtract(ray.getP0()));
 			if(t==0) return null;
-			if(plane.getNormal().dotProduct(ray.getDir())!=0)
+			if(!isZero(plane.getNormal().dotProduct(ray.getDir())))
 				{
 				t/=plane.getNormal().dotProduct(ray.getDir());
-				if(t>0)
+				if(t>0 && !isZero(t) )
 				{			
 				Point3D intsersectionPoint = ray.getP0().add(ray.getDir().scale(t));
 				for(int i=0;i<vertices.size()-2;i++)
-				{
+				{	
 					Vector v0=vertices.get(i).subtract(ray.getP0());
 					Vector v1=vertices.get(i+1).subtract(ray.getP0());
 					Vector v2=vertices.get(i+2).subtract(ray.getP0());
-					if(!isZero(ray.getDir().dotProduct(v2.crossProduct(v1))) &&ray.getDir().dotProduct(v1.crossProduct(v0))/ray.getDir().dotProduct(v2.crossProduct(v1))<0)return null;
+					if(isZero(ray.getDir().dotProduct(v1.crossProduct(v0))) ||  isZero(ray.getDir().dotProduct(v2.crossProduct(v1))) ||ray.getDir().dotProduct(v1.crossProduct(v0))/ray.getDir().dotProduct(v2.crossProduct(v1))<0)return null;
 				}
 				List<Point3D> result=new ArrayList<Point3D>();
 				result.add(intsersectionPoint);

@@ -84,8 +84,41 @@ public class PolygonTests {
     @Test
     public void testFindIntsersections() 
     {
-    	
-    }
+    	Polygon p=new Polygon(new Point3D(-1,0,0),new Point3D(0,0,5),new Point3D(0,4,5),new Point3D(-1,4,0) );
+    	Ray ray;
+    	 // ============ Equivalence Partitions Tests ==============
+         // TC01: The ray is outside the polygon
+   	     ray =new Ray(new Point3D(0,6,0),new Vector(0,-1,0));  	 
+    	 assertNull(p.findIntsersections(ray));
+         // TC02: The ray intersect the polygon(one point)
+    	 ray =new Ray(new Point3D(1,1,-1),new Vector(-8,1,10));
+    	 assertTrue(p.findIntsersections(ray).size()==1&& new Point3D(-0.76,1.22,1.2).equals( p.findIntsersections(ray).get(0)));
+    	 // =============== Boundary Values Tests ==================
+    	 //TC03: The ray is edge of the Polygon(null requirement)
+    	 ray =new Ray(new Point3D(0,-1,5),new Vector(0,1,0));
+    	 assertNull(p.findIntsersections(ray));
+    	//TC04: The ray intersect one of the vertices(null requirement)
+    	 ray =new Ray(new Point3D(-1,0,5),new Vector(1,0,0));
+    	 assertNull(p.findIntsersections(ray));
+    	 //TC05: p0 is one of the vertices(null)
+    	 ray =new Ray(new Point3D(0,0,5),new Vector(1,0,0));
+    	 assertNull(p.findIntsersections(ray));
+    	 //TC06:The ray is normal for the Polygon p0 before the polygon(one point)
+    	 ray =new Ray(new Point3D(1,2,3),new Vector(-5,0,1));
+    	 assertTrue(p.findIntsersections(ray).size()==1&& new Point3D(-0.3461538461538,2,3.269230769231).equals( p.findIntsersections(ray).get(0)));
+    	 //TC07:The polygon is include the ray p0 before the polygon(null requirement)
+    	 ray =new Ray(new Point3D(-0.5,-1,2.5),new Vector(0,1,0));
+    	 assertNull(p.findIntsersections(ray));
+    	 //TC08:The polygon is include the ray p0 on the polygon(null requirement)
+    	 ray =new Ray(new Point3D(-0.5,2,2.5),new Vector(0,1,0));
+    	 assertNull(p.findIntsersections(ray));
+    	 //TC09:p0 on the polygon(null requirement)
+    	 ray =new Ray(new Point3D(-0.5,2,2.5),new Vector(1,1,1));
+    	 assertNull(p.findIntsersections(ray));
+    	 ////TC09: The ray intersect one of the edges(null requirement)
+    	 ray =new Ray(new Point3D(-1.5,2,2.5),new Vector(1,0,0));
+    	 assertNull(p.findIntsersections(ray));
+    	 }
 
     /**
      * Test method for {@link geometries.Polygon#getNormal(primitives.Point3D)}.
