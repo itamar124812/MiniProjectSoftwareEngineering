@@ -36,5 +36,11 @@ public class TubeTest {
 		 // TC11: test the point is in front of the head of the foundation
 		assertEquals(new Vector(1,0,0),t.getNormal(check2));
 	}
-
+	/**
+	 * Test method for {@link geometries.Tube#findIntersections(primitives.Point3D)}.
+	 */ 
+	@Test
+	public void testFindIntsersections() {
+		
+	}
 }

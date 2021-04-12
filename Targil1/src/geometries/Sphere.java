@@ -44,7 +44,7 @@ public String toString() {
 		return (center.subtract(point)).normalize();
 	}
 	@Override
-	public List<Point3D> findIntsersections(Ray ray) {
+	public List<Point3D> findIntersections(Ray ray) {
 		List<Point3D> res=new ArrayList<Point3D>();
 		if(isZero(ray.getP0().getX()-center.getX()) && isZero(ray.getP0().getY()-center.getY()) &&
 				isZero(ray.getP0().getZ()-center.getZ())) {

@@ -55,7 +55,7 @@ public class PlaneTests {
 		assertEquals(p.getNormal(),new Vector(5,-4,1).normalize());
 	}
 	/**
-     * Test method for {@link geometries.Plane#findIntsersections(Ray ray)}.
+     * Test method for {@link geometries.Plane#findIntersections(Ray ray)}.
      */
     @Test
     public void testFindIntsersections() 
@@ -70,33 +70,33 @@ public class PlaneTests {
     	Vector dir=new Vector(1,0,0);
     	Plane p=new Plane(p0,v0);
     	Ray ray=new Ray(Point3D.ZERO,dir);
-    	assertArrayEquals(result.toArray(),p.findIntsersections(ray).toArray());
+    	assertArrayEquals(result.toArray(),p.findIntersections(ray).toArray());
     	result.clear();
     	// TC02: Ray's line is outside the Plane (0 point)
     	ray=new Ray(Point3D.ZERO,v0.scale(-1));
-    	assertNull(p.findIntsersections(ray));
+    	assertNull(p.findIntersections(ray));
         // =============== Boundary Values Tests ==================
     	// TC01: Ray's line is include && parallel  the Plane (null)
     	ray=new Ray(p0,new Vector(5,-1,-1));
-    	assertNull(p.findIntsersections(ray));
+    	assertNull(p.findIntersections(ray));
     	//TC02: Ray's line is parallel the Plane but not include (null)
     	ray=new Ray(new Point3D(2,2,2),new Vector(5,-1,-1));
-    	assertNull(p.findIntsersections(ray));
+    	assertNull(p.findIntersections(ray));
     	//TC03:Ray is orthogonal to the plane p0 before the plane(one point)
         ray=new Ray(new Point3D(0,0,0),v0);
         exeptedPoint=new Point3D(0.428571428571429, 0.857142857142857, 1.285714285714286);
-        assertTrue(p.findIntsersections(ray).size()==1 &&exeptedPoint.equals(p.findIntsersections(ray).get(0)));
+        assertTrue(p.findIntersections(ray).size()==1 &&exeptedPoint.equals(p.findIntersections(ray).get(0)));
         //TC04:Ray is orthogonal to the plane p0 in the plane(null requirement)
         ray=new Ray(new Point3D(1,1,1),v0);
-        assertNull(p.findIntsersections(ray));
+        assertNull(p.findIntersections(ray));
         //TC05:Ray is orthogonal to the plane p0 after the plane(null)
         ray=new Ray(new Point3D(2,2,2),v0);
-        assertNull(p.findIntsersections(ray));
+        assertNull(p.findIntersections(ray));
         //TC06: only p0 in the plane(null requirement)
         ray=new Ray(new Point3D(6,0,0),dir);
-        assertNull(p.findIntsersections(ray));
+        assertNull(p.findIntersections(ray));
         //TC07: p0=q0(null requirement)
         ray=new Ray(new Point3D(1,1,1),dir);
-        assertNull(p.findIntsersections(ray));
+        assertNull(p.findIntersections(ray));
     }
 }
