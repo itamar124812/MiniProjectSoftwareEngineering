@@ -31,7 +31,7 @@ public class SphereTests {
 	 * Test method for {@link geometries.Sphere#findIntersections(primitives.Ray)}.
 	 */
 	 @Test
-	 public void testFindIntsersections() {
+	 public void testFindIntersections() {
 	 Sphere sphere = new Sphere(new Point3D(1, 0, 0),1d);
 	 // ============ Equivalence Partitions Tests ==============
 	 // TC01: Ray's line is outside the sphere (0 points)
