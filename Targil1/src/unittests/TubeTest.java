@@ -53,13 +53,13 @@ public class TubeTest {
 		//The ray intersect the tube in one point(one point)
 		assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(-1,0,0))).toArray(),t.findIntersections(new Ray(new Point3D(-1,1,1),new Vector(0,-1,-1))).toArray() );
 		// =============== Boundary Values Tests ==================
-		//p0 inside the tube and v is the direction of the tube.
+		//p0 is inside the tube and v is the direction of the tube.
 		assertNull(t.findIntersections(new Ray(new Point3D(0.5,0,0),new Vector(0,0,1))));
-		//
+		//only p0 is on the tube (null requirement)
 		assertNull(t.findIntersections(new Ray(new Point3D(1,0,0),new Vector(1,0,1))));
-		//
+		//p0 and all the ray is on the tube
 		assertNull(t.findIntersections(new Ray(new Point3D(1,0,0),new Vector(0,0,1))));
-		//
+		//The ray is orthogonal for the tube
 		assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(1,0,0),new Point3D(-1,0,0))).toArray(),t.findIntersections(new Ray(new Point3D(2,0,0),new Vector(-1,0,0))).toArray() );
 		//
 		assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(-1,0,1))).toArray(),t.findIntersections(new Ray(new Point3D(0,0,1),new Vector(-1,0,0))).toArray() );

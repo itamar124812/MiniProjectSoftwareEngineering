@@ -35,5 +35,16 @@
 			assertEquals(new Vector(0,0,1),cTest.getNormal(new Point3D(0,0,2)));
 			assertEquals(new Vector(0,0,1),cTest.getNormal(new Point3D(0,0,6)));
 		}
-
+		/**
+		 * Test method for{@link geometries.Cylinder#findIntersections(Ray)}.
+		 */
+public void testFindIntersections()
+{
+	Cylinder c=new Cylinder(new Ray(new Point3D(0,0,-1),new Vector(0,0,1)),1,2);
+	// ============ Equivalence Partitions Tests ==============
+	//the ray does not intersect the cylinder
+	Ray ray=new Ray(new Point3D(2,0,-1),new Vector(-1,0,3)) ;
+	assertNull(c.findIntersections(ray));
+	
+}
 	}

@@ -1,5 +1,8 @@
 package geometries;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
@@ -43,5 +46,20 @@ public class Cylinder extends Tube implements Geometry{
 		else throw new IllegalArgumentException("The point is not on the cylinder.");		
 		
 		}
+	public List<Point3D> findIntersections(Ray ray) 
+	{
+		if(super.findIntersections(ray)==null) return null;
+		else 
+		{
+			List<Point3D> result=super.findIntersections(ray);
+			for(int i=0; i<result.size();i++)
+			{
+				if(result.get(i).getZ()>(super.getAxisRay().getP0().getZ()+this.height))
+					result.remove(i);				
+			}			
+			return result;
+		}
+			
+	}
 
 }
