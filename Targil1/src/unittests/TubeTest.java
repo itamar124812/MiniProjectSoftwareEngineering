@@ -5,6 +5,9 @@ package unittests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.junit.Test;
 import primitives.Ray;
 import primitives.Vector;
@@ -43,7 +46,23 @@ public class TubeTest {
 	public void testFindIntersersections() {	
 		Tube t=new Tube(new Ray(new Point3D(0,0,1),new Vector(0,0,1)),1d);
 		// ============ Equivalence Partitions Tests ==============
-		//
+		//The ray does not intersect the tube(null)
 		assertNull(t.findIntersections(new Ray(new Point3D(0,0,2),new Vector(0,0,1))));
+		//The ray intersect the tube in two points(two points)
+		assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(0.7071067811865, 0.7071067811865, 1.3535533905933),new Point3D(-0.7071067811865,-0.7071067811865,0.6464466094067))).toArray(),t.findIntersections(new Ray(new Point3D(1,1,1.5),new Vector(-1,-1,-0.5))).toArray() );
+		//The ray intersect the tube in one point(one point)
+		assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(-1,0,0))).toArray(),t.findIntersections(new Ray(new Point3D(-1,1,1),new Vector(0,-1,-1))).toArray() );
+		// =============== Boundary Values Tests ==================
+		//p0 inside the tube and v is the direction of the tube.
+		assertNull(t.findIntersections(new Ray(new Point3D(0.5,0,0),new Vector(0,0,1))));
+		//
+		assertNull(t.findIntersections(new Ray(new Point3D(1,0,0),new Vector(1,0,1))));
+		//
+		assertNull(t.findIntersections(new Ray(new Point3D(1,0,0),new Vector(0,0,1))));
+		//
+		assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(1,0,0),new Point3D(-1,0,0))).toArray(),t.findIntersections(new Ray(new Point3D(2,0,0),new Vector(-1,0,0))).toArray() );
+		//
+		assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(-1,0,1))).toArray(),t.findIntersections(new Ray(new Point3D(0,0,1),new Vector(-1,0,0))).toArray() );
+		//
 	}
 }

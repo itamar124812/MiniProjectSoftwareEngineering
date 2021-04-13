@@ -51,6 +51,7 @@ public List<Point3D> findIntersections(Ray ray) {
 	double c=ray.getP0().getY()*ray.getP0().getY()+ray.getP0().getX()*ray.getP0().getX()-this.radius;
 	if(Util.isZero(a))return null;
 	 if(Util.isZero(b*b-4*a*c)) {
+		 if(-b/(2*a)<0)return null;
 		ArrayList<Point3D> result=new ArrayList<Point3D> ();
 		result.add(ray.getPoint(-b/(2*a)));
 		return result;
@@ -59,10 +60,20 @@ public List<Point3D> findIntersections(Ray ray) {
 	 else
 	 {
 		double d=Math.sqrt(b*b-4*a*c);
-		ArrayList<Point3D> result=new ArrayList<Point3D> ();
+		if((-b-d)/(2*a)>0&&(-b+d)/(2*a)>0  && ! Util.isZero((-b-d)/(2*a)))
+		{
+		ArrayList<Point3D> result=new ArrayList<Point3D> ();	
 		result.add(ray.getPoint((-b-d)/(2*a)));
 		result.add(ray.getPoint((-b+d)/(2*a)));
 	    return result;
+		}
+		else if((-b+d)/(2*a)>0 && ! Util.isZero((-b+d)/(2*a)))
+		{
+			ArrayList<Point3D> result=new ArrayList<Point3D> ();
+			result.add(ray.getPoint((-b+d)/(2*a)));
+		    return result;
+		}
+		else return null;
 	 }
 }
 
