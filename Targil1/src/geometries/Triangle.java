@@ -13,17 +13,8 @@ import primitives.Vector;
  *
  */
 public class Triangle extends Polygon implements Geometry {
- 
-	@Override
-	public Vector getNormal(Point3D point) {
-		// TODO Auto-generated method stub
-		return super.getNormal(point);
-	}
-
-	@Override
-	public List<Point3D> findIntersections(Ray ray) {
-		// TODO Auto-generated method stub
-		return super.findIntersections(ray);
+	public Triangle(Point3D... vertices) {
+		super(vertices);
 	}
 
 	/**
@@ -32,7 +23,13 @@ public class Triangle extends Polygon implements Geometry {
 	 * @param point
 	 * @return the normal on point on the The wall of the Triangle
 	 */
-	public Triangle(Point3D... vertices) {
-		super(vertices);
+	@Override
+	public Vector getNormal(Point3D point) {
+		return super.getNormal(point);
+	}
+	
+	@Override
+	public List<Point3D> findIntersections(Ray ray) {
+		return super.findIntersections(ray);
 	}
 }
