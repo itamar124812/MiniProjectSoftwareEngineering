@@ -99,7 +99,7 @@ public class Polygon implements Geometry {
 				t/=plane.getNormal().dotProduct(ray.getDir());
 				if(t>0 && !isZero(t) )
 				{			  
-				Point3D intsersectionPoint = ray.getP0().add(ray.getDir().scale(t));				
+				Point3D intsersectionPoint = ray.getPoint(t);				
 				for(int i=0;i<vertices.size()-2;i++)
 				{	
 					Vector v0=vertices.get(i).subtract(ray.getP0());

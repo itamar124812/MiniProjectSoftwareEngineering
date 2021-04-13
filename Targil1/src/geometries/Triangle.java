@@ -1,6 +1,10 @@
 package geometries;
 
+import java.util.List;
+
 import primitives.Point3D;
+import primitives.Ray;
+import primitives.Vector;
 
 /**
  * Triangle class is geometries class which represents a Triangle by Polygon
@@ -8,7 +12,19 @@ import primitives.Point3D;
  * @author Itamar and Raz
  *
  */
-public class Triangle extends Polygon {
+public class Triangle extends Polygon implements Geometry {
+ 
+	@Override
+	public Vector getNormal(Point3D point) {
+		// TODO Auto-generated method stub
+		return super.getNormal(point);
+	}
+
+	@Override
+	public List<Point3D> findIntersections(Ray ray) {
+		// TODO Auto-generated method stub
+		return super.findIntersections(ray);
+	}
 
 	/**
 	 * Calculate the normal on point on Triangle by use his super class Polygon in order to find normal
