@@ -56,7 +56,7 @@ public class TriangleTest {
 	    	// TC02: Ray-Triangle intersection outside against edge (0 point)
 	   			assertNull("Intersection outside against edge",
 	   					triangle.findIntersections(new Ray(new Point3D(-4,5,4.3), 
-	   						new Vector(4.23,-5.93,1.67))));
+	   						new Vector(4.11,0.04,1.17))));//(4.14,-5.79,1.3)(4.11,0.04,1.17)
 	    	 //TC03: Ray-Triangle intersection outside against vertex (0 point)
 	   			assertNull("Intersection outside against vertex",
 	   					triangle.findIntersections(new Ray(new Point3D(-4,5,4.3), 
