@@ -4,7 +4,11 @@
 	package unittests;
 
 	import static org.junit.Assert.*;
-	import geometries.Cylinder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import geometries.Cylinder;
 	import org.junit.Test;
 	import primitives.*;
 
@@ -42,9 +46,15 @@ public void testFindIntersections()
 {
 	Cylinder c=new Cylinder(new Ray(new Point3D(0,0,-1),new Vector(0,0,1)),1,2);
 	// ============ Equivalence Partitions Tests ==============
-	//the ray does not intersect the cylinder
+	//the ray does not intersect the cylinder(null)
 	Ray ray=new Ray(new Point3D(2,0,-1),new Vector(-1,0,3)) ;
 	assertNull(c.findIntersections(ray));
+	//the ray intersect the cylinder in one Point
+	ray=new Ray(new Point3D(2,0,-1),new Vector(-1,0,1));
+	assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(1,0,0))).toArray(),c.findIntersections(ray).toArray());
+	//the ray intersect the cylinder in two Points
+	ray=new Ray(new Point3D(2,0,-1),new Vector(-1,0,0.5));
+	assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(1,0,-0.5),new Point3D(-1,0,0.5))).toArray(),c.findIntersections(ray).toArray());
 	
 }
 	}
