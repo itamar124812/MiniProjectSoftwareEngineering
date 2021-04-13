@@ -55,7 +55,9 @@ public class Cylinder extends Tube implements Geometry{
 			for(int i=0; i<result.size();i++)
 			{
 				if(result.get(i).getZ()>(super.getAxisRay().getP0().getZ()+this.height))
-					result.remove(i);				
+					result.remove(i);			
+				else if(result.get(i).getZ()<super.getAxisRay().getP0().getZ())
+					result.remove(i);	
 			}			
 			return result;
 		}

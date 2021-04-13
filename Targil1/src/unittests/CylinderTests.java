@@ -55,6 +55,7 @@ public void testFindIntersections()
 	//the ray intersect the cylinder in two Points
 	ray=new Ray(new Point3D(2,0,-1),new Vector(-1,0,0.5));
 	assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(1,0,-0.5),new Point3D(-1,0,0.5))).toArray(),c.findIntersections(ray).toArray());
-	
+	// =============== Boundary Values Tests ==================
+	//
 }
 	}
