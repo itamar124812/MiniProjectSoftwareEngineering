@@ -47,7 +47,7 @@ public void testFindIntersections()
 {
 	Cylinder c=new Cylinder(new Ray(new Point3D(0,0,-1),new Vector(0,0,1)),1,2);
 	// ============ Equivalence Partitions Tests ==============
-	//the ray does not intersect the cylinder(null)
+	//the ray does not intersect the cylinder(null) 
 	Ray ray=new Ray(new Point3D(2,0,-1),new Vector(0,0,3)) ;
 	assertNull(c.findIntersections(ray));
 	//the ray intersect the cylinder in one Point
