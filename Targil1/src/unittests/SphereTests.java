@@ -122,5 +122,6 @@ public class SphereTests {
 	 assertNull("Ray's line starts after the sphere",
 	 sphere.findIntersections(new Ray(new Point3D(1.3,2,1.5),
 			 new Vector(-1.5,0,0.3))));
+
 	 }
 }

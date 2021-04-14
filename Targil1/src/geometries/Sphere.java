@@ -53,7 +53,7 @@ public String toString() {
 		}
 		Vector u=this.center.subtract(ray.getP0());
 		double tm=alignZero(ray.getDir().dotProduct(u));
-		double d=alignZero(Math.sqrt(u.lengthSquared() - tm*tm));
+		double d=alignZero(Math.sqrt(alignZero(u.lengthSquared() - tm*tm)));
 		if(d>=this.radius)
 		return null;
 		double th=alignZero(Math.sqrt(this.radius*this.radius-d*d));
