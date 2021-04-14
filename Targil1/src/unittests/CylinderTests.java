@@ -43,7 +43,7 @@ import geometries.Cylinder;
 		 * Test method for{@link geometries.Cylinder#findIntersections(Ray)}.
 		 */
 		@Test
-public void testFindIntersections()
+public void testFindIntersections() 
 {
 	Cylinder c=new Cylinder(new Ray(new Point3D(0,0,-1),new Vector(0,0,1)),1,2);
 	// ============ Equivalence Partitions Tests ==============
