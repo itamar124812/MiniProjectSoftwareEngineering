@@ -36,14 +36,19 @@ public class GeometriesTests {
         // TC01: The ray pass all the geometries
         Ray ray=new Ray(new Point3D(-3,3,0),new Vector(3.869374604797966,-1.149054810376399,0.772276922141073));
         Point3D p1 = new Point3D(0.869374604797966, 1.850945189623601, 0.772276922141073);
-       // Point3D p2 = new Point3D(1.018890926158435, 1.806544616963616, 0.802118438216291);
-      //  Point3D p3 = new Point3D(2.716505573899753, 1.302418633727509, 1.140940276120951);
-        Point3D p4 = new Point3D(-0.828275208253421, 2.355081615598605, 0.433448065697191);
-        Point3D p5 = new Point3D(0.673842397953834, 1.909010702996012, 0.733251232900803);
+		Point3D p2 = new Point3D(0.673842397953834, 1.909010702996012, 0.733251232900803);
+		Point3D p3 = new Point3D(-0.828275208253421, 2.355081615598605, 0.433448065697191);
+        Point3D p4 = new Point3D(1.018890926158435, 1.806544616963616, 0.802118438216291);
+		Point3D p5 = new Point3D(2.716505573899753, 1.302418633727509, 1.140940276120951);
+		
 
    	 	List<Point3D> result = geometries.findIntersections(ray);
-   	 	assertEquals("Wrong number of points", 3, result.size());
-   	 	assertEquals("Ray crosses Geometries", List.of(p1, p5, p4), result);;
+   	 	assertEquals("Wrong number of points", 5, result.size());
+			ArrayList<Point3D> expectedResult=new ArrayList<Point3D>(List.of(p1,p2,p3, p4, p5));
+			for(int i=0;i<5;i++)
+			{
+             assertTrue("Ray crosses Geometries", expectedResult.get(i).equals(result.get(i)));  
+			}   	 	
         // TC02: The ray not pass all the geometries
 
         // =============== Boundary Values Tests ==================

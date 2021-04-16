@@ -5,6 +5,7 @@ import java.util.List;
 
 import primitives.Point3D;
 import primitives.Ray;
+import primitives.Util;
 import primitives.Vector;
 
 /**
@@ -59,10 +60,18 @@ public class Cylinder extends Tube implements Geometry {
 		else {
 			List<Point3D> result = super.findIntersections(ray);
 			for (int i = 0; i < result.size(); i++) {
-				if (result.get(i).getZ() > (super.getAxisRay().getP0().getZ() + this.height))
-					result.remove(i);
-				else if (result.get(i).getZ() < super.getAxisRay().getP0().getZ())
-					result.remove(i);
+              try{
+                     if(result.get(i).subtract(super.getAxisRay().getP0()).dotProduct(super.getAxisRay().getDir())<0&& !Util.isZero(result.get(i).subtract(super.getAxisRay().getP0()).dotProduct(super.getAxisRay().getDir())))
+					    result.remove(i);
+					else if(result.get(i).subtract(super.getAxisRay().getP0().add(super.getAxisRay().getDir().scale(height))).dotProduct(super.getAxisRay().getDir())>0&& !Util.isZero(result.get(i).subtract(super.getAxisRay().getP0().add(super.getAxisRay().getDir().scale(height))).dotProduct(super.getAxisRay().getDir())))	
+					{
+						result.remove(i);
+					}
+			  }
+			  catch(IllegalArgumentException e)
+			  {
+                 
+			  }
 			}
 			return result;
 		}

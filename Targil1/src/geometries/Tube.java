@@ -67,6 +67,7 @@ public List<Point3D> findIntersections(Ray ray) {
 		 projectedRayVector=this.axisRay.getDir().scale(ray.getDir().dotProduct(this.axisRay.getDir())/this.axisRay.getDir().lengthSquared());
 	}
 	catch (Exception e) {
+
 	}	
 	try{
 	 pRaySubP0=ray.getP0().subtract(axisRay.getP0());
@@ -94,7 +95,7 @@ public List<Point3D> findIntersections(Ray ray) {
 	try {
 		c=pRaySubP0.subtract(projectedDPVector).lengthSquared()-this.radius*radius;
 	} catch (IllegalArgumentException e) {
-		c=0;
+		c=-this.radius*radius;
 	}
 	
 	

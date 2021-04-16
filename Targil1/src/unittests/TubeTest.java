@@ -62,7 +62,7 @@ public class TubeTest {
 		//The ray is orthogonal for the tube
 		assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(1,0,0),new Point3D(-1,0,0))).toArray(),t.findIntersections(new Ray(new Point3D(2,0,0),new Vector(-1,0,0))).toArray() );
 		//
-	//	assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(-1,0,1))).toArray(),t.findIntersections(new Ray(new Point3D(0,0,1.5),new Vector(-1,0,0))).toArray() );
+		assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(-1,0,1))).toArray(),t.findIntersections(new Ray(new Point3D(0,0,1),new Vector(-1,0,0))).toArray() );
 		//
 	}
 }
