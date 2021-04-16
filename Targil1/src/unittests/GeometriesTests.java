@@ -3,6 +3,7 @@ package unittests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
@@ -39,9 +40,7 @@ public class GeometriesTests {
 		Point3D p2 = new Point3D(0.673842397953834, 1.909010702996012, 0.733251232900803);
 		Point3D p3 = new Point3D(-0.828275208253421, 2.355081615598605, 0.433448065697191);
         Point3D p4 = new Point3D(1.018890926158435, 1.806544616963616, 0.802118438216291);
-		Point3D p5 = new Point3D(2.716505573899753, 1.302418633727509, 1.140940276120951);
-		
-
+		Point3D p5 = new Point3D(2.716505573899753, 1.302418633727509, 1.140940276120951);		
    	 	List<Point3D> result = geometries.findIntersections(ray);
    	 	assertEquals("Wrong number of points", 5, result.size());
 			ArrayList<Point3D> expectedResult=new ArrayList<Point3D>(List.of(p1,p2,p3, p4, p5));
@@ -52,7 +51,12 @@ public class GeometriesTests {
         // TC02: The ray not pass all the geometries
 
         // =============== Boundary Values Tests ==================
-
-	}
+        //TC03: Geometries is null
+		 assertTrue(new Geometries(new ArrayList<Intersectable>()).findIntersections(new Ray(new Point3D(0, 2, 4), new Vector(1,2,3)))==null);
+	    //TC04: Ray does not intersect one of the geometries
+		 assertNull(geometries.findIntersections(new Ray(new Point3D(-3,3,0),new Vector(0, 0, 1))));
+        
+		 assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(2.6, 1.2, 6),new Point3D(1, 2, 10))).toArray(), geometries.findIntersections(new Ray(new Point3D(5,0,0),new Vector(-2,1,5))).toArray());
+		}
 	
 }
