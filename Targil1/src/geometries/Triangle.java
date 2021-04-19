@@ -27,7 +27,12 @@ public class Triangle extends Polygon implements Geometry {
 	public Vector getNormal(Point3D point) {
 		return super.getNormal(point);
 	}
-	
+	/**
+	 * @param ray
+	 * calculate intersection point between Tringale and ray
+	 * 
+	 * @return List<Point3D> include the specific point
+	 */
 	@Override
 	public List<Point3D> findIntersections(Ray ray) {
 		return super.findIntersections(ray);

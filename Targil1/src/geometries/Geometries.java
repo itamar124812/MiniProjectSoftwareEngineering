@@ -17,14 +17,26 @@ import primitives.Vector;
 public class Geometries implements Intersectable {
 
 	private List<Intersectable> intersectable;
+	/**
+	 * 
+	 * @param geometrie
+	 */
 	public void add(Intersectable geometrie)
 	{
 		intersectable.add(geometrie);
 	}
+	/**
+	 * 
+	 * @param intersectable
+	 */
 	public Geometries(ArrayList<Intersectable> intersectable) {
 		this.intersectable = intersectable;
 	}
 	@Override
+	/**
+	 * @param ray
+	 * @return List<Point3D>
+	 */
 	public List<Point3D> findIntersections(Ray ray) {
     	List<Point3D> result=new ArrayList<Point3D>(),temp=new ArrayList<Point3D>();
 		if(this.intersectable.isEmpty())

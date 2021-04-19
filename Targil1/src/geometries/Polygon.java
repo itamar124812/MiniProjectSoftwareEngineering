@@ -86,7 +86,12 @@ public class Polygon implements Geometry {
 	public Vector getNormal(Point3D point) {
 		return plane.getNormal();
 	}
-
+/**
+ * @param ray
+ * calculate intersection point between polygon and ray
+ * 
+ * @return List<Point3D> include the specific point
+ */
 	@Override
 	public List<Point3D> findIntersections(Ray ray) {
 		

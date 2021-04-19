@@ -44,12 +44,12 @@ public double getRadius() {
 		return (point.subtract(O)).normalize();
 
 	}
-	/*private Point3D Roter(Point3D point)
-	{
-		double a=point.getX()*point.getX()+point.getY()+point.getY()+point.getZ()+point.getZ();
-		double teta= Math.acos(point.getZ()/a);
-		return new Point3D(point.getX()*Math.cos(teta)-point.getY()*Math.sin(teta), point.getX()*Math.sin(teta)+point.getY()*Math.cos(teta), point.getZ());
-	}*/
+	/**
+	 * @param ray
+	 * calculate intersection points between Tube and ray
+	 * 
+	 * @return List<Point3D> include the specific points
+	 */
 @Override
 public List<Point3D> findIntersections(Ray ray) {
 	//Ray ray=new Ray(Roter(ray1.getP0()),new Vector(Roter(ray1.getDir().getHead())));

@@ -16,12 +16,20 @@ import primitives.Vector;
  */
 public class Cylinder extends Tube implements Geometry {
 	private double height;
-
+/**
+ * 
+ * @param axisRay
+ * @param radius
+ * @param height
+ */
 	public Cylinder(Ray axisRay, double radius, double height) {
 		super(axisRay, radius);
 		this.height = height;
 	}
-
+/**
+ * 
+ * @return
+ */
 	public double getHeight() {
 		return height;
 	}
@@ -53,7 +61,12 @@ public class Cylinder extends Tube implements Geometry {
 			throw new IllegalArgumentException("The point is not on the cylinder.");
 
 	}
-
+	@Override
+	/**
+	 * calculate intersection points between Cylinder and ray
+	 * @param ray
+	 * @return List<Point3D> include the specific points
+	 */
 	public List<Point3D> findIntersections(Ray ray) {
 		if (super.findIntersections(ray) == null)
 			return null;

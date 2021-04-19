@@ -57,6 +57,11 @@ public Vector getNormal() {
 public Point3D getQ0() {
 	return q0;
 }
+/**
+ * calculate intersection point between plane and ray
+ * @param ray
+ * @return List<Point3D> include the specific point
+ */
 @Override
 public List<Point3D> findIntersections(Ray ray) {
 	if(ray.getP0().equals(this.q0) || Util.isZero(ray.getP0().subtract(q0).dotProduct(normal))) return null;

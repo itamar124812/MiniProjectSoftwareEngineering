@@ -43,6 +43,12 @@ public String toString() {
 	public Vector getNormal(Point3D point) {
 		return (center.subtract(point)).normalize();
 	}
+	/**
+	 * @param ray
+	 * calculate intersection points between sphere and ray
+	 * 
+	 * @return List<Point3D> include the specific points
+	 */
 	@Override
 	public List<Point3D> findIntersections(Ray ray) {
 		List<Point3D> res=new ArrayList<Point3D>();
