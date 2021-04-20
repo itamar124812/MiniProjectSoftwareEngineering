@@ -55,8 +55,9 @@ public class GeometriesTests {
 		 assertTrue(new Geometries(new ArrayList<Intersectable>()).findIntersections(new Ray(new Point3D(0, 2, 4), new Vector(1,2,3)))==null);
 	    //TC04: Ray does not intersect one of the geometries
 		 assertNull(geometries.findIntersections(new Ray(new Point3D(-3,3,0),new Vector(0, 0, 1))));
-        
+        //TC04: Ray intersect just one of the geometries
 		 assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(2.6, 1.2, 6),new Point3D(1, 2, 10))).toArray(), geometries.findIntersections(new Ray(new Point3D(5,0,0),new Vector(-2,1,5))).toArray());
+		 
 		}
 	
 }
