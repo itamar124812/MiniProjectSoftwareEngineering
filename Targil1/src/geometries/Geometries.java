@@ -29,13 +29,15 @@ public class Geometries implements Intersectable {
 	 * 
 	 * @param intersectable
 	 */
+	
 	public Geometries(ArrayList<Intersectable> intersectable) {
 		this.intersectable = intersectable;
 	}
 	@Override
 	/**
+	 * calculate the intersection between all the geometries and ray  
 	 * @param ray
-	 * @return List<Point3D>
+	 * @return list of the intersection points between ray and geometries
 	 */
 	public List<Point3D> findIntersections(Ray ray) {
     	List<Point3D> result=new ArrayList<Point3D>(),temp=new ArrayList<Point3D>();
