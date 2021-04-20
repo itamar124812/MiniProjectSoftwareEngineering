@@ -41,8 +41,7 @@ public class GeometriesTests {
 		Point3D p5 = new Point3D(2.716505573899753, 1.302418633727509, 1.140940276120951);		
    	 	List<Point3D> result = geometries.findIntersections(ray);
    	 	assertEquals("Wrong number of points", 5, result.size());
-			ArrayList<Point3D> expectedResult=new ArrayList<Point3D>(List.of(p1,p2,p3, p4, p5));
-			  	 	
+			ArrayList<Point3D> expectedResult=new ArrayList<Point3D>(List.of(p1,p2,p3, p4, p5)); 	 	
         // =============== Boundary Values Tests ==================
 		     //TC02: Geometries ray intersect only one geometric shape
 			 assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(2.6, 1.2, 6),new Point3D(1, 2, 10))).toArray(), geometries.findIntersections(new Ray(new Point3D(5,0,0),new Vector(-2,1,5))).toArray());
