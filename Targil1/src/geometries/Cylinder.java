@@ -7,6 +7,7 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Util;
 import primitives.Vector;
+import unittests.Point3DTests;
 
 /**
  * Cylinder class is geometries class which represents a cylinder by radius and tube
@@ -68,8 +69,33 @@ public class Cylinder extends Tube implements Geometry {
 	 * @return List<Point3D> include the specific points
 	 */
 	public List<Point3D> findIntersections(Ray ray) {
-		if (super.findIntersections(ray) == null)
-			return null;
+		if (super.findIntersections(ray) == null)			
+		{
+             if(Util.isZero(ray.getDir().dotProduct(super.getAxisRay().getDir()))) return null;
+			 else
+			 {
+				List<Point3D> result=new ArrayList<Point3D>();
+				double t3=0;
+                double t4=0;
+				try {
+					t3=getAxisRay().getP0().subtract(ray.getP0()).dotProduct(super.getAxisRay().getDir())/ray.getDir().dotProduct(super.getAxisRay().getDir());                    
+				} 
+				catch (IllegalArgumentException e) {}
+				try{	
+				t4=getAxisRay().getP0().add(getAxisRay().getDir().scale(height)).subtract(ray.getP0()).dotProduct(super.getAxisRay().getDir())/ray.getDir().dotProduct(super.getAxisRay().getDir());	
+				}
+				catch(IllegalArgumentException e){
+                  return null;
+				}					  
+                if(t3>0&&!Util.isZero(t3)&&ray.getPoint(t3).distance(getAxisRay().getP0())<super.getRadius())
+				      result.add(ray.getPoint(t3));
+			    if(t4>0&&ray.getPoint(t4).distance(getAxisRay().getP0().add(getAxisRay().getDir().scale(height)))<super.getRadius())
+				      result.add(ray.getPoint(t4));
+				 if(result.size()!=0)return result;
+				 else return null;
+				
+			 }
+		}
 		else {
 			List<Point3D> result = super.findIntersections(ray);
 			for (int i = 0; i < result.size(); i++) {
@@ -86,7 +112,7 @@ public class Cylinder extends Tube implements Geometry {
                  
 			  }
 			}
-			return result;
+			return result.size() !=0? result:null;
 		}
 
 	}

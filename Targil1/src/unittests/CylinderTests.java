@@ -57,6 +57,17 @@ public void testFindIntersections()
 	ray=new Ray(new Point3D(2,0,-1),new Vector(-1,0,0.5));
 	assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(1,0,-0.5),new Point3D(-1,0,0.5))).toArray(),c.findIntersections(ray).toArray());
 	// =============== Boundary Values Tests ==================
-	//
+	//The ray starts before the bottom base and parallels the axis of the cylinder so that it crosses the two bases.(two points)
+	assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(0,0.5,-1),new Point3D(0,0.5,1))).toArray(),c.findIntersections(new Ray(new Point3D(0, 0.5, -2), new Vector(0, 0, 1))).toArray());
+    //The ray starts on the bottom base and parallels the axis of the cylinder so that it crosses the two bases.(one point requirement)
+	assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(0,0.5,1))).toArray(),c.findIntersections(new Ray(new Point3D(0, 0.5, -1), new Vector(0, 0, 1))).toArray());
+	//The ray starts in the cylinder and across the top base(one point)
+	assertArrayEquals(new ArrayList<Point3D>(Arrays.asList(new Point3D(0,0.5,1))).toArray(),c.findIntersections(new Ray(new Point3D(0, 0.5, 0), new Vector(0, 0, 1))).toArray());
+	//The ray starts on the top base (null requirement)
+    assertNull(c.findIntersections(new Ray(new Point3D(0, 0.5, 1), new Vector(0, 0, 1))));
+    //The ray starts above the top base. (null)
+	assertNull(c.findIntersections(new Ray(new Point3D(0, 0.5, 2), new Vector(0, 1, 0))));
+	//The ray starts before the base and continues on the base leading to an infinity of intersections between it and the cylinder.(null requirement)
+//	assertNull(c.findIntersections(new Ray(new Point3D(-5, 0, -1), new Vector(1, 0, 0))));
+  }
 }
-	}
