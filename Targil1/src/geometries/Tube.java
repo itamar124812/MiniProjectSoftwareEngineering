@@ -1,6 +1,7 @@
 package geometries;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import primitives.*;
@@ -51,38 +52,48 @@ public double getRadius() {
 	 * @return List<Point3D> include the specific points
 	 */
 @Override
-public List<Point3D> findIntersections(Ray ray) {
-	//Ray ray=new Ray(Roter(ray1.getP0()),new Vector(Roter(ray1.getDir().getHead())));
-    
-	 double a=0;
-     double b=0;
-	 double c=0;
-	 Vector projectedRayVector=Vector.Vector0;
-	 Vector pRaySubP0=Vector.Vector0;
-	 Vector projectedDPVector=Vector.Vector0;
-	
-	 
-
-	try {
-		 projectedRayVector=this.axisRay.getDir().scale(ray.getDir().dotProduct(this.axisRay.getDir())/this.axisRay.getDir().lengthSquared());
-	}
-	catch (Exception e)
+public List<Point3D> findIntersections(Ray ray) {  
+	double a=0;
+    double b=0;
+	double c=0;
+	if(ray.getP0().equals(axisRay.getP0()))
 	{
-               
-	}	
-	try{
-	 pRaySubP0=ray.getP0().subtract(axisRay.getP0());
+		if(ray.getDir().equals(axisRay.getDir()))return null;
+		else
+		{
+            if(Util.isZero(ray.getDir().dotProduct(axisRay.getDir())))return new ArrayList<Point3D>(Arrays.asList(ray.getPoint(radius)));
+			else return new ArrayList<Point3D>(Arrays.asList(ray.getPoint(radius/Math.sqrt((ray.getDir().subtract(axisRay.getDir().scale(ray.getDir().dotProduct(axisRay.getDir())/axisRay.getDir().lengthSquared()))).lengthSquared()))));
+		}		
 	}
-	catch (IllegalArgumentException e) {
-		
+	if(Util.isZero(ray.getDir().dotProduct(axisRay.getDir())))
+	{
+         a=ray.getDir().lengthSquared();
+		 if(Util.isZero(ray.getP0().subtract(axisRay.getP0()).dotProduct(axisRay.getDir())))	
+		 {
+           b=2*ray.getP0().subtract(axisRay.getP0()).dotProduct(ray.getDir());
+		   c=ray.getP0().subtract(axisRay.getP0()).lengthSquared()-radius*radius;
+		 }	 
+		 else
+		 {
+            b=2*ray.getDir().dotProduct(ray.getP0().subtract(axisRay.getP0()).subtract(this.axisRay.getDir().scale(ray.getP0().subtract(axisRay.getP0()).dotProduct(this.axisRay.getDir())/this.axisRay.getDir().lengthSquared())));
+			c=ray.getP0().subtract(axisRay.getP0()).subtract(this.axisRay.getDir().scale(ray.getP0().subtract(axisRay.getP0()).dotProduct(this.axisRay.getDir())/this.axisRay.getDir().lengthSquared())).lengthSquared()-radius*radius;	
+		 }
 	}
-	try{
-	projectedDPVector=this.axisRay.getDir().scale(pRaySubP0.dotProduct(this.axisRay.getDir())/this.axisRay.getDir().lengthSquared());	
-	}
-	catch (IllegalArgumentException e) {
-		
-	}
-
+    else if(Util.isZero(ray.getP0().subtract(axisRay.getP0()).dotProduct(axisRay.getDir())))
+    {
+		try {
+			a=ray.getDir().subtract(this.axisRay.getDir().scale(ray.getDir().dotProduct(this.axisRay.getDir())/this.axisRay.getDir().lengthSquared())).lengthSquared();
+            
+		} catch (IllegalArgumentException e) {
+			return null;
+		}
+		    b= 2*ray.getDir().subtract(this.axisRay.getDir().scale(ray.getDir().dotProduct(this.axisRay.getDir())/this.axisRay.getDir().lengthSquared())).dotProduct(ray.getP0().subtract(axisRay.getP0()));
+			c=-radius*radius+ray.getP0().subtract(axisRay.getP0()).lengthSquared();
+    }
+	else{
+	 Vector projectedRayVector=this.axisRay.getDir().scale(ray.getDir().dotProduct(this.axisRay.getDir())/this.axisRay.getDir().lengthSquared());;
+	 Vector pRaySubP0=pRaySubP0=ray.getP0().subtract(axisRay.getP0());
+	 Vector projectedDPVector=this.axisRay.getDir().scale(pRaySubP0.dotProduct(this.axisRay.getDir())/this.axisRay.getDir().lengthSquared());	
 	try {
 		a=ray.getDir().subtract(projectedRayVector).lengthSquared();
 	} catch (IllegalArgumentException e) {
@@ -99,7 +110,7 @@ public List<Point3D> findIntersections(Ray ray) {
 		c=-this.radius*radius;
 	}
 	
-	
+}
 /*	double a=ray.getDir().getHead().getX()*ray.getDir().getHead().getX()+ray.getDir().getHead().getY()*ray.getDir().getHead().getY();
 	double b=2*(ray.getDir().getHead().getX()*ray.getP0().getX()+ray.getDir().getHead().getY()*ray.getP0().getY());
 	double c=ray.getP0().getY()*ray.getP0().getY()+ray.getP0().getX()*ray.getP0().getX()-this.radius;*/

@@ -2,11 +2,6 @@ package primitives;
 
 public class Vector {
 	private Point3D head;
-	private  Vector()
-	{
-		head=new Point3D(0,0,0);
-	}
-    static	public Vector Vector0=new Vector();
 	public Vector(double x,double y,double z) {
 		if(x==0&& y==0&& z==0)throw new IllegalArgumentException("Do not enter a vector whose values ​​are 0.");
 		head=new Point3D(x,y,z);
