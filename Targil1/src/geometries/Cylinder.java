@@ -100,6 +100,10 @@ public class Cylinder extends Tube implements Geometry {
 			List<Point3D> result = super.findIntersections(ray);
 			for (int i = 0; i < result.size(); i++) {
               try{
+				if(Util.isZero(ray.getDir().dotProduct(getAxisRay().getDir()))&&(Util.isZero(result.get(i).subtract(super.getAxisRay().getP0()).dotProduct(super.getAxisRay().getDir()))||Util.isZero(result.get(i).subtract(super.getAxisRay().getP0().add(super.getAxisRay().getDir().scale(height))).dotProduct(super.getAxisRay().getDir()))))
+				{
+					return null;
+				}
                      if(result.get(i).subtract(super.getAxisRay().getP0()).dotProduct(super.getAxisRay().getDir())<0&& !Util.isZero(result.get(i).subtract(super.getAxisRay().getP0()).dotProduct(super.getAxisRay().getDir())))
 					    result.remove(i);
 					else if(result.get(i).subtract(super.getAxisRay().getP0().add(super.getAxisRay().getDir().scale(height))).dotProduct(super.getAxisRay().getDir())>0&& !Util.isZero(result.get(i).subtract(super.getAxisRay().getP0().add(super.getAxisRay().getDir().scale(height))).dotProduct(super.getAxisRay().getDir())))	
@@ -112,6 +116,22 @@ public class Cylinder extends Tube implements Geometry {
                  
 			  }
 			}
+			double t3=0;
+                double t4=0;
+				try {
+					t3=getAxisRay().getP0().subtract(ray.getP0()).dotProduct(super.getAxisRay().getDir())/ray.getDir().dotProduct(super.getAxisRay().getDir());                    
+				} 
+				catch (IllegalArgumentException e) {}
+				try{	
+				t4=getAxisRay().getP0().add(getAxisRay().getDir().scale(height)).subtract(ray.getP0()).dotProduct(super.getAxisRay().getDir())/ray.getDir().dotProduct(super.getAxisRay().getDir());	
+				}
+				catch(IllegalArgumentException e){
+                  return null;
+				}					  
+                if(t3>0&&!Util.isZero(t3)&&ray.getPoint(t3).distance(getAxisRay().getP0())<super.getRadius())
+				      result.add(ray.getPoint(t3));
+			    if(t4>0&&ray.getPoint(t4).distance(getAxisRay().getP0().add(getAxisRay().getDir().scale(height)))<super.getRadius())
+				      result.add(ray.getPoint(t4));
 			return result.size() !=0? result:null;
 		}
 
