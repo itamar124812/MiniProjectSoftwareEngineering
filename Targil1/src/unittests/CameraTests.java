@@ -14,7 +14,6 @@ import primitives.*;
  *
  */
 public class CameraTests {
- 
 
 	/**
 	 * Test method for

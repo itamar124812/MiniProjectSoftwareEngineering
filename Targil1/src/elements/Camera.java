@@ -31,6 +31,15 @@ public Vector getVright() {
 public Vector getVup() {
     return Vup;
 }
+public Camera setViewPlaneSize(double width, double height) {
+this.Width=width;
+this.Height=height;
+return this;
+}
 
+public Camera setDistance(double distance) {
+this.Distance=distance;
+return this;
+}
 
 }
