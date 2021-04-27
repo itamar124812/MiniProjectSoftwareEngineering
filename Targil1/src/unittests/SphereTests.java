@@ -27,6 +27,7 @@ public class SphereTests {
         // TC01: test a dot on the circle
 		assertEquals(new Vector(0.6,-Math.sqrt(8)/5,-Math.sqrt(8)/5),sTest.getNormal(new Point3D(0,Math.sqrt(8),Math.sqrt(8))));
 	}
+	
 	/**
 	 * Test method for {@link geometries.Sphere#findIntersections(primitives.Ray)}.
 	 */
