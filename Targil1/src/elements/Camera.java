@@ -33,7 +33,13 @@ public Vector getVup() {
 }
 public Ray constructRayThroughPixel(int nX, int nY, int j, int i)
 {
-	return null;
+    Vector Pc=new Vector(location.add(Vto.scale(Distance)));
+    double Rx=Width/nX;
+    double Ry=Height/nY;
+    if(Util.isZero(-Rx*(j-(double)(nX-1)/2))&&Util.isZero(-Ry*(i-(double)(nY-1)/2))) return new Ray(location,Pc);
+    else if(Util.isZero(-Rx*(j-(double)(nX-1)/2))) return new Ray(location,Pc.add(Vup.scale(-Ry*(i-(double)(nY-1)/2))));
+    else if(Util.isZero(-Ry*(i-(double)(nY-1)/2))) return new Ray(location,Pc.add(Vright.scale(-Rx*(j-(double)(nX-1)/2))));
+    else return new Ray(location,Pc.add(Vright.scale(-Rx*(j-(double)(nX-1)/2))).add(Vup.scale(-Ry*(i-(double)(nY-1)/2))));
 }
 public Camera setViewPlaneSize(double width, double height) {
 this.Width=width;
