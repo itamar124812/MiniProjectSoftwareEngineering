@@ -16,7 +16,7 @@ public Camera(Point3D location, Vector vto, Vector vup) {
    {
       Vright=vup.crossProduct(vto);
    }
-    else throw new IllegalArgumentException("Vto must be orthogonal");
+    else throw new IllegalArgumentException("Vto must be orthogonal to Vup");
 }
 public Point3D getLocation() {
     return location;
@@ -30,6 +30,10 @@ public Vector getVright() {
 
 public Vector getVup() {
     return Vup;
+}
+public Ray constructRayThroughPixel(int nX, int nY, int j, int i)
+{
+	return null;
 }
 public Camera setViewPlaneSize(double width, double height) {
 this.Width=width;
