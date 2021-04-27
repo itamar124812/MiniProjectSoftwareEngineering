@@ -23,7 +23,7 @@ public class ViewPlaneTests {
 		List<Point3D> temp;
       for(int i=0;	i<Nx;	i++)
     	  for(int j=0;	j<Ny; j++) {
-    		  temp= intersectable.findIntersections(camera.constructRayThroughPixel(Nx, Ny, j, i));
+    		  temp= intersectable.findIntersections(camera.constructRayThroughPixel(Nx, Ny, i, j));
     		  if(temp!=null)
     			  count+=temp.size();    
     		  }
@@ -36,25 +36,28 @@ public class ViewPlaneTests {
 	@Test
 	public void testConstructRayThroughPixelWithSphere() {
 		// TC01: The sphere cut only by the center point of the view plane
-		Camera camera = new Camera(Point3D.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0)).setDistance(1);
+		Camera camera = new Camera(Point3D.ZERO, new Vector(0, 0, -1),
+				new Vector(1, 0, 0)).setDistance(1).setViewPlaneSize(3, 3);
 		 Sphere sphere = new Sphere(new Point3D(0, 0, -3),1d);
 		 assertEquals("Wrong number of points", 2, CalculateNumIntersection(camera,sphere,3, 3));
 			// TC02: The sphere cut by all the center points of the view plane
 		  camera = new Camera(new Point3D(0,0,0.5), new Vector(0, 0, -1), 
-				  new Vector(0, 1, 0)).setDistance(1);
+				  new Vector(1, 0, 0)).setDistance(1).setViewPlaneSize(3, 3);
 		  sphere = new Sphere(new Point3D(0,0,-2.5),2.5d);
 		 assertEquals("Wrong number of points", 18, CalculateNumIntersection(camera,sphere,3, 3));
 			// TC03: The sphere cut by all the center points of the view plane except the corners
 		 camera = new Camera(new Point3D(0,0,0.5), new Vector(0, 0, -1), 
-				 new Vector(0, 1, 0)).setDistance(1);
+				 new Vector(0, 1, 0)).setDistance(1).setViewPlaneSize(3, 3);
 		  sphere = new Sphere(new Point3D(0,0,-2),2d);
 		 assertEquals("Wrong number of points", 10, CalculateNumIntersection(camera,sphere,3, 3));
 			// TC04: The view plane is inside The sphere
-		 camera = new Camera(Point3D.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0)).setDistance(1);
+		 camera = new Camera(Point3D.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0))
+				 .setDistance(1).setViewPlaneSize(3, 3);
 		  sphere = new Sphere(new Point3D(0, 0, -0.5),4d);
 		 assertEquals("Wrong number of points", 9, CalculateNumIntersection(camera,sphere,3, 3));
 			// TC05: The sphere behind the view plane
-		 camera = new Camera(Point3D.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0)).setDistance(1);
+		 camera = new Camera(Point3D.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0))
+				 .setDistance(1).setViewPlaneSize(3, 3);
 		  sphere = new Sphere(new Point3D(0,0,1),0.5d);
 		 assertEquals("Wrong number of points", 0, CalculateNumIntersection(camera,sphere,3, 3));
 	}
