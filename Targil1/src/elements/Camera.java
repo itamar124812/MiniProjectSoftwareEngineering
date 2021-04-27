@@ -10,11 +10,11 @@ private double Width;
 private double Height;
 public Camera(Point3D location, Vector vto, Vector vup) {
     this.location = location;
-    Vto = vto;
-    Vup = vup;
+    Vto = vto.normalized();
+    Vup = vup.normalized();
     if(Util.isZero(vto.dotProduct(vup)))
    {
-      Vright=vup.crossProduct(vto);
+      Vright=vup.crossProduct(vto).normalize();
    }
     else throw new IllegalArgumentException("Vto must be orthogonal to Vup");
 }
