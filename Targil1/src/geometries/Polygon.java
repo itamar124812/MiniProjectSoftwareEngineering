@@ -109,11 +109,18 @@ public class Polygon implements Geometry {
 				{	
 					Vector v0=vertices.get(i).subtract(ray.getP0());
 					Vector v1=vertices.get(i+1).subtract(ray.getP0());
-					Vector v2=vertices.get(i+2).subtract(ray.getP0());
+					Vector v2=vertices.get(i+2).subtract(ray.getP0());			
 					if(isZero(ray.getDir().dotProduct(v1.crossProduct(v0))) ||  
 							isZero(ray.getDir().dotProduct(v2.crossProduct(v1))) ||
 							ray.getDir().dotProduct(v1.crossProduct(v0))/ray.getDir().dotProduct(v2.crossProduct(v1))<0)
-						return null;						
+						return null;
+						if(i==vertices.size()-3)
+						{
+							Vector v3=vertices.get(0).subtract(ray.getP0()); 
+							if(isZero(ray.getDir().dotProduct(v3.crossProduct(v2))) ||
+							ray.getDir().dotProduct(v3.crossProduct(v2))/ray.getDir().dotProduct(v2.crossProduct(v1))<0)
+							return null;
+						}						
 				}
 				List<Point3D> result=new ArrayList<Point3D>();
 				result.add(intsersectionPoint);
