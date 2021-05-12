@@ -77,12 +77,12 @@ public class ViewPlaneTests {
 		camera = new Camera(new Point3D(0,0,0.5), 
 				new Vector(0, 0, -1), 
 			 new Vector(0, 1, 0)).setDistance(1).setViewPlaneSize(3, 3);
-		plane = new Plane(new Point3D(3.5,2,2),new Vector(-1.5,1,0));
+		plane = new Plane(new Point3D(3.5,2,2),new Vector(1d/3,0,-2d/3));
 		assertEquals("Wrong number of points", 9, CalculateNumIntersection(camera,plane,3, 3));
 			// TC03: The plane standing diagonally to the ray and hitting 6 rays from the view plane
 		camera = new Camera(new Point3D(0,0,0.5), new Vector(0, 0, -1), 
 			 new Vector(0, 1, 0)).setDistance(1).setViewPlaneSize(3, 3);
-		plane = new Plane(new Point3D(3.5,2,2),new Vector(-1.5,0,0));
+		plane = new Plane(new Point3D(3.5,2,2),new Vector(0.5,0,-0.5));
 		assertEquals("Wrong number of points", 6, CalculateNumIntersection(camera,plane,3, 3));
 	}
 	
