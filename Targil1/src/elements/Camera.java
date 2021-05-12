@@ -8,6 +8,12 @@ private Vector Vup;
 private double Distance;
 private double Width;
 private double Height;
+/**
+ * 
+ * @param location
+ * @param vto
+ * @param vup
+ */
 public Camera(Point3D location, Vector vto, Vector vup) {
     this.location = location;
     Vto = vto.normalized();
@@ -31,6 +37,14 @@ public Vector getVright() {
 public Vector getVup() {
     return Vup;
 }
+/**
+ * 
+ * @param nX
+ * @param nY
+ * @param j
+ * @param i
+ * @return Ray
+ */
 public Ray constructRayThroughPixel(int nX, int nY, int j, int i)
 {
     Point3D Pc= location.add(Vto.scale(Distance));
@@ -41,15 +55,25 @@ public Ray constructRayThroughPixel(int nX, int nY, int j, int i)
     else if(Util.isZero(-Ry*(i-(double)(nY-1)/2))) return new Ray(location,Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))).subtract(location));
     else return new Ray(location,Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))).add(Vup.scale(-Ry*(i-(double)(nY-1)/2))).subtract(location));
 }
+/**
+ * 
+ * @param width
+ * @param height
+ * @return Camera(this).
+ */
 public Camera setViewPlaneSize(double width, double height) {
 this.Width=width;
 this.Height=height;
 return this;
 }
-
+/**
+ * 
+ * @param distance
+ * @return Camera(this)
+ */
 public Camera setDistance(double distance) {
 this.Distance=distance;
 return this;
-}
-
+} 
+  
 }
