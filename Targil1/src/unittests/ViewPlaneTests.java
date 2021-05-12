@@ -70,18 +70,18 @@ public class ViewPlaneTests {
 	public void testConstructRayThroughPixelWithPlane() {
 		// TC01: The plane standing in front of the ray
 		Camera camera = new Camera(new Point3D(0,0,-0.5), new Vector(0, 0, -1),
-				new Vector(0, 1, 0)).setDistance(1);
+				new Vector(0, 1, 0)).setDistance(1).setViewPlaneSize(3, 3);
 		Plane plane = new Plane(new Point3D(0,0,-2),new Vector(0,0,-1));
 		assertEquals("Wrong number of points", 9, CalculateNumIntersection(camera,plane,3, 3));
 		// TC02: The plane standing diagonally to the ray and hitting all the view plane
 		camera = new Camera(new Point3D(0,0,0.5), 
 				new Vector(0, 0, -1), 
-			 new Vector(0, 1, 0)).setDistance(1);
+			 new Vector(0, 1, 0)).setDistance(1).setViewPlaneSize(3, 3);
 		plane = new Plane(new Point3D(3.5,2,2),new Vector(-1.5,0,0));
 		assertEquals("Wrong number of points", 9, CalculateNumIntersection(camera,plane,3, 3));
 			// TC03: The plane standing diagonally to the ray and hitting 6 rays from the view plane
 		camera = new Camera(new Point3D(0,0,0.5), new Vector(0, 0, -1), 
-			 new Vector(0, 1, 0)).setDistance(1);
+			 new Vector(0, 1, 0)).setDistance(1).setViewPlaneSize(3, 3);
 		plane = new Plane(new Point3D(3.5,2,2),new Vector(-1.5,0,0));
 		assertEquals("Wrong number of points", 6, CalculateNumIntersection(camera,plane,3, 3));
 	}
@@ -94,12 +94,12 @@ public class ViewPlaneTests {
 	public void testConstructRayThroughPixelWithTriangle() {
 		// TC01: The triangle cut only by the center point of the view plane
 		Camera camera = new Camera(Point3D.ZERO, new Vector(0, 0, -1), 
-				new Vector(0, 1, 0)).setDistance(1);
+				new Vector(0,1, 0)).setDistance(1).setViewPlaneSize(3, 3);
 		Triangle triangle=new Triangle(new Point3D(0, 1, -2),new Point3D(-1, -1, -2),new Point3D(1, -1, -2));	
 		assertEquals("Wrong number of points", 1, CalculateNumIntersection(camera,triangle,3, 3));
 			// TC02: The triangle cut by two points of the view plane
 		camera = new Camera(Point3D.ZERO, new Vector(0, 0, -1), 
-				new Vector(0, 1, 0)).setDistance(1);
+				new Vector(0, 1, 0)).setDistance(1).setViewPlaneSize(3, 3);
 		   triangle=new Triangle(new Point3D(0, 20, -2),new Point3D(-1, -1, -2),new Point3D(1, -1, -2));
 		 assertEquals("Wrong number of points", 2, CalculateNumIntersection(camera,triangle,3, 3));
 
