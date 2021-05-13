@@ -38,7 +38,12 @@ public class Render {
     }
     public void printGrid(int interval, Color color)
     {
-         
+        if(camera.equals(null)) throw new MissingResourceException("The camera is missed","elements.camera",null);
+        else if(imageWriter.equals(null)) throw new MissingResourceException("The image writer is missed","renderer.ImageWriter",null);
+        	for(int i=0;i<this.imageWriter.getNx();i++)
+    			for(int j=0;j<this.imageWriter.getNy();j++) 
+    				if(i%interval==0||j%interval==0)
+    			    imageWriter.writePixel(i, j,color);											
     }
     public void writeToImage()
     {
