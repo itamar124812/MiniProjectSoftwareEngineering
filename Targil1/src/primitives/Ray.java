@@ -1,5 +1,7 @@
 package primitives;
 
+import java.util.List;
+
 /**
  * Ray class is class that represents a beam by the zero point direction vector
  * 
@@ -39,5 +41,20 @@ return this.p0.equals(other.p0) && this.dir.equals(other.dir);
 }
 public Point3D getPoint(double t) {
 	return this.p0.add(this.dir.scale(t));
+}
+/**
+ * findClosestPoint
+ * 
+ * @param List<Point3D> 
+ * @return the closest point to p0 ray
+ */
+public Point3D findClosestPoint(List<Point3D> list) {
+	if(list==null)
+		return null;
+	Point3D close=list.get(0);
+	for(int i=1;i<list.size();i++)
+		if(this.p0.distance(close)>this.p0.distance(list.get(i)))
+			close=list.get(i);
+		return close;
 }
 }
