@@ -5,7 +5,8 @@ import renderer.*;
 import primitives.Color;
 
 public class ImageWriterTest {
-
+  
+	
 	@Test
 	public void ImageWriter() {
 		ImageWriter imageWriter=new ImageWriter("Test",800,500);
