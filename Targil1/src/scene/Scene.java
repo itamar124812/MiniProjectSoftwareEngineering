@@ -6,7 +6,7 @@ import primitives.Color;
 
 public class Scene {
     public String name;
-    public Color Colorbackground;
+    public Color background;
     public AmbientLight ambientLight;
     public Geometries geometries;
     public Scene(String Name)
@@ -14,8 +14,8 @@ public class Scene {
         name=Name;
         geometries=new Geometries(null);
     }
-    public Scene setColorbackground(Color colorbackground) {
-        Colorbackground = colorbackground;
+    public Scene setbackground(Color Background) {
+        background = Background;
         return this;
     }
     public Scene setAmbientLight(AmbientLight ambientLight) {

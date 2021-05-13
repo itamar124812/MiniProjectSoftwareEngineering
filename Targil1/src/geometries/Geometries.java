@@ -25,6 +25,12 @@ public class Geometries implements Intersectable {
 	{
 		intersectable.add(geometrie);
 	}
+	public void add(List<Intersectable> gIntersectables)
+	{
+		if(intersectable!=null)
+		intersectable.addAll(gIntersectables);
+		else intersectable=gIntersectables;
+	}
 	/**
 	 * 
 	 * @param intersectable

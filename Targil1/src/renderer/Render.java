@@ -1,6 +1,7 @@
 package renderer;
 
 import elements.Camera;
+import primitives.Color;
 
 public class Render {  
     private ImageWriter imageWriter;
