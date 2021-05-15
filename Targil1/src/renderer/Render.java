@@ -43,7 +43,7 @@ public class Render {
         	for(int i=0;i<this.imageWriter.getNx();i++)
     			for(int j=0;j<this.imageWriter.getNy();j++) 
     				if(i%interval==0||j%interval==0)
-    			    imageWriter.writePixel(i, j,color);	 										
+    			    imageWriter.writePixel(i, j,color);	 	 									
     }
     public void writeToImage()
     {
