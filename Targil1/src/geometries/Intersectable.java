@@ -14,6 +14,7 @@ import primitives.Ray;
  */
 public interface Intersectable  {
 	List<Point3D> findIntersections(Ray ray);
+	public List<GeoPoint> findGeoIntersections(Ray ray);
 	/**
 	 * 
 	 * @author USER
@@ -44,12 +45,7 @@ public interface Intersectable  {
 		public GeoPoint(Geometry geometry, Point3D point) {
 			this.geometry = geometry;
 			this.point = point;
-		}
-		public List<GeoPoint> findGeoIntersections(Ray ray)
-		{
-			return null;
-			
-		}
+		}		
 		public Geometry geometry;
 		public Point3D point;
 	}
