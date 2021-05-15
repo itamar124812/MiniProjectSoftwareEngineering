@@ -82,7 +82,7 @@ public class RenderTests {
 		Scene scene = new Scene("Test scene")//
 				.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.2)); //
 
-		scene.geometries.add(new ArrayList<Intersectable> (List.of(new Sphere( new Point3D(0, 0, -100),50) //
+		scene.geometries.add(new ArrayList<Intersectable>(List.of(new Sphere( new Point3D(0, 0, -100),50) //
 				.setEmmission(new Color(java.awt.Color.CYAN)), //
 				new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100), new Point3D(-100, 100, -100)) // up left
 						.setEmmission(new Color(java.awt.Color.GREEN)),
