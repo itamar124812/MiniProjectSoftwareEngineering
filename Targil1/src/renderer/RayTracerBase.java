@@ -11,6 +11,6 @@ public abstract class RayTracerBase {
     public RayTracerBase(Scene aScene) {
         scene = aScene;
     }
-    public abstract Color traceRay(Ray ray);
+	public abstract Color traceRay(Ray ray);
 
 }
