@@ -2,6 +2,8 @@ package primitives;
 
 import java.util.List;
 
+import geometries.Intersectable.GeoPoint;
+
 /**
  * Ray class is class that represents a beam by the zero point direction vector
  * 
@@ -56,5 +58,9 @@ public Point3D findClosestPoint(List<Point3D> list) {
 		if(this.p0.distance(close)>this.p0.distance(list.get(i)))
 			close=list.get(i);
 		return close;
+}
+public GeoPoint findClosestGeoPoint(List<GeoPoint> list)
+{
+	return null;
 }
 }
