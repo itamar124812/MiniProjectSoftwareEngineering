@@ -83,5 +83,25 @@ public List<Point3D> findIntersections(Ray ray) {
 		
 	}
 }
+public List<GeoPoint> findGeoIntersections(Ray ray) {
+	if(ray.getP0().equals(this.q0) || Util.isZero(ray.getP0().subtract(q0).dotProduct(normal))) return null;
+	else {
+		double t=normal.dotProduct((this.q0).subtract(ray.getP0()));
+		if(t==0) return null;
+		if(normal.dotProduct(ray.getDir())!=0)
+			{
+			t/=normal.dotProduct(ray.getDir());
+			if(t>0)
+			{
+			List<GeoPoint> result=new ArrayList<GeoPoint>();
+			result.add(new GeoPoint(this,ray.getPoint(t)));
+			return result;
+			}
+			else return null;
+			}
+		else return null;
+		
+	}
+}
 
 }

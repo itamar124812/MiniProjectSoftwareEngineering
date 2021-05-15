@@ -58,6 +58,20 @@ public class Geometries implements Intersectable {
 			return null;
 		return result;
 	}
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray) {
+		List<GeoPoint> result=new ArrayList<GeoPoint>(),temp=new ArrayList<GeoPoint>();
+		if(this.intersectable.isEmpty())
+		return null;
+		for(int i=0;i<this.intersectable.size();i++) {
+			 temp=this.intersectable.get(i).findGeoIntersections(ray);
+			 if(temp!=null)
+				 result.addAll(temp);
+		}
+		if(result.isEmpty())
+			return null;
+		return result;
+	}
 	
 	
 }
