@@ -14,7 +14,7 @@ import static primitives.Util.*;
  * @author Itamar and Raz
  *
  */
-public class Sphere implements Geometry {
+public class Sphere extends Geometry {
 private Point3D center;
 private double radius;
 

@@ -15,7 +15,7 @@ import unittests.Point3DTests;
  * @author Itamar and Raz
  *
  */
-public class Cylinder extends Tube implements Geometry {
+public class Cylinder extends Tube {
 	private double height;
 /**
  * 

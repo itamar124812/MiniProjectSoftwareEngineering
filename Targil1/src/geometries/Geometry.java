@@ -7,6 +7,24 @@ import primitives.*;
  * @author Itamar and Raz
  *
  */
-public interface Geometry extends Intersectable {
-public Vector getNormal(Point3D point); 
+public abstract class Geometry implements Intersectable {
+	public abstract Vector getNormal(Point3D point); 
+	protected Color emmission = Color.BLACK;
+
+/**
+	 * @return the emmission
+	 */
+	public Color getEmmission() {
+		return emmission;
+	}
+
+	/**
+	 * @param emmission the emmission to set
+	 * 
+	 * @return the emmission
+	 */
+	public Color setEmmission(Color emmission) {
+		this.emmission = emmission;
+		return this.emmission;
+	}
 }

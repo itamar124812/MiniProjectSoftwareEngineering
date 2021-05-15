@@ -12,7 +12,7 @@ import primitives.Vector;
  * @author Itamar and Raz
  *
  */
-public class Triangle extends Polygon implements Geometry {
+public class Triangle extends Polygon {
 	public Triangle(Point3D... vertices) {
 		super(vertices);
 	}

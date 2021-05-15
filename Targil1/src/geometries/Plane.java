@@ -10,7 +10,7 @@ import primitives.Util;
 /**
  * Represents a plane in space with the help of a normal vector and a reference point
 */
-public class Plane  implements Geometry {
+public class Plane extends Geometry {
 private Vector normal;
 private Point3D q0;
 /*

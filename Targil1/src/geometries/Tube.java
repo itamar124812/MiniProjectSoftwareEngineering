@@ -11,7 +11,7 @@ import primitives.*;
  * @author Itamar and Raz
  *
  */
-public class Tube implements Geometry {
+public class Tube extends Geometry {
 private Ray axisRay;
 private double radius;
 public Tube(Ray axisRay, double radius) {
