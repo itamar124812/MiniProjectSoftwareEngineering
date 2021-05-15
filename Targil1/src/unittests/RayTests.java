@@ -38,9 +38,9 @@ public class RayTests {
 			new GeoPoint(null,new Point3D(12,0,0)),new GeoPoint(null,new Point3D(50,20,0)),new GeoPoint(A,new Point3D(30,0,2))));
 	 	assertEquals("the first point is closest", new GeoPoint(A,new Point3D(0,6,0)), ray.findClosestGeoPoint(list));   	 
    	 	// TC13: The last point in the list is closest
-		list=new ArrayList<Point3D>(List.of(new Point3D(20,0,0),
-				new Point3D(12,0,0),new Point3D(50,20,0),new Point3D(30,0,2),new Point3D(0,6,0)));
-   	 	assertEquals("the last point is closest", new Point3D(0,6,0), ray.findClosestPoint(list));	}
+			list=new ArrayList<GeoPoint>(List.of(new GeoPoint(A,new Point3D(20,0,0)),
+			new GeoPoint(null,new Point3D(12,0,0)),new GeoPoint(null,new Point3D(50,20,0)),new GeoPoint(A,new Point3D(30,0,2)),new GeoPoint(A,new Point3D(0,6,0))));
+	 	assertEquals("the first point is closest", new GeoPoint(A,new Point3D(0,6,0)), ray.findClosestGeoPoint(list)); 
 	}
 	
 	@Test
