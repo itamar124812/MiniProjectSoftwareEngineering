@@ -132,6 +132,7 @@ public class Polygon extends Geometry {
 			
 		}
 	}
+	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray)
 	{
 		if(ray.getP0().equals(plane.getQ0())) return null;

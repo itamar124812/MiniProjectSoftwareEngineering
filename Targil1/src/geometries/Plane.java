@@ -83,6 +83,7 @@ public List<Point3D> findIntersections(Ray ray) {
 		
 	}
 }
+@Override
 public List<GeoPoint> findGeoIntersections(Ray ray) {
 	if(ray.getP0().equals(this.q0) || Util.isZero(ray.getP0().subtract(q0).dotProduct(normal))) return null;
 	else {
