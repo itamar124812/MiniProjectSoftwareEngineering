@@ -13,6 +13,7 @@ public class Scene {
     {
         name=Name;
         geometries=new Geometries(null);
+        background=Color.BLACK;
     }
     public Scene setbackground(Color Background) {
         background = Background;
