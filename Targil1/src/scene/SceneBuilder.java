@@ -10,7 +10,7 @@ public class SceneBuilder {
         this.sceneDescriptor = sceneDescriptor;
         this.scene = scene;
         this.filePath = filePath;
-    }
+    } 
     private SceneDescriptor sceneDescriptor;
     private Scene scene;
     private String filePath;
