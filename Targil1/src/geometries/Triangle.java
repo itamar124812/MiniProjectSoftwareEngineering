@@ -2,6 +2,7 @@ package geometries;
 
 import java.util.List;
 
+import geometries.Intersectable.GeoPoint;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
@@ -36,5 +37,15 @@ public class Triangle extends Polygon {
 	@Override
 	public List<Point3D> findIntersections(Ray ray) {
 		return super.findIntersections(ray);
+	}
+	/**
+	 * @param ray
+	 * calculate intersection GeoPoint between Tringale and ray
+	 * 
+	 * @return List<GeoPoint> include the specific point
+	 */
+	@Override
+	public List<GeoPoint> findGeoIntersections(Ray ray){
+			return super.findGeoIntersections(ray);
 	}
 }
