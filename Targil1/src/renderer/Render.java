@@ -27,12 +27,12 @@ public class Render {
          if(camera.equals(null)) throw new MissingResourceException("The camera is missed","elements.camera",null);
          else if(imageWriter.equals(null)) throw new MissingResourceException("The image writer is missed","renderer.ImageWriter",null);
          Ray ray;
-      for(int i=0;i<imageWriter.getNx();i++)
+      for(int i=0;i<imageWriter.getNy();i++)
       {
-        for(int j=0;j<imageWriter.getNy();j++)
+        for(int j=0;j<imageWriter.getNx();j++)
         {
             ray=camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i);
-            imageWriter.writePixel(i, j, rayTracer.traceRay(ray));
+            imageWriter.writePixel(j, i, rayTracer.traceRay(ray));
         }
       }
     }

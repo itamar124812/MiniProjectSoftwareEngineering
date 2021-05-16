@@ -88,50 +88,10 @@ public class Polygon extends Geometry {
 	}
 /**
  * @param ray
- * calculate intersection point between polygon and ray
+ * calculate intersection Geopoint between polygon and ray
  * 
- * @return List<Point3D> include the specific point
- */
-	@Override
-	public List<Point3D> findIntersections(Ray ray) {
-		
-		if(ray.getP0().equals(plane.getQ0())) return null;
-		else {
-			double t=plane.getNormal().dotProduct(plane.getQ0().subtract(ray.getP0()));
-			if(isZero(t)) return null;
-			if(!isZero(plane.getNormal().dotProduct(ray.getDir())))
-				{
-				t/=plane.getNormal().dotProduct(ray.getDir());
-				if(t>0 && !isZero(t) )
-				{			  
-				Point3D intsersectionPoint = ray.getPoint(t);				
-				for(int i=0;i<vertices.size()-2;i++)
-				{	
-					Vector v0=vertices.get(i).subtract(ray.getP0());
-					Vector v1=vertices.get(i+1).subtract(ray.getP0());
-					Vector v2=vertices.get(i+2).subtract(ray.getP0());			
-					if(isZero(ray.getDir().dotProduct(v1.crossProduct(v0))) ||  
-							isZero(ray.getDir().dotProduct(v2.crossProduct(v1))) ||
-							ray.getDir().dotProduct(v1.crossProduct(v0))/ray.getDir().dotProduct(v2.crossProduct(v1))<0)
-						return null;
-						if(i==vertices.size()-3)
-						{
-							Vector v3=vertices.get(0).subtract(ray.getP0()); 
-							if(isZero(ray.getDir().dotProduct(v3.crossProduct(v2))) ||
-							ray.getDir().dotProduct(v3.crossProduct(v2))/ray.getDir().dotProduct(v2.crossProduct(v1))<0)
-							return null;
-						}						
-				}
-				List<Point3D> result=new ArrayList<Point3D>();
-				result.add(intsersectionPoint);
-				return result;
-				}
-				else return null;
-			}
-			else return null;
-			
-		}
-	}
+ * @return List<GeoPoint> include the specific point
+ * */
 	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray)
 	{

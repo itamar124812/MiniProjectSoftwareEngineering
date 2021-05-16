@@ -58,31 +58,10 @@ public Point3D getQ0() {
 	return q0;
 }
 /**
- * calculate intersection point between plane and ray
+ * calculate intersection GeoPoint between plane and ray
  * @param ray
- * @return List<Point3D> include the specific point
- */
-@Override
-public List<Point3D> findIntersections(Ray ray) {
-	if(ray.getP0().equals(this.q0) || Util.isZero(ray.getP0().subtract(q0).dotProduct(normal))) return null;
-	else {
-		double t=normal.dotProduct((this.q0).subtract(ray.getP0()));
-		if(t==0) return null;
-		if(normal.dotProduct(ray.getDir())!=0)
-			{
-			t/=normal.dotProduct(ray.getDir());
-			if(t>0)
-			{
-			List<Point3D> result=new ArrayList<Point3D>();
-			result.add(ray.getPoint(t));
-			return result;
-			}
-			else return null;
-			}
-		else return null;
-		
-	}
-}
+ * @return List<GeoPoint> include the specific point
+ **/
 @Override
 public List<GeoPoint> findGeoIntersections(Ray ray) {
 	if(ray.getP0().equals(this.q0) || Util.isZero(ray.getP0().subtract(q0).dotProduct(normal))) return null;
