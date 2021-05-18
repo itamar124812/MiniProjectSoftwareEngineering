@@ -30,14 +30,14 @@ private Point3D position;
 
 	@Override
 	public Color getIntensity(Point3D p) {
-		// TODO Auto-generated method stub
-		return null;
+		double d=position.distance(p);
+		return intensity.scale(1d/(kC+kL*d+kQ*d*d));
 	}
 
 	@Override
 	public Vector getL(Point3D p) {
 		// TODO Auto-generated method stub
-		return null;
+		return  p.subtract(position).normalize();
 	}
 
 }
