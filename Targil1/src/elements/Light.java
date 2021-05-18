@@ -26,6 +26,6 @@ protected Light(Color intensity) {
     this.intensity = intensity;
 }
 
-return false;
+
  
 }
