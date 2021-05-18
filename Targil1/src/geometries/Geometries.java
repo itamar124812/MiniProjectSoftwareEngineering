@@ -23,7 +23,10 @@ public class Geometries implements Intersectable {
 	 */
 	public void add(Intersectable geometrie)
 	{
-		intersectable.add(geometrie);
+		if(geometrie!=null)
+		{intersectable.add(geometrie);
+		}
+		}
 	}
 	public void add(List<Intersectable> gIntersectables)
 	{
