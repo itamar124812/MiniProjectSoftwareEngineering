@@ -20,6 +20,7 @@ public class Scene {
         geometries=new Geometries(null);
         background=Color.BLACK;
         lights=new LinkedList<LightSource>();
+        ambientLight=new AmbientLight();
     }
     public Scene setbackground(Color Background) {
         background = Background;
