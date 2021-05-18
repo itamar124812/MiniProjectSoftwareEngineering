@@ -19,6 +19,27 @@ public class Material {
 	}
 
 	/**
+	 * @return the kD
+	 */
+	public double getkD() {
+		return kD;
+	}
+
+	/**
+	 * @return the kS
+	 */
+	public double getkS() {
+		return kS;
+	}
+
+	/**
+	 * @return the nShininess
+	 */
+	public int getnShininess() {
+		return nShininess;
+	}
+
+	/**
 	 * @param kD the kD to set
 	 */
 	public Material setkD(double kD) {
