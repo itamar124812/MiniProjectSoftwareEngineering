@@ -11,7 +11,7 @@ public class SpotLight extends PointLight {
 		direction=adirection;}
 	@Override
 	public Color getIntensity(Point3D p) {
-		return super.getIntensity().scale(Math.max(0, direction.dotProduct(super.getL(p))));
+		return super.getIntensity().scale(Math.max(0, direction.normalize().dotProduct(super.getL(p).normalize())));
 	}
 	@Override
 	public Vector getL(Point3D p) {
