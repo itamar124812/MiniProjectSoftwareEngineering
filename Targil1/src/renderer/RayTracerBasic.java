@@ -43,6 +43,9 @@ public class RayTracerBasic extends RayTracerBase {
     	return color;
     	}
 
+    private Color calcDiffusive(double kd,Vector l,Vector n,Color lightIntensity) {
+    	return lightIntensity.scale(kd*Math.abs(n.dotProduct(l)));
+    }
 
     @Override
     	public Color traceRay(Ray ray) {
