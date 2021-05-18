@@ -3,8 +3,6 @@ package renderer;
 import java.util.List;
 import geometries.Intersectable.GeoPoint;
 import primitives.*;
-import primitives.Point3D;
-import primitives.Ray;
 import scene.Scene;
 import elements.*;
 
@@ -43,11 +41,12 @@ public class RayTracerBasic extends RayTracerBase {
     	return color;
     	}
 
-    private Color calcDiffusive(double kd,Vector l,Vector n,Color lightIntensity) {
-    	return lightIntensity.scale(kd*Math.abs(n.dotProduct(l)));
-    }
 
-    @Override
+    private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
+		return lightIntensity.scale(ks*Math.pow((v.scale(-1).dotProduct(l.subtract(n.scale(2*l.dotProduct(n))))),nShininess));
+	}
+
+	@Override
     	public Color traceRay(Ray ray) {
     		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
     		if (intersections == null) return scene.background;
