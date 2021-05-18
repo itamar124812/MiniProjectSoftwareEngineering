@@ -6,6 +6,7 @@ import elements.Camera;
 import primitives.Color;
 import primitives.Ray;
 
+
 public class Render {  
     private ImageWriter imageWriter;
     private Camera camera;
@@ -18,8 +19,8 @@ public class Render {
         this.camera = camera;
         return this;
     }
-    public Render setRayTracerBasic(RayTracerBasic RayTracer) {
-        this.rayTracer = RayTracer;
+    public Render setRayTracerBasic(RayTracerBasic rayTracerBasic) {
+        this.rayTracer = rayTracerBasic;
         return this;
     }
     public void renderImage()

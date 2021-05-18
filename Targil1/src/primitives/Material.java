@@ -50,8 +50,8 @@ public class Material {
 	/**
 	 * @param kS the kS to set
 	 */
-	public Material setkS(double kS) {
-		this.kS = kS;
+	public Material setks(double ks) {
+		this.kS = ks;
 		return this;
 	}
 
