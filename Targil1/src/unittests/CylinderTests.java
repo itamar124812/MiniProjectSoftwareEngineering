@@ -46,6 +46,7 @@ import geometries.Cylinder;
 public void testFindIntersections() 
 {
 	Cylinder c=new Cylinder(new Ray(new Point3D(0,0,-1),new Vector(0,0,1)),1,2);
+	//assertNull(new Cylinder(new Ray(new Point3D(-75d/2, 25,-150), new Vector(0, 1, 0)), 10, 0.1).findGeoIntersections(new Ray(new Point3D())));
 	// ============ Equivalence Partitions Tests ==============
 	//TC1::the ray does not intersect the cylinder(null) 
 	Ray ray=new Ray(new Point3D(2,0,-1),new Vector(0,0,3)) ;
