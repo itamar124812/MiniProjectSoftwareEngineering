@@ -185,6 +185,15 @@ public class LightsTests {
 				.setRayTracerBasic(new RayTracerBasic(scene3));
 		render.renderImage();
 		render.writeToImage();
+		camera2.rotateCamera(new Vector(1,0,0),Math.toRadians(40) );
+		scene3.setbackground(new Color(java.awt.Color.CYAN));
+		ImageWriter imageWriter1 = new ImageWriter("HB", 500, 500);//java.awt.Color.CYAN
+		Render render1 = new Render()//
+				.setImageWriter(imageWriter1) //
+				.setCamera(camera2) //
+				.setRayTracerBasic(new RayTracerBasic(scene3));
+		render1.renderImage();
+		render1.writeToImage();
 	}
 
 

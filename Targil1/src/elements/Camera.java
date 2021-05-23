@@ -75,5 +75,24 @@ public Camera setDistance(double distance) {
 this.Distance=distance;
 return this;
 } 
+  public Camera moveCamara(Point3D newLocation)
+  {
+      location=newLocation;
+      return this;
+  }
+  public Camera rotateCamera(Vector pivot,double angleRad)
+  {
+     if(pivot.length()!=1) pivot.normalize();
+     Vector newVto=Vto.scale(Math.cos(angleRad));
+     if((!pivot.equals(Vto.scale(-1)))&&!pivot.equals(Vto)&& !Util.isZero(Math.sin(angleRad)))
+     newVto.add(pivot.crossProduct(Vto).scale(Math.sin(angleRad)));
+     if(!Util.isZero(pivot.dotProduct(Vto))&& !Util.isZero(1-Math.cos(angleRad)))newVto=newVto.add(pivot.scale(pivot.dotProduct(Vto)*(1-Math.cos(angleRad)))).normalize();
+     Vector newVup=Vup.scale(Math.cos(angleRad));
+     if(!pivot.equals(Vup.scale(-1))&&!pivot.equals(Vup)&& !Util.isZero(Math.sin(angleRad)))newVup=newVup.add(pivot.crossProduct(Vup).scale(Math.sin(angleRad)));
+     if(!Util.isZero(pivot.dotProduct(Vup))&& !Util.isZero(1-Math.cos(angleRad)))newVup=newVup.add(pivot.scale(pivot.dotProduct(Vup)*(1-Math.cos(angleRad)))).normalize();
+     Vright=newVto.crossProduct(newVup).normalize();Vto=newVto;Vup=newVup;
+     return this;
+  }
+  
   
 }
