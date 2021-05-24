@@ -7,6 +7,22 @@ import scene.Scene;
 import elements.*;
 
 public class RayTracerBasic extends RayTracerBase {
+    private static final double DELTA = 0.1;
+	private boolean unshaded(Vector l, Vector n, GeoPoint geopoint,LightSource light){
+		Vector lightDirection = l.scale(-1); // from point to light source
+		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : - DELTA);
+		Point3D point = geopoint.point.add(delta);
+		Ray lightRay = new Ray(point, lightDirection);
+		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+		if (intersections == null) return true;
+		double lightDistance = light.getDistance(geopoint.point);
+		for (GeoPoint gp : intersections) {
+		if (Util.alignZero(gp.point.distance(geopoint.point)-lightDistance) <= 0)
+		return false;
+		}
+		return true;
+         
+	}
 
     public RayTracerBasic(Scene aScene) {
         super(aScene);
@@ -33,9 +49,11 @@ public class RayTracerBasic extends RayTracerBase {
     	Vector l = lightSource.getL(intersection.point);
     	double nl = Util.alignZero(n.dotProduct(l));
     	if (nl * nv > 0) { // sign(nl) == sing(nv)
+			if (unshaded(l,n, intersection,lightSource)) {
     	Color lightIntensity = lightSource.getIntensity(intersection.point);
     	color = color.add(calcDiffusive(kd, l, n, lightIntensity),
     	calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+			}
     	}
     	}
     	return color;
