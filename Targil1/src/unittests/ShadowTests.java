@@ -36,7 +36,7 @@ public class ShadowTests {
 		)));
 		scene.lights.add( //
 				new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
-						.setKl(1E-5).setKq(1.5E-7));
+						.setkL(1E-5).setkQ(1.5E-7));
 
 		Render render = new Render(). //
 				setImageWriter(new ImageWriter("shadowSphereTriangleInitial", 400, 400)) //
@@ -65,7 +65,7 @@ public class ShadowTests {
 		)));
 		scene.lights.add( //
 				new SpotLight(new Color(700, 400, 400), new Point3D(40, 40, 115), new Vector(-1, -1, -4)) //
-						.setKl(4E-4).setKq(2E-5));
+						.setkL(4E-4).setkQ(2E-5));
 
 		Render render = new Render() //
 				.setImageWriter(new ImageWriter("shadowTrianglesSphere", 600, 600)) //

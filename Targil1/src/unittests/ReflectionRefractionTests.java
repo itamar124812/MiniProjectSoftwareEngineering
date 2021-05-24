@@ -39,7 +39,7 @@ public class ReflectionRefractionTests {
 						.setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(100)))));
 		scene.lights.add( //
 				new SpotLight(new Color(1000, 600, 0), new Point3D(-100, -100, 500), new Vector(-1, -1, -2)) //
-						.setKl(0.0004).setKq(0.0000006));
+						.setkL(0.0004).setkQ(0.0000006));
 
 		Render render = new Render() //
 				.setImageWriter(new ImageWriter("refractionTwoSpheres", 500, 500)) //
@@ -76,7 +76,7 @@ public class ReflectionRefractionTests {
 								.setMaterial(new Material().setKr(0.5)))));
 
 		scene.lights.add(new SpotLight(new Color(1020, 400, 400), new Point3D(-750, -750, -150), new Vector(-1, -1, -4)) //
-				.setKl(0.00001).setKq(0.000005));
+				.setkL(0.00001).setkQ(0.000005));
 
 		ImageWriter imageWriter = new ImageWriter("reflectionTwoSpheresMirrored", 500, 500);
 		Render render = new Render() //
@@ -109,7 +109,7 @@ public class ReflectionRefractionTests {
 						.setMaterial(new Material().setkD(0.2).setks(0.2).setnShininess(30).setKt(0.6)))));
 
 		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point3D(60, 50, 0), new Vector(0, 0, -1)) //
-				.setKl(4E-5).setKq(2E-7));
+				.setkL(4E-5).setkQ(2E-7));
 
 		ImageWriter imageWriter = new ImageWriter("refractionShadow", 600, 600);
 		Render render = new Render() //
