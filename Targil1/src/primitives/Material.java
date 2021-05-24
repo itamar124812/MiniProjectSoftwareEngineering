@@ -10,12 +10,16 @@ package primitives;
 public class Material {
 	public double kD;
 	public double kS ;
+	public double kT ;
+	public double kR ;
 	public int nShininess;
 	
 	public Material() {
 		this.kD=0;
 		this.kS=0;
 		this.nShininess=0;
+		this.kR=0.0;
+		this.kS=0.0;
 	}
 
 	/**
@@ -23,6 +27,22 @@ public class Material {
 	 */
 	public double getkD() {
 		return kD;
+	}
+
+	/**
+	 * @param kT the kT to set
+	 */
+	public Material setKt(double kT) {
+		this.kT = kT;
+		return this;
+	}
+
+	/**
+	 * @param kR the kR to set
+	 */
+	public Material setKr(double kR) {
+		this.kR = kR;
+		return this;
 	}
 
 	/**

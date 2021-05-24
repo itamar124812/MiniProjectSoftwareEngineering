@@ -8,9 +8,11 @@ import primitives.Ray;
 
 
 public class Render {  
+	
     private ImageWriter imageWriter;
     private Camera camera;
     private RayTracerBasic rayTracer;
+    
     public Render setImageWriter(ImageWriter imageWriter) {
         this.imageWriter = imageWriter;
         return this;
