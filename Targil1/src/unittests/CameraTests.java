@@ -58,9 +58,13 @@ public class CameraTests {
 	public void moveAndRotateCamara()
 	{
 		Camera camera = new Camera(Point3D.ZERO, new Vector(0, 0, 1), new Vector(0, -1, 0));
+		// ============ Equivalence Partitions Tests ==============
+		//Test Move camera 		
 		assertEquals(camera.moveCamara(new Point3D(1, 1, 1)).getLocation(),new Point3D(1, 1, 1) );
+		//test rotate camera
 		assertTrue(camera.rotateCamera(new Vector(0,0,1), Math.toRadians(45)).getVright().equals(new Vector(1/Math.sqrt(2),1/Math.sqrt(2), 0)));		
-
+        camera=new Camera(Point3D.ZERO, new Vector(0, 0, 1), new Vector(0, -1, 0));
+		assertEquals(camera.rotateCamera(new Vector(2,3,6), Math.toRadians(90)).getVto() , new Vector(33d/49,4d/49,36d/49).normalize());
 	}
 
 }

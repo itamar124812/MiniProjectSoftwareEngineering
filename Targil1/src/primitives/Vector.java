@@ -3,12 +3,12 @@ package primitives;
 public class Vector {
 	private Point3D head;
 	public Vector(double x,double y,double z) {
-		if(x==0&& y==0&& z==0)throw new IllegalArgumentException("Do not enter a vector whose values ​​are 0.");
+		if(Util.isZero(x)&& Util.isZero(y)&& Util.isZero(z))throw new IllegalArgumentException("Do not enter a vector whose values ​​are 0.");
 		head=new Point3D(x,y,z);
 	}
     public Vector(Coordinate a,Coordinate b,Coordinate c)
     {
-    	if(a.coord==0&& b.coord==0&& c.coord==0)throw new IllegalArgumentException("Do not enter a vector whose values ​​are 0.");
+    	if(Util.isZero(a.coord)&& Util.isZero(b.coord) && Util.isZero(c.coord))throw new IllegalArgumentException("Do not enter a vector whose values ​​are 0.");
 	head=new Point3D(a,b,c);
     }
 	public Vector(Point3D Head) {
