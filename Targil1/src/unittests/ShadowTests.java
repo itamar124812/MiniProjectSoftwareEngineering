@@ -12,6 +12,7 @@ import scene.Scene;
 
 /**
  * Testing basic shadows
+ * 
  * @author User
  *
  */
@@ -27,7 +28,7 @@ public class ShadowTests {
 	@Test
 	public void sphereTriangleInitial() {
 		scene.geometries.add(new ArrayList<Intersectable>(List.of( //
-				new Sphere(new Point3D(0, 0, -200),60) //
+				new Sphere(new Point3D(0, 0, -200), 60) //
 						.setEmmission(new Color(java.awt.Color.BLUE)) //
 						.setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(30)), //
 				new Triangle(new Point3D(-70, -40, 0), new Point3D(-40, -70, 0), new Point3D(-68, -68, -4)) //
@@ -59,7 +60,7 @@ public class ShadowTests {
 						.setMaterial(new Material().setks(0.8).setnShininess(60)), //
 				new Triangle(new Point3D(-150, -150, -115), new Point3D(-70, 70, -140), new Point3D(75, 75, -150)) //
 						.setMaterial(new Material().setks(0.8).setnShininess(60)), //
-				new Sphere(new Point3D(0, 0, -115),30) //
+				new Sphere(new Point3D(0, 0, -115), 30) //
 						.setEmmission(new Color(java.awt.Color.BLUE)) //
 						.setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(30)) //
 		)));
@@ -75,4 +76,92 @@ public class ShadowTests {
 		render.writeToImage();
 	}
 
+	@Test
+	public void bonus1ChangeTringleTests() {
+		
+		scene.geometries.add(new ArrayList<Intersectable>(List.of( //
+				new Sphere(new Point3D(0, 0, -200), 60) //
+						.setEmmission(new Color(java.awt.Color.BLUE)) //
+						.setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(30)), //
+				new Triangle(new Point3D(-50, -20, 0), new Point3D(-20, -50, 0), new Point3D(-48, -48, -4)) //
+						.setEmmission(new Color(java.awt.Color.BLUE)) //
+						.setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(30)) //
+		)));
+		scene.lights.add( //
+				new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
+						.setkL(1E-5).setkQ(1.5E-7));
+
+		Render render = new Render(). //
+				setImageWriter(new ImageWriter("shadowSphereBonus1", 400, 400)) //
+				.setCamera(camera) //
+				.setRayTracerBasic(new RayTracerBasic(scene));
+		render.renderImage();
+		render.writeToImage();
+	}
+
+	@Test
+	public void bonus2ChangeTringleTests() {
+		
+		scene.geometries.add(new ArrayList<Intersectable>(List.of( //
+				new Sphere(new Point3D(0, 0, -200), 60) //
+						.setEmmission(new Color(java.awt.Color.BLUE)) //
+						.setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(30)), //
+				new Triangle(new Point3D(-60, -30, 0), new Point3D(-30, -60, 0), new Point3D(-58, -58, -4)) //
+						.setEmmission(new Color(java.awt.Color.BLUE)) //
+						.setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(30)) //
+		)));
+		scene.lights.add( //
+				new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
+						.setkL(1E-5).setkQ(1.5E-7));
+
+		Render render = new Render(). //
+				setImageWriter(new ImageWriter("shadowSphereBonus2", 400, 400)) //
+				.setCamera(camera) //
+				.setRayTracerBasic(new RayTracerBasic(scene));
+		render.renderImage();
+		render.writeToImage();
+	}
+
+	@Test
+	public void sphereTriangleChangelight1() {
+		scene.geometries.add(new ArrayList<Intersectable>(List.of( //
+		new Sphere(new Point3D(0, 0, -200), 60) //
+				.setEmmission(new Color(java.awt.Color.BLUE)) //
+				.setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(30)), //
+		new Triangle(new Point3D(-70, -40, 0), new Point3D(-40, -70, 0), new Point3D(-68, -68, -4)) //
+				.setEmmission(new Color(java.awt.Color.BLUE)) //
+				.setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(30)) //
+)));
+scene.lights.add( //
+		new SpotLight(new Color(400, 240, 0), new Point3D(-90, -90, 125), new Vector(1, 1, -3)) //
+				.setkL(1E-5).setkQ(1.5E-7));
+
+Render render = new Render(). //
+		setImageWriter(new ImageWriter("sphereTriangleChangelight1", 400, 400)) //
+		.setCamera(camera) //
+		.setRayTracerBasic(new RayTracerBasic(scene));
+render.renderImage();
+render.writeToImage();
+	}
+	@Test
+	public void sphereTriangleChangelight2() {
+		scene.geometries.add(new ArrayList<Intersectable>(List.of( //
+		new Sphere(new Point3D(0, 0, -200), 60) //
+				.setEmmission(new Color(java.awt.Color.BLUE)) //
+				.setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(30)), //
+		new Triangle(new Point3D(-70, -40, 0), new Point3D(-40, -70, 0), new Point3D(-68, -68, -4)) //
+				.setEmmission(new Color(java.awt.Color.BLUE)) //
+				.setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(30)) //
+)));
+scene.lights.add( //
+		new SpotLight(new Color(400, 240, 0), new Point3D(-75, -75, 65), new Vector(1, 1, -3)) //
+				.setkL(1E-5).setkQ(1.5E-7));
+
+Render render = new Render(). //
+		setImageWriter(new ImageWriter("sphereTriangleChangelight2", 400, 400)) //
+		.setCamera(camera) //
+		.setRayTracerBasic(new RayTracerBasic(scene));
+render.renderImage();
+render.writeToImage();
+	}
 }
