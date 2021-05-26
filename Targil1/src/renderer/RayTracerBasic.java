@@ -32,7 +32,8 @@ public class RayTracerBasic extends RayTracerBase {
     }
     
 	private GeoPoint findClosestIntersection(Ray ray) {
-		return ray.findClosestGeoPoint(null);
+		List<GeoPoint> lPoints=scene.geometries.findGeoIntersections(ray);
+		return ray.findClosestGeoPoint(lPoints);
 	}
     private Color calcColor(GeoPoint geopoint, Ray ray) {
     	return calcColor(findClosestIntersection(ray), ray, MAX_CALC_COLOR_LEVEL, INITIAL_K)
