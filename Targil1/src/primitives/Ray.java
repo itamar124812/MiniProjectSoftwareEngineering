@@ -13,7 +13,14 @@ import geometries.Intersectable.GeoPoint;
 public class Ray {
 	private Point3D p0;
 	private Vector dir;
-
+    private static final double Delta=0.1;
+	public Ray(Point3D head,Vector direction, Vector normal)
+	{
+		dir=direction.normalize();
+		if(normal.length()!=1)normal.normalize();
+		if(!Util.isZero(direction.dotProduct(normal))) p0=head.add(normal.scale(Delta*(direction.dotProduct(normal))));
+		else p0=head;
+	}
 	public Ray(Point3D p0, Vector dir) {
 		super();
 		this.p0 = p0;
