@@ -4,7 +4,7 @@ import java.util.List;
 
 import geometries.Intersectable.GeoPoint;
 
-/**
+/** 
  * Ray class is class that represents a beam by the zero point direction vector
  * 
  * @author Itamar and Raz

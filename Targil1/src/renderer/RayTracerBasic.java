@@ -1,6 +1,6 @@
 package renderer;
 
-import java.util.List;
+import java.util.List; 
 import geometries.Intersectable.GeoPoint;
 //import jdk.javadoc.internal.doclets.toolkit.resources.doclets_zh_CN;
 import primitives.*;
@@ -67,7 +67,7 @@ public class RayTracerBasic extends RayTracerBase {
 	    }
 
 		private Ray constructReflectedRay(Point3D point, Vector v, Vector n) {
-		//   𝒓 = 𝒗 − 𝟐 ∙ (𝒗 ∙ 𝒏) ∙ 𝒏
+		//   נ�’“ = נ�’— גˆ’ נ��� גˆ™ (נ�’— גˆ™ נ�’�) גˆ™ נ�’�
         return new Ray(point ,v.subtract((v.crossProduct(n).crossProduct(n).scale(2))));
 	}
 
