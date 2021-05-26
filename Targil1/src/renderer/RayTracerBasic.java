@@ -61,13 +61,19 @@ public class RayTracerBasic extends RayTracerBase {
     	return color;
     	}
     
+<<<<<<< HEAD
     	private Ray constructRefractedRay(Point3D point, Vector v, Vector n) {		
+=======
+    	private Ray constructRefractedRay(Point3D point, Vector v, Vector n) {
+    		
+>>>>>>> branch 'main' of https://github.com/itamar124812/MiniProjectSoftwareEngineering.git
             return new Ray(point ,v,n);
 	    }
 
 		private Ray constructReflectedRay(Point3D point, Vector v, Vector n) {
-		//   נ�’“ = נ�’— גˆ’ נ��� גˆ™ (נ�’— גˆ™ נ�’�) גˆ™ נ�’�
-        return new Ray(point ,v.subtract((v.crossProduct(n).crossProduct(n).scale(2))));
+		//   𝒓 = 𝒗 − 𝟐 ∙ (𝒗 ∙ 𝒏) ∙ 𝒏
+        return new Ray(point ,v.subtract((v.crossProduct(n).crossProduct(n).scale(2)),n));
+		
 	}
 
 		private Color calcGlobalEffect(Ray ray, int level, double kx, double kkx) {
@@ -108,8 +114,6 @@ public class RayTracerBasic extends RayTracerBase {
 		return lightIntensity.scale(ks*Math.pow((v.scale(-1).dotProduct(l.subtract(n.scale(2*l.dotProduct(n))))),nShininess));
 	}
 
-
-	
 	@Override
 	public Color traceRay(Ray ray) {
 	GeoPoint closestPoint = findClosestIntersection(ray);
