@@ -106,6 +106,7 @@ public class RayTracerBasic extends RayTracerBase {
 	}
 	private static final double INITIAL_K = 1.0;
 
+	
 	@Override
 	public Color traceRay(Ray ray) {
 	GeoPoint closestPoint = findClosestIntersection(ray);
