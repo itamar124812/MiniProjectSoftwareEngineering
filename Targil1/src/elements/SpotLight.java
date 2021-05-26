@@ -1,5 +1,7 @@
 package elements;
 
+import javax.swing.text.Position;
+
 import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
@@ -17,6 +19,11 @@ public class SpotLight extends PointLight {
 	public Vector getL(Point3D p) {
 		// TODO Auto-generated method stub
 		return  super.getL(p);
+	}
+	@Override
+	public double getDistance(Point3D p)
+	{
+           return super.getDistance(p);
 	}
 
 }

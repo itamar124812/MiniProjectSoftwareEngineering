@@ -61,9 +61,8 @@ public class RayTracerBasic extends RayTracerBase {
     	return color;
     	}
     
-    	private Ray constructRefractedRay(Point3D point, Vector v, Vector n) {
-    		
-            return new Ray(point ,v);
+    	private Ray constructRefractedRay(Point3D point, Vector v, Vector n) {		
+            return new Ray(point ,v,n);
 	    }
 
 		private Ray constructReflectedRay(Point3D point, Vector v, Vector n) {
