@@ -61,18 +61,13 @@ public class RayTracerBasic extends RayTracerBase {
     	return color;
     	}
     
-<<<<<<< HEAD
     	private Ray constructRefractedRay(Point3D point, Vector v, Vector n) {		
-=======
-    	private Ray constructRefractedRay(Point3D point, Vector v, Vector n) {
-    		
->>>>>>> branch 'main' of https://github.com/itamar124812/MiniProjectSoftwareEngineering.git
             return new Ray(point ,v,n);
 	    }
 
 		private Ray constructReflectedRay(Point3D point, Vector v, Vector n) {
 		//   𝒓 = 𝒗 − 𝟐 ∙ (𝒗 ∙ 𝒏) ∙ 𝒏
-        return new Ray(point ,v.subtract((v.crossProduct(n).crossProduct(n).scale(2)),n));
+        return new Ray(point ,v.subtract((v.crossProduct(n).crossProduct(n).scale(2))),n);
 		
 	}
 
