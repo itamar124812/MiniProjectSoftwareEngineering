@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import elements.*;
 import geometries.Intersectable;
+import geometries.Polygon;
 import geometries.Sphere;
 import geometries.Triangle;
 import primitives.*;
@@ -120,4 +121,35 @@ public class ReflectionRefractionTests {
 		render.renderImage();
 		render.writeToImage();
 	}
+	@Test
+	public void test4u() {
+		Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+				.setViewPlaneSize(200, 200).setDistance(1000);
+
+		scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
+        scene.background=new Color(java.awt.Color.CYAN);
+		scene.geometries.add(new ArrayList<Intersectable>(List.of(
+			    new Polygon(new Point3D(-150,-150,-100),new Point3D(-150,-50, -125),new Point3D(150, -50, -125),new Point3D(150,-150,-100)).setEmmission(new Color(0,0,0)) //
+				.setMaterial(new Material().setkD(0.1).setks(0.1).setnShininess(300).setKt(0.1))
+				,
+				new Sphere(new Point3D(20, 53, -50),12) //
+						.setEmmission(new Color(java.awt.Color.YELLOW)) //
+						.setMaterial(new Material().setkD(0.2).setks(0.2).setnShininess(30).setKt(0.6)))));
+        for(int i=120;i>-120;i-=60)
+		{
+			scene.geometries.add(new Polygon(new Point3D(i,-115,-107.5),new Point3D(i,-85, -116.5),new Point3D(i-30, -85, -116.5),new Point3D(i-30,-115,-107.5)).setEmmission(new Color(255,255,255)));
+		}
+		scene.lights.add(new SpotLight(new Color(0,0,0), new Point3D(60, 50, 0), new Vector(0, -1, 0)) //
+				.setkL(4E-5).setkQ(2E-7));
+
+		ImageWriter imageWriter = new ImageWriter("r4u", 600, 600);
+		Render render = new Render() //
+				.setImageWriter(imageWriter) //
+				.setCamera(camera) //
+				.setRayTracerBasic(new RayTracerBasic(scene));
+
+		render.renderImage();
+		render.writeToImage();
+	}
+
 }

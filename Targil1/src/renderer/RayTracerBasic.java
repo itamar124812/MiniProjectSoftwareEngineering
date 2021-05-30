@@ -67,7 +67,7 @@ public class RayTracerBasic extends RayTracerBase {
 
 		private Ray constructReflectedRay(Point3D point, Vector v, Vector n) {
 		//   𝒓 = 𝒗 − 𝟐 ∙ (𝒗 ∙ 𝒏) ∙ 𝒏
-        return new Ray(point ,v.subtract((v.crossProduct(n).crossProduct(n).scale(2))),n);
+        return new Ray(point ,v.subtract((n.scale(v.dotProduct(n)*2))),n);
 		
 	}
 
@@ -92,7 +92,7 @@ public class RayTracerBasic extends RayTracerBase {
     	if (nl * nv > 0) { // sign(nl) == sing(nv)
 		double ktr = transparency( l, n, intersection,lightSource);
         if (ktr * k > MIN_CALC_COLOR_K) {
-    	Color lightIntensity = lightSource.getIntensity(intersection.point);
+    	Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);
     	color = color.add(calcDiffusive(kd, l, n, lightIntensity),
     	calcSpecular(ks, l, n, v, nShininess, lightIntensity));
 			}
