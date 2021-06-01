@@ -131,7 +131,7 @@ public class ReflectionRefractionTests {
 		scene.geometries.add(new ArrayList<Intersectable>(List.of(
 			    new Polygon(new Point3D(-150,-150,-100),new Point3D(-150,-50, -125),new Point3D(150, -50, -125),new Point3D(150,-150,-100)).setEmmission(new Color(0,0,0)) //
 				.setMaterial(new Material().setkD(0.1).setks(0.1).setnShininess(300).setKt(0.1))
-				,new Polygon(new Point3D(100,-20,-100),new Point3D(100,30,-100),new Point3D(0,30,-100),new Point3D(0, -20, -100)).setEmmission(new Color(240,0,0))
+				,new Polygon(new Point3D(100,-35,-100),new Point3D(100,15,-100),new Point3D(0,15,-100),new Point3D(0, -35, -100)).setEmmission(new Color(240,0,0))
 				,new Sphere(new Point3D(75, -35, -100),15) //
 				.setEmmission(new Color(java.awt.Color.BLACK)),
 				new Sphere(new Point3D(25, -35, -100),15) //
