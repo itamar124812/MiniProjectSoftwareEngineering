@@ -52,7 +52,7 @@ public class RayTracerBasic extends RayTracerBase {
     	Color color = Color.BLACK; Vector n = gp.geometry.getNormal(gp.point);
     	Material material = gp.geometry.getMaterial();
     	double kkr = k * material.kR;
-    	if (kkr > MIN_CALC_COLOR_K)
+    	if (kkr > MIN_CALC_COLOR_K) 
     	color = calcGlobalEffect(constructReflectedRay(gp.point, v, n), level, material.kR, kkr);
     	double kkt = k * material.kT;
     	if (kkt > MIN_CALC_COLOR_K)
