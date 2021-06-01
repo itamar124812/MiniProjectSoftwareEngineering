@@ -90,6 +90,24 @@ public class LightsTests {
 	}
 
 	/**
+	 * Produce a picture of a sphere lighted by a super tiny light
+	 */
+	@Test
+	public void sphereSuperSpot() {
+		scene1.geometries.add(sphere);
+		scene1.lights.add(new SuperSpotLight(new Color(500, 300, 0), new Point3D(-50, -50, 50), new Vector(1, 1, -2),10) //
+				.setkL(0.00001).setkQ(0.00000001));
+
+		ImageWriter imageWriter = new ImageWriter("lightSphereSuperSpot", 500, 500);
+		Render render = new Render()//
+				.setImageWriter(imageWriter) //
+				.setCamera(camera1) //
+				.setRayTracerBasic(new RayTracerBasic(scene1));
+		render.renderImage();
+		render.writeToImage();
+	}
+
+	/**
 	 * Produce a picture of a two triangles lighted by a directional light
 	 */
 	@Test
@@ -137,6 +155,24 @@ public class LightsTests {
 				.setkL(0.0001).setkQ(0.000005));
 		
 		ImageWriter imageWriter = new ImageWriter("lightTrianglesSpot", 500, 500);
+		Render render = new Render()//
+				.setImageWriter(imageWriter) //
+				.setCamera(camera2) //
+				.setRayTracerBasic(new RayTracerBasic(scene2));
+		render.renderImage();
+		render.writeToImage();
+	}
+	/**
+	 * Produce a picture of a two triangles lighted by a spot light
+	 */
+	@Test
+	public void trianglesSuperSpot() {
+		scene2.geometries.add(new ArrayList<Intersectable>(List.of( triangle1.setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(300)),
+				triangle2.setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(300)))));
+		scene2.lights.add(new SuperSpotLight(new Color(500, 250, 250), new Point3D(10, -10, -130), new Vector(-2, -2, -1),10) //
+				.setkL(0.0001).setkQ(0.000005));
+		
+		ImageWriter imageWriter = new ImageWriter("lightTrianglesSuperSpot", 500, 500);
 		Render render = new Render()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera2) //
