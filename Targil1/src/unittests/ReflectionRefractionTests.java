@@ -123,29 +123,29 @@ public class ReflectionRefractionTests {
 	}
 	@Test
 	public void test4u() {
-		Camera camera = new Camera(new Point3D(0,0, 1000), new Vector(0, 0,-1), new Vector(0, 1, 0)) //
+		Camera camera = new Camera(new Point3D(550,500, 1000), new Vector(-450, -535,-1100).normalize(), new Vector(-1, (28250d/9)/535, -22d/9).normalize()) //
 				.setViewPlaneSize(200, 200).setDistance(1000);
 		scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.BLACK), 0.15));
-        //scene.background=new Color(java.awt.Color.CYAN);
+        scene.background=new Color(java.awt.Color.CYAN);
 		scene.geometries.add(new ArrayList<Intersectable>(List.of(
-			    new Polygon(new Point3D(-150,-150,-100),new Point3D(-150,-50, -125),new Point3D(150, -50, -125),new Point3D(150,-150,-100)).setEmmission(new Color(0,0,0)) //
+			    new Polygon(new Point3D(-200,-150,-100),new Point3D(-200,-50, -125),new Point3D(250, -50, -125),new Point3D(250,-150,-100)).setEmmission(new Color(0,0,0)) //
 				.setMaterial(new Material().setkD(0.1).setks(0.1).setnShininess(300).setKt(0.1))
-				,new Polygon(new Point3D(100,-75,-100),new Point3D(100,05,-100),new Point3D(-50,05,-100),new Point3D(-50, -75, -100)).setEmmission(new Color(240,0,0)).setMaterial(new Material().setkD(0.4).setks(0.4).setnShininess(40).setKt(0.4))
-				,new Polygon(new Point3D(100,-75,-120),new Point3D(100,05,-120),new Point3D(-55,05,-120),new Point3D(-55, -75, -120)).setEmmission(new Color(240,0,0)).setMaterial(new Material().setkD(0.2).setks(0.2).setnShininess(20))
+				,new Polygon(new Point3D(100,-75,-100),new Point3D(100,05,-100),new Point3D(-50,05,-100),new Point3D(-50, -75, -100)).setEmmission(new Color(240,240,0)).setMaterial(new Material().setkD(0.4).setks(0.4).setnShininess(40).setKt(0.4))
+				,new Polygon(new Point3D(100,-75,-120),new Point3D(100,05,-120),new Point3D(-50,05,-120),new Point3D(-50, -75, -120)).setEmmission(new Color(240,0,0)).setMaterial(new Material().setkD(0.2).setks(0.2).setnShininess(20))
 				,new Sphere(new Point3D(75, -75, -100),15) //
-				.setEmmission(new Color(java.awt.Color.BLACK)),
+				.setEmmission(new Color(java.awt.Color.BLACK)),new Triangle(new Point3D(-200,-270,-120),new Point3D(-200,-145,-100),new Point3D(237.5,-163,-120)).setEmmission(new Color(51,255,51)),
 				new Sphere(new Point3D(-25, -75, -100),15) //
 				.setEmmission(new Color(java.awt.Color.BLACK))
-				,new Sphere(new Point3D(20, 53, -50),12) //
+				,new Sphere(new Point3D(200, 100, -50),12) //
 						.setEmmission(new Color(java.awt.Color.YELLOW)) //
 						.setMaterial(new Material().setkD(0.2).setks(0.2).setnShininess(30).setKt(0.6)))));
-        for(int i=120;i>-120;i-=30)
+        for(int i=250;i>-250;i-=30)
 		{
 			scene.geometries.add(new Polygon(new Point3D(i,-100,-107.5),new Point3D(i,-70, -116.5),new Point3D(i-15, -70, -116.5),new Point3D(i-15,-100,-107.5)).setEmmission(new Color(255,255,255)).setMaterial(new Material().setkD(0.2).setks(0.2).setnShininess(30).setKt(0.05)));
 		}
 		scene.lights.add(new SpotLight(new Color(0,0,0), new Point3D(600, 500, 0), new Vector(0, -1, 0)) //
 				.setkL(4E-5).setkQ(2E-7));
-		scene.lights.add(new SuperSpotLight(new Color(255,255,0), new Point3D(20, 53, -50), new Vector(5,-18,-50), 1d/200).setkL(4E-5).setkQ(2E-7));
+		scene.lights.add(new SuperSpotLight(new Color(255,255,0), new Point3D(200, 100, -50), new Vector(5,-18,-50), 1d/200).setkL(4E-5).setkQ(2E-7));
 
 		ImageWriter imageWriter = new ImageWriter("r4u", 600, 600);
 		Render render = new Render() //
