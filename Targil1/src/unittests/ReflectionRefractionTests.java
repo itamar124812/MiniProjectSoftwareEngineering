@@ -130,7 +130,7 @@ public class ReflectionRefractionTests {
 		scene.geometries.add(new ArrayList<Intersectable>(List.of(
 			    new Polygon(new Point3D(-200,-150,-100),new Point3D(-200,-50, -125),new Point3D(250, -50, -125),new Point3D(250,-150,-100)).setEmmission(new Color(0,0,0)) //
 				.setMaterial(new Material().setkD(0.1).setks(0.1).setnShininess(300).setKt(0.1))
-				,new Polygon(new Point3D(100,-75,-100),new Point3D(100,05,-100),new Point3D(-50,05,-100),new Point3D(-50, -75, -100)).setEmmission(new Color(240,240,0)).setMaterial(new Material().setkD(0.4).setks(0.4).setnShininess(40).setKt(0.4))
+				,new Polygon(new Point3D(100,-75,-100),new Point3D(100,05,-100),new Point3D(-50,05,-100),new Point3D(-50, -75, -100)).setEmmission(new Color(240,0,0)).setMaterial(new Material().setkD(0.4).setks(0.4).setnShininess(40).setKt(0.4))
 				,new Polygon(new Point3D(100,-75,-120),new Point3D(100,05,-120),new Point3D(-50,05,-120),new Point3D(-50, -75, -120)).setEmmission(new Color(240,0,0)).setMaterial(new Material().setkD(0.2).setks(0.2).setnShininess(20))
 				,new Sphere(new Point3D(75, -75, -100),15) //
 				.setEmmission(new Color(java.awt.Color.BLACK)),new Triangle(new Point3D(-200,-270,-120),new Point3D(-200,-145,-100),new Point3D(237.5,-163,-120)).setEmmission(new Color(51,255,51)),
