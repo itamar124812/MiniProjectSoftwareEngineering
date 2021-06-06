@@ -1,5 +1,7 @@
 package renderer;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.MissingResourceException;
 
 import elements.Camera;
@@ -29,13 +31,12 @@ public class Render {
      {
          if(camera.equals(null)) throw new MissingResourceException("The camera is missed","elements.camera",null);
          else if(imageWriter.equals(null)) throw new MissingResourceException("The image writer is missed","renderer.ImageWriter",null);
-         Ray ray;
+        
       for(int i=0;i<imageWriter.getNy();i++)
       {
         for(int j=0;j<imageWriter.getNx();j++)
         {
-            ray=camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i);
-            imageWriter.writePixel(j, i, rayTracer.traceRay(ray));
+            superSampling(j,i);
         }
       }
     }
@@ -53,4 +54,13 @@ public class Render {
         if(imageWriter.equals(null)) throw new MissingResourceException("The image writer is missed","renderer.ImageWriter",null);
         imageWriter.writeToImage();
     }
+    private void superSampling (int j, int i)
+    {       
+            List<Color> list=new ArrayList<Color>();
+            for (Ray ray : camera.constructRayThroughPixelSuperSampling(imageWriter.getNx(),imageWriter.getNy(), j, i)) {
+                list.add(rayTracer.traceRay(ray));
+            }                   
+        imageWriter.writePixel(j, i, Color.average(list));
+    }
+   
 }

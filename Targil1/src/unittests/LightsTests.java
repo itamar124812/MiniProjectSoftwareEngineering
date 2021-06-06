@@ -213,7 +213,7 @@ public class LightsTests {
 		scene3.lights.add(new DirectionalLight(new Color(255, 255, 255), new Vector(0, 0, -1)));
 		//scene3.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(75,60,-100)));
 
-		scene3.setbackground(new Color(java.awt.Color.CYAN));
+		scene3.setbackground(new Color(java.awt.Color.cyan));
 		ImageWriter imageWriter = new ImageWriter("HBS", 500, 500);//java.awt.Color.CYAN
 		Render render = new Render()//
 				.setImageWriter(imageWriter) //

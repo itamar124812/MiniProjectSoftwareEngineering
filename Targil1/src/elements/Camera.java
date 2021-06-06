@@ -1,4 +1,8 @@
 package elements;
+import java.util.LinkedList;
+import java.util.List;
+
+
 import primitives.*;
 public class Camera {
 private Point3D location;
@@ -8,6 +12,7 @@ private Vector Vup;
 private double Distance;
 private double Width;
 private double Height;
+private final double SuperSamplingNum=4;
 /**
  * 
  * @param location
@@ -54,6 +59,44 @@ public Ray constructRayThroughPixel(int nX, int nY, int j, int i)
     else if(Util.isZero(Rx*(j-(double)(nX-1)/2))) return new Ray(location,Pc.add(Vup.scale(-Ry*(i-(double)(nY-1)/2))).subtract(location));
     else if(Util.isZero(-Ry*(i-(double)(nY-1)/2))) return new Ray(location,Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))).subtract(location));
     else return new Ray(location,Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))).add(Vup.scale(-Ry*(i-(double)(nY-1)/2))).subtract(location));
+}
+/**
+ * 
+ * @param nX
+ * @param nY
+ * @param j
+ * @param i
+ * @return Ray
+ */
+public List<Ray> constructRayThroughPixelSuperSampling(int nX, int nY, int j, int i)
+{   
+
+    LinkedList<Ray> result=new LinkedList<Ray>();
+    Point3D Pc= location.add(Vto.scale(Distance));
+    double Rx=Width/nX;
+    double Ry=Height/nY;
+    Point3D Pij=new Point3D(0,0,0);
+    if(Util.isZero(Rx*(j-(double)(nX-1)/2))&&Util.isZero(-Ry*(i-(double)(nY-1)/2))){ Pij=Pc;result.add(new Ray(location,Pc.subtract(location)));
+    }
+        else if(Util.isZero(Rx*(j-(double)(nX-1)/2))){Pij=Pc.add(Vup.scale(-Ry*(i-(double)(nY-1)/2))); result.add(new Ray(location,Pc.add(Vup.scale(-Ry*(i-(double)(nY-1)/2))).subtract(location)));}
+        else if(Util.isZero(-Ry*(i-(double)(nY-1)/2))){Pij=Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))); result.add( new Ray(location,Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))).subtract(location)));}
+        else  {Pij=Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))).add(Vup.scale(-Ry*(i-(double)(nY-1)/2))) ;result.add(new Ray(location,Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))).add(Vup.scale(-Ry*(i-(double)(nY-1)/2))).subtract(location)));}
+        for (int k = 0; k < SuperSamplingNum; k++) {
+            if(k%4==0)
+            {
+                result.add(new Ray(location,Pij.add(Vright.scale(Math.random()*Rx/2)).add(Vup.scale(Math.random()*Ry/2)).subtract(location)));
+            }
+            else if(k%4==1)
+            {
+                result.add(new Ray(location,Pij.add(Vright.scale(Math.random()*Rx/2)).add(Vup.scale(-Math.random()*Ry/2)).subtract(location)));
+            }
+            else if(k%4==2)
+            {
+                result.add(new Ray(location,Pij.add(Vright.scale(-Math.random()*Rx/2)).add(Vup.scale(-Math.random()*Ry/2)).subtract(location)));
+            }
+            else                  result.add(new Ray(location,Pij.add(Vright.scale(-Math.random()*Rx/2)).add(Vup.scale(Math.random()*Ry/2)).subtract(location)));   
+    } 
+    return result;
 }
 /**
  * 
