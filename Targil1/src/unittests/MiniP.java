@@ -35,7 +35,7 @@ public class MiniP {
 						new Sphere(new Point3D(-78, -62, -50),10) //
 						.setEmmission(new Color(218,165,32)) //
 						.setMaterial(mat),
-				new Sphere(new Point3D(-78, -68, -65),5) //
+				new Sphere(new Point3D(-78, -68, -63),5) //
 						.setEmmission(new Color(139,69,19)) //
 						.setMaterial(mat),
 						new Sphere(new Point3D(-84.87, -55.82, -46.17),4.5) //
