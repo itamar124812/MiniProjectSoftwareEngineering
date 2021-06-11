@@ -18,6 +18,7 @@ import elements.Camera;
 import elements.PointLight;
 import elements.SpotLight;
 import geometries.Intersectable;
+import geometries.Plane;
 import geometries.Sphere;
 public class MiniP {
 	private Scene scene = new Scene("Bear scene");
@@ -62,16 +63,50 @@ public class MiniP {
 						new Sphere(new Point3D(-67.57, -79.27, -58.43),6) //
 						.setEmmission(new Color(139,69,19)) //
 						.setMaterial(mat),
+						new Sphere(new Point3D(-67.57,-79.27,-64.43),6) //
+						.setEmmission(new Color(139,69,19)) //
+						.setMaterial(mat),
+						new Sphere(new Point3D(-67.57,-79.27,-70.43),6) //
+						.setEmmission(new Color(139,69,19)) //
+						.setMaterial(mat),
+						new Sphere(new Point3D(-67.57,-79.27,-76.43),6) //
+						.setEmmission(new Color(139,69,19)) //
+						.setMaterial(mat),
+						new Sphere(new Point3D(-67.57,-79.27,-82.43),6) //
+						.setEmmission(new Color(139,69,19)) //
+						.setMaterial(mat),
+						//////////////////////////////////////////////////////////////
 						new Sphere(new Point3D(-89.08, -78.26, -56.2),6) //
 						.setEmmission(new Color(139,69,19)) //
 						.setMaterial(mat),
+						new Sphere(new Point3D(-89.08, -78.26, -62.2),6) //
+						.setEmmission(new Color(139,69,19)) //
+						.setMaterial(mat),
+						new Sphere(new Point3D(-89.08, -78.26, -68.2),6) //
+						.setEmmission(new Color(139,69,19)) //
+						.setMaterial(mat),
+						new Sphere(new Point3D(-89.08, -78.26, -74.2),6) //
+						.setEmmission(new Color(139,69,19)) //
+						.setMaterial(mat),
+						new Sphere(new Point3D(-89.08, -78.26, -80.2),6) //
+						.setEmmission(new Color(139,69,19)) //
+						.setMaterial(mat),
+						/////////////////////////////////////////////////////////
 						new Sphere(new Point3D(-87.46, -98.73, -57.17),6) //
 						.setEmmission(new Color(139,69,19)) //
 						.setMaterial(mat),
+						new Sphere(new Point3D(-87.46, -101.73, -57.17),6) //
+						.setEmmission(new Color(139,69,19)) //
+						.setMaterial(mat),
+						//////////////////////////////////////////////////////////
 						new Sphere(new Point3D(-71.77, -100.69, -57.49),6) //
 						.setEmmission(new Color(139,69,19)) //
-						.setMaterial(mat)
-						)));
+						.setMaterial(mat),
+						new Sphere(new Point3D(-71.77, -103.69, -57.49),6) //
+						.setEmmission(new Color(139,69,19)) //
+						.setMaterial(mat),
+						new Plane(new Point3D(-78, -120, -50),new Vector(0,-1,0)))
+						));
 		
 		scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-78,-150,-50)));
 		scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-100, -88, -50)));
