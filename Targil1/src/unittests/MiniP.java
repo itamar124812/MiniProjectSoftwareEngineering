@@ -40,6 +40,9 @@ public class MiniP {
 				new Sphere(new Point3D(-78, -68, -63),5) //
 						.setEmmission(new Color(139,69,19)) //
 						.setMaterial(mat),
+						new Sphere(new Point3D(-78.2, -94.78, -35.51),5) //
+						.setEmmission(new Color(139,69,19)) //
+						.setMaterial(mat),
 						new Sphere(new Point3D(-84.87, -55.82, -46.17),4.5) //
 						.setEmmission(new Color(218,165,32)) //
 						.setMaterial(mat),
@@ -63,47 +66,59 @@ public class MiniP {
 						new Sphere(new Point3D(-67.57, -79.27, -58.43),6) //
 						.setEmmission(new Color(139,69,19)) //
 						.setMaterial(mat),
-						new Sphere(new Point3D(-67.57,-79.27,-64.43),6) //
-						.setEmmission(new Color(139,69,19)) //
+						new Sphere(new Point3D(-69.24, -78.34, -64.12),2) //
+						.setEmmission(new Color(1,1,1)) //
 						.setMaterial(mat),
-						new Sphere(new Point3D(-67.57,-79.27,-70.43),6) //
-						.setEmmission(new Color(139,69,19)) //
+						new Sphere(new Point3D(-62.87, -79.64, -62.15),2) //
+						.setEmmission(new Color(1,1,1)) //
 						.setMaterial(mat),
-						new Sphere(new Point3D(-67.57,-79.27,-76.43),6) //
-						.setEmmission(new Color(139,69,19)) //
+						new Sphere(new Point3D(-64.77, -77.12, -63.28),2) //
+						.setEmmission(new Color(1,1,1)) //
 						.setMaterial(mat),
-						new Sphere(new Point3D(-67.57,-79.27,-82.43),6) //
-						.setEmmission(new Color(139,69,19)) //
+						new Sphere(new Point3D(-67.17, -75.32, -62.93),2) //
+						.setEmmission(new Color(1,1,1)) //
 						.setMaterial(mat),
 						//////////////////////////////////////////////////////////////
 						new Sphere(new Point3D(-89.08, -78.26, -56.2),6) //
 						.setEmmission(new Color(139,69,19)) //
 						.setMaterial(mat),
-						new Sphere(new Point3D(-89.08, -78.26, -62.2),6) //
-						.setEmmission(new Color(139,69,19)) //
+						new Sphere(new Point3D(-93.93, -77.85, -59.71),2) //
+						.setEmmission(new Color(1,1,1)) //
 						.setMaterial(mat),
-						new Sphere(new Point3D(-89.08, -78.26, -68.2),6) //
-						.setEmmission(new Color(139,69,19)) //
+						new Sphere(new Point3D(-91.89, -75.49, -60.72),2) //
+						.setEmmission(new Color(1,1,1)) //
 						.setMaterial(mat),
-						new Sphere(new Point3D(-89.08, -78.26, -74.2),6) //
-						.setEmmission(new Color(139,69,19)) //
+						new Sphere(new Point3D(-89.31, -73.86, -60.27),2) //
+						.setEmmission(new Color(1,1,1)) //
 						.setMaterial(mat),
-						new Sphere(new Point3D(-89.08, -78.26, -80.2),6) //
-						.setEmmission(new Color(139,69,19)) //
+						new Sphere(new Point3D(-87.4, -76.55, -61.7),2) //
+						.setEmmission(new Color(1,1,1)) //
 						.setMaterial(mat),
 						/////////////////////////////////////////////////////////
 						new Sphere(new Point3D(-87.46, -98.73, -57.17),6) //
 						.setEmmission(new Color(139,69,19)) //
 						.setMaterial(mat),
-						new Sphere(new Point3D(-87.46, -101.73, -57.17),6) //
-						.setEmmission(new Color(139,69,19)) //
+						new Sphere(new Point3D(-85.84, -103.71, -60.09),3) //
+						.setEmmission(new Color(1,1,1)) //
+						.setMaterial(mat),
+						new Sphere(new Point3D(-89.66, -103.58, -59.94),3) //
+						.setEmmission(new Color(1,1,1)) //
+						.setMaterial(mat),
+						new Sphere(new Point3D(-92.39, -100.81, -59.89),3) //
+						.setEmmission(new Color(1,1,1)) //
 						.setMaterial(mat),
 						//////////////////////////////////////////////////////////
 						new Sphere(new Point3D(-71.77, -100.69, -57.49),6) //
 						.setEmmission(new Color(139,69,19)) //
 						.setMaterial(mat),
-						new Sphere(new Point3D(-71.77, -103.69, -57.49),6) //
-						.setEmmission(new Color(139,69,19)) //
+						new Sphere(new Point3D(-67.87, -104.41, -60.13),3) //
+						.setEmmission(new Color(1,1,1)) //
+						.setMaterial(mat),
+						new Sphere(new Point3D(-71.54, -105.35, -61.26),3) //
+						.setEmmission(new Color(1,1,1)) //
+						.setMaterial(mat),
+						new Sphere(new Point3D(-74.82, -105.09, -60.2),3) //
+						.setEmmission(new Color(1,1,1)) //
 						.setMaterial(mat),
 						new Plane(new Point3D(-78, -120, -50),new Vector(0,-1,0)))
 						));
