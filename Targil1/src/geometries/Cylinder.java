@@ -10,27 +10,30 @@ import primitives.Vector;
 import unittests.Point3DTests;
 
 /**
- * Cylinder class is geometries class which represents a cylinder by radius and tube
+ * Cylinder class is geometries class which represents a cylinder by radius and
+ * tube
  * 
  * @author Itamar and Raz
  *
  */
-public class Cylinder extends Tube{
+public class Cylinder extends Tube {
 	private double height;
-/**
- * 
- * @param axisRay
- * @param radius
- * @param height
- */
+
+	/**
+	 * 
+	 * @param axisRay
+	 * @param radius
+	 * @param height
+	 */
 	public Cylinder(Ray axisRay, double radius, double height) {
 		super(axisRay, radius);
 		this.height = height;
 	}
-/**
- * 
- * @return
- */
+
+	/**
+	 * 
+	 * @return
+	 */
 	public double getHeight() {
 		return height;
 	}
@@ -62,81 +65,106 @@ public class Cylinder extends Tube{
 			throw new IllegalArgumentException("The point is not on the cylinder.");
 
 	}
+
 	/**
 	 * calculate intersection Geo points between Cylinder and ray
+	 * 
 	 * @param ray
 	 * @return List<GeoPoint> include the specific points
-	 **/	
+	 **/
 	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray)
-	{
-		if (super.findGeoIntersections(ray) == null)			
-		{
-             if(Util.isZero(ray.getDir().dotProduct(super.getAxisRay().getDir()))) return null;
-			 else
-			 {
-				List<GeoPoint> result=new ArrayList<GeoPoint>();
-				double t3=0;
-                double t4=0;
+	public List<GeoPoint> findGeoIntersections(Ray ray) {
+		if (super.findGeoIntersections(ray) == null) {
+			if (Util.isZero(ray.getDir().dotProduct(super.getAxisRay().getDir())))
+				return null;
+			else {
+				List<GeoPoint> result = new ArrayList<GeoPoint>();
+				double t3 = 0;
+				double t4 = 0;
 				try {
-					t3=getAxisRay().getP0().subtract(ray.getP0()).dotProduct(super.getAxisRay().getDir())/ray.getDir().dotProduct(super.getAxisRay().getDir());                    
-				} 
-				catch (IllegalArgumentException e) {}
-				try{	
-				t4=getAxisRay().getP0().add(getAxisRay().getDir().scale(height)).subtract(ray.getP0()).dotProduct(super.getAxisRay().getDir())/ray.getDir().dotProduct(super.getAxisRay().getDir());	
+					t3 = getAxisRay().getP0().subtract(ray.getP0()).dotProduct(super.getAxisRay().getDir())
+							/ ray.getDir().dotProduct(super.getAxisRay().getDir());
+				} catch (IllegalArgumentException e) {
 				}
-				catch(IllegalArgumentException e){
-                  return null;
-				}					  
-                if(t3>0&&!Util.isZero(t3)&&ray.getPoint(t3).distance(getAxisRay().getP0())<super.getRadius())
-				      result.add(new GeoPoint(this,ray.getPoint(t3)));
-			    if(t4>0&&ray.getPoint(t4).distance(getAxisRay().getP0().add(getAxisRay().getDir().scale(height)))<super.getRadius())
-				      result.add(new GeoPoint(this,ray.getPoint(t4)));
-				 if(result.size()!=0)return result;
-				 else return null;
-				
-			 }
-		}
-		else {
-			List<GeoPoint> result = super.findGeoIntersections(ray);
-			for (int i = 0; i < result.size(); i++) {
-              try{
-				if(Util.isZero(ray.getDir().dotProduct(getAxisRay().getDir()))&&(Util.isZero(result.get(i).point.subtract(super.getAxisRay().getP0()).dotProduct(super.getAxisRay().getDir()))||Util.isZero(result.get(i).point.subtract(super.getAxisRay().getP0().add(super.getAxisRay().getDir().scale(height))).dotProduct(super.getAxisRay().getDir()))))
-				{
+				try {
+					t4 = getAxisRay().getP0().add(getAxisRay().getDir().scale(height)).subtract(ray.getP0()).dotProduct(
+							super.getAxisRay().getDir()) / ray.getDir().dotProduct(super.getAxisRay().getDir());
+				} catch (IllegalArgumentException e) {
 					return null;
 				}
-                     if(result.get(i).point.subtract(super.getAxisRay().getP0()).dotProduct(super.getAxisRay().getDir())<0&& !Util.isZero(result.get(i).point.subtract(super.getAxisRay().getP0()).dotProduct(super.getAxisRay().getDir())))
-					    result.remove(i);
-					else if(result.get(i).point.subtract(super.getAxisRay().getP0().add(super.getAxisRay().getDir().scale(height))).dotProduct(super.getAxisRay().getDir())>0&& !Util.isZero(result.get(i).point.subtract(super.getAxisRay().getP0().add(super.getAxisRay().getDir().scale(height))).dotProduct(super.getAxisRay().getDir())))	
-					{
-						result.remove(i);
-					}
-			  }
-			  catch(IllegalArgumentException e)
-			  {
-                 
-			  }
+				if (t3 > 0 && !Util.isZero(t3) && ray.getPoint(t3).distance(getAxisRay().getP0()) < super.getRadius())
+					result.add(new GeoPoint(this, ray.getPoint(t3)));
+				if (t4 > 0 && ray.getPoint(t4)
+						.distance(getAxisRay().getP0().add(getAxisRay().getDir().scale(height))) < super.getRadius())
+					result.add(new GeoPoint(this, ray.getPoint(t4)));
+				if (result.size() != 0)
+					return result;
+				else
+					return null;
+
 			}
-			double t3=0;
-                double t4=0;
+		} else {
+			List<GeoPoint> result = super.findGeoIntersections(ray);
+			Boolean firstpoint=false;
+			Boolean secondpoint=false;
+			for (int i = 0; i < result.size(); i++) {
 				try {
-					t3=getAxisRay().getP0().subtract(ray.getP0()).dotProduct(super.getAxisRay().getDir())/ray.getDir().dotProduct(super.getAxisRay().getDir());                    
-				} 
-				catch (IllegalArgumentException e) {}
-				try{	
-				t4=getAxisRay().getP0().add(getAxisRay().getDir().scale(height)).subtract(ray.getP0()).dotProduct(super.getAxisRay().getDir())/ray.getDir().dotProduct(super.getAxisRay().getDir());	
+					if (Util.isZero(ray.getDir().dotProduct(getAxisRay().getDir()))
+							&& (Util.isZero(
+									result.get(i).point
+											.subtract(
+													super.getAxisRay().getP0())
+											.dotProduct(super.getAxisRay().getDir()))
+									|| Util.isZero(result.get(i).point
+											.subtract(super.getAxisRay().getP0()
+													.add(super.getAxisRay().getDir().scale(height)))
+											.dotProduct(super.getAxisRay().getDir())))) {
+						return null;
+					}
+					if (result.get(i).point.subtract(super.getAxisRay().getP0())
+							.dotProduct(super.getAxisRay().getDir()) < 0
+							&& !Util.isZero(result.get(i).point.subtract(super.getAxisRay().getP0())
+									.dotProduct(super.getAxisRay().getDir())))
+						{
+						if(i==0)firstpoint=true;
+						else if(i==1) secondpoint=true;
+						}
+					else if (result.get(i).point
+							.subtract(super.getAxisRay().getP0().add(super.getAxisRay().getDir().scale(height)))
+							.dotProduct(super.getAxisRay().getDir()) > 0
+							&& !Util.isZero(result.get(i).point
+									.subtract(super.getAxisRay().getP0().add(super.getAxisRay().getDir().scale(height)))
+									.dotProduct(super.getAxisRay().getDir()))) {
+										if(i==0)firstpoint=true;
+										else if(i==1) secondpoint=true;
+					}
+				} catch (IllegalArgumentException e) {
+
 				}
-				catch(IllegalArgumentException e){
-                  return null;
-				}					  
-                if(t3>0&&!Util.isZero(t3)&&ray.getPoint(t3).distance(getAxisRay().getP0())<super.getRadius())
-				      result.add(new GeoPoint(this,ray.getPoint(t3)));
-			    if(t4>0&&ray.getPoint(t4).distance(getAxisRay().getP0().add(getAxisRay().getDir().scale(height)))<super.getRadius())
-				      result.add(new GeoPoint(this,ray.getPoint(t4)));
-			return result.size() !=0? result:null;
+			}
+			if(secondpoint)result.remove(1);
+			if(firstpoint) result.remove(0);		
+			double t3 = 0;
+			double t4 = 0;
+			try {
+				t3 = getAxisRay().getP0().subtract(ray.getP0()).dotProduct(super.getAxisRay().getDir())
+						/ ray.getDir().dotProduct(super.getAxisRay().getDir());
+			} catch (IllegalArgumentException e) {
+			}
+			try {
+				t4 = getAxisRay().getP0().add(getAxisRay().getDir().scale(height)).subtract(ray.getP0())
+						.dotProduct(super.getAxisRay().getDir()) / ray.getDir().dotProduct(super.getAxisRay().getDir());
+			} catch (IllegalArgumentException e) {
+				return null;
+			}
+			if (t3 > 0 && !Util.isZero(t3) && ray.getPoint(t3).distance(getAxisRay().getP0()) < super.getRadius())
+				result.add(new GeoPoint(this, ray.getPoint(t3)));
+			if (t4 > 0 && ray.getPoint(t4)
+					.distance(getAxisRay().getP0().add(getAxisRay().getDir().scale(height))) < super.getRadius())
+				result.add(new GeoPoint(this, ray.getPoint(t4)));
+			return result.size() != 0 ? result : null;
 		}
 
 	}
-
 
 }

@@ -35,8 +35,8 @@ public class Render {
       for(int i=0;i<imageWriter.getNy();i++)
       {
         for(int j=0;j<imageWriter.getNx();j++)
-        {
-            superSampling(j,i);
+        {          
+                superSampling(j,i);            
         }
       }
     }

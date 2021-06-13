@@ -202,10 +202,10 @@ public class LightsTests {
 	}
 	@Test 
 	public void func()
-	{//new Cylinder(new Ray(new Point3D(-75d/2, 25,-150), new Vector(0, 1, 0)), 10, 1).setEmmission(new Color(255,128,0))
+	{//
 		Scene scene3=new Scene("TestScene");
 		scene3.geometries.add(new ArrayList<Intersectable> (List.of(new Polygon(new Point3D(75,-150,-150),new Point3D(45,-150,-150),new Point3D(45, 0, -150),new Point3D(75, 0, -150)).setEmmission(new Color(139,69,19)),new Polygon(new Point3D(45, -50, -150),new Point3D(15, -50, -150),new Point3D(15, 0, -150),new Point3D(45, 0, -150)).setEmmission(new Color(139,69,19)),new Polygon(new Point3D(15, -150, -150),new Point3D(15,0,-150),new Point3D(-75,0,-150),new Point3D(-75,-150,-150)).setEmmission(new Color(139,69,19)),new Triangle(new Point3D(75, 0, -150),new Point3D(-75, 0, -150),new Point3D(0, 50, -150)).setEmmission(new Color(java.awt.Color.red)).setMaterial(new Material().setkD(0.01).setks(0.01).setnShininess(800))
-		,new Sphere(new Point3D(-90, 100, -300), 20).setEmmission(new Color(java.awt.Color.yellow)),new Polygon(new Point3D(45,-150,-150),new Point3D(15, -150, -150),new Point3D(15, -50, -150),new Point3D(45, -50, -150)).setEmmission(new Color(255,255,102)) 	)	));
+	,new Cylinder(new Ray(new Point3D(-75d/2, 25,-150), new Vector(0, 1, 0)), 10, 45).setEmmission(new Color(255,128,0))	,new Sphere(new Point3D(-90, 100, -300), 20).setEmmission(new Color(java.awt.Color.yellow)),new Polygon(new Point3D(45,-150,-150),new Point3D(15, -150, -150),new Point3D(15, -50, -150),new Point3D(45, -50, -150)).setEmmission(new Color(255,255,102)) 	)	));
 		for(int i=100;i>76;i-=1)
 		{
             scene3.geometries.add(new Triangle(new Point3D(i,-150 , -150),new Point3D(i-20, -150, -150),new Point3D(i-10, -130, -150)).setEmmission(new Color(0,204,0)).setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(100)));

@@ -1,6 +1,8 @@
 package renderer;
 
-import java.util.List; 
+import java.util.List;
+
+import geometries.Cylinder;
 import geometries.Intersectable.GeoPoint;
 //import jdk.javadoc.internal.doclets.toolkit.resources.doclets_zh_CN;
 import primitives.*;
@@ -79,7 +81,9 @@ public class RayTracerBasic extends RayTracerBase {
     
     private Color calcLocalEffects(GeoPoint intersection, Ray ray,double k) {
     	Vector v = ray.getDir ();
-    	Vector n = intersection.geometry.getNormal(intersection.point);
+		
+    	Vector n=null;
+		n = intersection.geometry.getNormal(intersection.point);
     	double nv = Util.alignZero(n.dotProduct(v));
     	if (nv == 0) return Color.BLACK;
     	Material material = intersection.geometry.getMaterial();

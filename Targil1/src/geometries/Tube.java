@@ -40,8 +40,7 @@ public double getRadius() {
 	@Override
 	public Vector getNormal(Point3D point) {
 		double temp=axisRay.getDir().dotProduct(point.subtract(axisRay.getP0()));
-		if(temp==0)
-		return (point.subtract(Point3D.ZERO)).normalize();
+		if(Util.isZero(temp/100))return (point.subtract(Point3D.ZERO)).normalize();
 		Point3D O=axisRay.getP0().add(axisRay.getDir().scale(temp));
 		return (point.subtract(O)).normalize();
 

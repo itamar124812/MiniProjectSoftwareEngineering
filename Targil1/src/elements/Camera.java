@@ -12,7 +12,7 @@ private Vector Vup;
 private double Distance;
 private double Width;
 private double Height;
-private final double SuperSamplingNum=4;
+private final double SuperSamplingNum=16;
 /**
  * 
  * @param location
