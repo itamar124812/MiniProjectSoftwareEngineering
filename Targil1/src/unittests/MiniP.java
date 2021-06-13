@@ -14,50 +14,13 @@ import scene.Scene;
 
 import org.junit.Test;
 
-import elements.AmbientLight;
 import elements.Camera;
-import elements.DirectionalLight;
 import elements.PointLight;
 import elements.SpotLight;
-import geometries.Cylinder;
 import geometries.Intersectable;
 import geometries.Sphere;
 public class MiniP {
 	private Scene scene = new Scene("Bear scene");
-	
-	/**
-	 * tank picture (look like siryan tank)
-	 */
-	@Test
-	public void picturForZoomBackground() {
-		Scene scene = new Scene("test case");
-		Camera cam = new Camera(new Point3D(0, 10000, 0), new Vector(0, -1, 0), new Vector(0, 0, 1))
-				.setDistance(10000).setViewPlaneSize(5000, 5000);
-		scene.setbackground(new Color(255,215,0));
-		scene.setAmbientLight(new AmbientLight(Color.BLACK, 0.15));
-		scene.geometries.add(new ArrayList<Intersectable>(List.of(
-				new Cylinder(new Ray(new Point3D(2400, 0, 2400), new Vector(1, 0, 1)), 150, 1500)
-						.setEmmission(new Color(java.awt.Color.gray))
-						.setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(900)),
-				new Cylinder(new Ray(new Point3D(2400, 0, 2400), new Vector(1, 0, 1)), 150, 1500)
-						.setEmmission(new Color(java.awt.Color.gray))
-						.setMaterial(new Material().setkD(0.5).setks(0.5).setnShininess(900))))); // midel while
-
-		;
-
-		scene.lights.addAll(List.of(new DirectionalLight(new Color(50, 50, 0), new Vector(0, -1, -500)),
-				((SpotLight) new SpotLight(new Color(400, 240, 500), new Point3D(-500, -1000, 3000),
-						new Vector(0, 0, 700)) //
-								.setkL(1E-5).setkQ(1.5E-7)),
-				new SpotLight(new Color(1000, 1000, 1000), new Point3D(0, 1020, 700), new Vector(0, -1, 0)) //
-						.setkL(1E-5).setkQ(1.5E-7)));
-		int p = 700;
-		ImageWriter imageWriter = new ImageWriter("picturForZoomBackground", p, p);
-		Render render = new Render().setImageWriter(imageWriter).setCamera(cam).setRayTracerBasic(new RayTracerBasic(scene));
-		
-		render.renderImage();
-		render.writeToImage();
-	}
 
     @Test
     public void Bear()
