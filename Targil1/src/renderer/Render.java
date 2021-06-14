@@ -231,7 +231,7 @@ public class Render {
 	private void castRay(int nX, int nY, int col, int row) {
 		superSampling (col, row,null,1);
 	}
-
+ 
 	/**
 	 * This function renders image's pixel color map from the scene included with
 	 * the Renderer object - with multi-threading
