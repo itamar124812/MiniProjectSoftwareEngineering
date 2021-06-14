@@ -45,7 +45,7 @@ public class ReflectionRefractionTests {
 		Render render = new Render() //
 				.setImageWriter(new ImageWriter("refractionTwoSpheres", 500, 500)) //
 				.setCamera(camera) //
-				.setRayTracerBasic(new RayTracerBasic(scene));
+				.setRayTracerBasic(new RayTracerBasic(scene)).setMultithreading(4).setDebugPrint();
 		render.renderImage();
 		render.writeToImage();
 	}
