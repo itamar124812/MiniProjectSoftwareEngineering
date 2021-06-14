@@ -17,6 +17,7 @@ import org.junit.Test;
 import elements.Camera;
 import elements.PointLight;
 import elements.SpotLight;
+import geometries.Cylinder;
 import geometries.Intersectable;
 import geometries.Plane;
 import geometries.Sphere;
@@ -28,12 +29,12 @@ public class MiniP {
     {
     	
     	Camera camera = new Camera(new Point3D(-78, -88, -1000), new Vector(0, 0, 1), new Vector(0, 1, 0)) //
-				.setViewPlaneSize(150, 150).setDistance(1500);
+				.setViewPlaneSize(150, 150).setDistance(1000);
     	Material mat=new Material().setkD(0.4).setks(0.4).setnShininess(300).setKr(0.2);
 		scene.geometries.add(new ArrayList<Intersectable>(List.of( //
 				new Sphere(new Point3D(-78, -88, -50),16) //
 						.setEmmission(new Color(218,165,32)) //
-						.setMaterial(mat),
+						.setMaterial(mat.setKr(0)),
 						new Sphere(new Point3D(-78, -62, -50),10) //
 						.setEmmission(new Color(218,165,32)) //
 						.setMaterial(mat),
@@ -119,9 +120,37 @@ public class MiniP {
 						.setMaterial(mat),
 						new Sphere(new Point3D(-74.82, -105.09, -60.2),3) //
 						.setEmmission(new Color(1,1,1)) //
-						.setMaterial(mat),
-						new Plane(new Point3D(-78, -120, -50),new Vector(0,-1,0)))
-						));
+						.setMaterial(mat)
+						/*new Plane(new Point3D(-78, -120, -50),new Vector(0,-1,0)).setEmmission(new Color(64,224,228))
+						.setMaterial(mat.setKr(0.97).setKt(0)),
+						new Plane(new Point3D(-78, -88, -50),new Vector(0,0,-1)).setEmmission(new Color(1,1,1)
+								).setMaterial(mat.setKt(1).setKr(0))*/
+						)));
+		scene.geometries.add(new ArrayList<Intersectable>(List.of( //
+				new Sphere(new Point3D(-46.69279, -92.44859, -20),9) //
+						.setEmmission(new Color(218,165,32)) //
+						.setMaterial(mat.setKr(0)),
+						new Sphere(new Point3D(-57.14, -85.9, -20),4) //
+						.setEmmission(new Color(139,69,19)) //
+						.setMaterial(mat.setKr(0)),
+						new Sphere(new Point3D(-60.76, -83.6, -20),1) //
+						.setEmmission(new Color(1,1,1)) //
+						.setMaterial(mat.setKr(0)),
+						new Sphere(new Point3D(-53.96, -91.44, -14.78),2) //
+						.setEmmission(new Color(1,1,1)) //
+						.setMaterial(mat.setKr(0)),
+						new Sphere(new Point3D(-51.49, -86.67, -15.04),2) //
+						.setEmmission(new Color(1,1,1)) //
+						.setMaterial(mat.setKr(0)),
+						new Sphere(new Point3D(-29.02, -103.79, -20),12) //
+						.setEmmission(new Color(218,165,32)) //
+						.setMaterial(mat.setKr(0)),
+						new Sphere(new Point3D(-29.02, -103.79, -20),12) //
+						.setEmmission(new Color(218,165,32)) //
+						.setMaterial(mat.setKr(0)),
+						new Cylinder(new Ray(new Point3D(-29.02, -103.79, -20),new Vector(33.82, -21.51, 0)), 12, 40.08).setEmmission(new Color(218,165,32)) //
+						.setMaterial(mat.setKr(0)))));
+						
 		
 		scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-78,-150,-50)));
 		scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-100, -88, -50)));
