@@ -218,7 +218,7 @@ public class LightsTests {
 		Render render = new Render()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera2) //
-				.setRayTracerBasic(new RayTracerBasic(scene3));
+				.setRayTracerBasic(new RayTracerBasic(scene3)).setMultithreading(3).setDebugPrint();
 		render.renderImage();
 		render.writeToImage();
 		camera2.rotateCamera(new Vector(1,0,0),Math.toRadians(45));//.moveCamara(new Point3D(0,0,-1000))

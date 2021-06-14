@@ -2,7 +2,6 @@ package elements;
 import java.util.LinkedList;
 import java.util.List;
 
-
 import primitives.*;
 public class Camera {
 private Point3D location;
@@ -12,7 +11,7 @@ private Vector Vup;
 private double Distance;
 private double Width;
 private double Height;
-private final double SuperSamplingNum=10;
+
 /**
  * 
  * @param location
@@ -68,33 +67,38 @@ public Ray constructRayThroughPixel(int nX, int nY, int j, int i)
  * @param i
  * @return Ray
  */
-public List<Ray> constructRayThroughPixelSuperSampling(int nX, int nY, int j, int i)
+public List<Ray> constructRayThroughPixelSuperSampling(int nX, int nY, int j, int i,int number)
 {   
-
     LinkedList<Ray> result=new LinkedList<Ray>();
     Point3D Pc= location.add(Vto.scale(Distance));
     double Rx=Width/nX;
     double Ry=Height/nY;
     Point3D Pij=new Point3D(0,0,0);
-    if(Util.isZero(Rx*(j-(double)(nX-1)/2))&&Util.isZero(-Ry*(i-(double)(nY-1)/2))){ Pij=Pc;result.add(new Ray(location,Pc.subtract(location)));
+    if(Util.isZero(Rx*(j-(double)(nX-1)/2))&&Util.isZero(-Ry*(i-(double)(nY-1)/2))){ Pij=Pc;if(number==1)result.add(new Ray(location,Pc.subtract(location)));
     }
-        else if(Util.isZero(Rx*(j-(double)(nX-1)/2))){Pij=Pc.add(Vup.scale(-Ry*(i-(double)(nY-1)/2))); result.add(new Ray(location,Pc.add(Vup.scale(-Ry*(i-(double)(nY-1)/2))).subtract(location)));}
-        else if(Util.isZero(-Ry*(i-(double)(nY-1)/2))){Pij=Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))); result.add( new Ray(location,Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))).subtract(location)));}
-        else  {Pij=Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))).add(Vup.scale(-Ry*(i-(double)(nY-1)/2))) ;result.add(new Ray(location,Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))).add(Vup.scale(-Ry*(i-(double)(nY-1)/2))).subtract(location)));}
-        for (int k = 0; k < SuperSamplingNum; k++) {
+        else if(Util.isZero(Rx*(j-(double)(nX-1)/2))){Pij=Pc.add(Vup.scale(-Ry*(i-(double)(nY-1)/2)));if(number==1) result.add(new Ray(location,Pc.add(Vup.scale(-Ry*(i-(double)(nY-1)/2))).subtract(location)));}
+        else if(Util.isZero(-Ry*(i-(double)(nY-1)/2))){Pij=Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2)));if(number==1) result.add( new Ray(location,Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))).subtract(location)));}
+        else  {Pij=Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))).add(Vup.scale(-Ry*(i-(double)(nY-1)/2))) ;if(number==1)result.add(new Ray(location,Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))).add(Vup.scale(-Ry*(i-(double)(nY-1)/2))).subtract(location)));}
+        double max= Math.pow(2, number);
+        for (int k = 0; k < Math.pow(4, number); k++) {
             if(k%4==0)
             {
-                result.add(new Ray(location,Pij.add(Vright.scale(Math.random()*Rx/2)).add(Vup.scale(Math.random()*Ry/2)).subtract(location)));
+                if(k/4==0) result.add(new Ray(location,Pij.add(Vright.scale(Math.random()*Rx/max)).add(Vup.scale(Math.random()*Ry/max)).subtract(location)));
+                else result.add(new Ray(location,Pij.add(Vright.scale((k/4)*Rx/max)).add(Vup.scale((k/4)*Ry/max)).add(Vright.scale(Math.random()*Rx/max)).add(Vup.scale(Math.random()*Ry/max)).subtract(location)));
             }
             else if(k%4==1)
             {
-                result.add(new Ray(location,Pij.add(Vright.scale(Math.random()*Rx/2)).add(Vup.scale(-Math.random()*Ry/2)).subtract(location)));
+                if(k/4==0) result.add(new Ray(location,Pij.add(Vright.scale(Math.random()*Rx/max)).add(Vup.scale(-Math.random()*Ry/max)).subtract(location)));
+                else result.add(new Ray(location,Pij.add(Vright.scale((k/4)*Rx/max)).add(Vup.scale((-k/4)*Ry/max)).add(Vright.scale(Math.random()*Rx/max)).add(Vup.scale(-Math.random()*Ry/max)).subtract(location)));
             }
             else if(k%4==2)
-            {
-                result.add(new Ray(location,Pij.add(Vright.scale(-Math.random()*Rx/2)).add(Vup.scale(-Math.random()*Ry/2)).subtract(location)));
+            { 
+                if(k/4==0) result.add(new Ray(location,Pij.add(Vright.scale(-Math.random()*Rx/max)).add(Vup.scale(-Math.random()*Ry/max)).subtract(location)));
+               else result.add(new Ray(location,Pij.add(Vright.scale((-k/4)*Rx/max)).add(Vup.scale((-k/4)*Ry/max)).add(Vright.scale(-Math.random()*Rx/max)).add(Vup.scale(-Math.random()*Ry/max)).subtract(location)));
             }
-            else                  result.add(new Ray(location,Pij.add(Vright.scale(-Math.random()*Rx/2)).add(Vup.scale(Math.random()*Ry/2)).subtract(location)));   
+            else { if(k/4==0) result.add(new Ray(location,Pij.add(Vright.scale(-Math.random()*Rx/max)).add(Vup.scale(Math.random()*Ry/max)).subtract(location)));
+               else result.add(new Ray(location,Pij.add(Vright.scale((-k/4)*Rx/max)).add(Vup.scale((k/4)*Ry/max)).add(Vright.scale(-Math.random()*Rx/max)).add(Vup.scale(Math.random()*Ry/max)).subtract(location)));   
+            }
     } 
     return result;
 }

@@ -10,7 +10,7 @@ import primitives.Ray;
 
 
 public class Render {  
-	
+	private final double SuperSamplingNum=8;
     private ImageWriter imageWriter;
     private Camera camera;
     private RayTracerBasic rayTracer;
@@ -192,7 +192,7 @@ public class Render {
       {
         for(int j=0;j<imageWriter.getNx();j++)
         {          
-                superSampling(j,i);            
+                superSampling(j,i,null,1);            
         }
       }}
       else renderImageThreaded();
@@ -211,13 +211,15 @@ public class Render {
         if(imageWriter.equals(null)) throw new MissingResourceException("The image writer is missed","renderer.ImageWriter",null);
         imageWriter.writeToImage();
     }
-    private void superSampling (int j, int i)
+    private void superSampling (int j, int i,List<Color> list,int fuckUs)
     {       
-            List<Color> list=new ArrayList<Color>();
-            for (Ray ray : camera.constructRayThroughPixelSuperSampling(imageWriter.getNx(),imageWriter.getNy(), j, i)) {
+            if(list==null) list=new ArrayList<Color>();
+            for (Ray ray : camera.constructRayThroughPixelSuperSampling(imageWriter.getNx(),imageWriter.getNy(), j, i,fuckUs)) {
                 list.add(rayTracer.traceRay(ray));
-            }                   
+            }
+            if(Color.average(list)==list.get(0)||list.size()>SuperSamplingNum)                
         imageWriter.writePixel(j, i, Color.average(list));
+        else superSampling(j,i,list,++fuckUs);
     }
     /**
 	 * Cast ray from camera in order to color a pixel
@@ -227,9 +229,7 @@ public class Render {
 	 * @param row pixel's row number (pixel index in column)
 	 */
 	private void castRay(int nX, int nY, int col, int row) {
-		Ray ray = camera.constructRayThroughPixel(nX, nY, col, row);
-		Color color = rayTracer.traceRay(ray);
-		imageWriter.writePixel(col, row, color);
+		superSampling (col, row,null,1);
 	}
 
 	/**
