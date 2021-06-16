@@ -17,6 +17,7 @@ import org.junit.Test;
 import elements.Camera;
 import elements.PointLight;
 import elements.SpotLight;
+import elements.SuperSpotLight;
 import geometries.Cylinder;
 import geometries.Intersectable;
 import geometries.Plane;
@@ -29,7 +30,7 @@ public class MiniP {
     public void Bear()
     {
     	
-    	Camera camera = new Camera(new Point3D(-200, -105, -1200), new Vector(0, 0, 1), new Vector(0, 1, 0)) //
+    	Camera camera = new Camera(new Point3D(-122, -105, -1000), new Vector(0, 0, 1), new Vector(0, 1, 0)) //
 				.setViewPlaneSize(150, 150).setDistance(1000);
     	Material mat=new Material().setkD(0.4).setks(0.4).setnShininess(300).setKr(0);
 		scene.geometries.add(new ArrayList<Intersectable>(List.of( //
@@ -176,17 +177,38 @@ public class MiniP {
 		new Polygon(new Point3D(-182,-145,0),new Point3D(-182,-44,0),new Point3D(-182,-44,-186),new Point3D(-182,-145,-186)
 				).setEmmission(new Color(255,204,255)).setMaterial(mat),
 		new Polygon(new Point3D(-32,-44,0),new Point3D(-182,-44,0),new Point3D(-182,-44,-186),new Point3D(-32,-44,-186)
-				).setEmmission(new Color(255,204,255)).setMaterial(mat)
+				).setEmmission(new Color(255,204,255)).setMaterial(mat),
+		
+	
+		new Sphere(new Point3D(-107,-56,-93),12) //
+		.setEmmission(new Color(255,255,255)) //
+		.setMaterial(mat.setKr(0.65)),
+		new Sphere(new Point3D(-103,-56,-93),8) //
+		.setEmmission(new Color(255,255,255)) //
+		.setMaterial(mat.setKr(0.65)),
+		new Sphere(new Point3D(-111,-56,-93),8) //
+		.setEmmission(new Color(255,255,255)) //
+		.setMaterial(mat.setKr(0.65)),
+		
+		new Cylinder(new Ray(new Point3D(-112,-119,-98),new Vector(0, -1,0)), 4, 25).setEmmission(new Color(102,51,0)) //
+        ,new Cylinder(new Ray(new Point3D(-102,-119,-98),new Vector(0, -1,0)), 4, 25).setEmmission(new Color(102,51,0)) //
+        ,new Cylinder(new Ray(new Point3D(-102,-119,-88),new Vector(0, -1,0)), 4, 25).setEmmission(new Color(102,51,0)) //
+        ,new Cylinder(new Ray(new Point3D(-112,-119,-88),new Vector(0, -1,0)), 4, 25).setEmmission(new Color(102,51,0)) //
+        ,new Polygon(new Point3D(-112,-118.5,-98),new Point3D(-112,-118.5,-88),new Point3D(-102,-118.5,-88),new Point3D(-102,-118.5,-98)
+				).setEmmission(new Color(102,51,0)).setMaterial(mat),
+
+        new Cylinder(new Ray(new Point3D(-107,-63,-94),new Vector(0, 1,0)), 3, 6).setEmmission(new Color(255,255,255)).setMaterial(mat.setKt(0.88).setKr(0.35)) //
+        ,new Cylinder(new Ray(new Point3D(-107,-65,-94),new Vector(0, -1,0)), 2, 4).setEmmission(new Color(102,178,255)).setMaterial(mat.setKt(0.55)) //
 				)));
 
-		/*scene.geometries.add(new ArrayList<Intersectable>(List.of( //
+	/*	scene.geometries.add(new ArrayList<Intersectable>(List.of( //
 				new Sphere(new Point3D(-78, -117.44, -85.33),14) //
 						.setEmmission(new Color(218,165,32)) //
 						.setMaterial(mat.setKr(0)),
 						new Sphere(new Point3D(-78,-103.44,-85.33),10) //
 						.setEmmission(new Color(218,165,32)) //
 						.setMaterial(mat.setKr(0)),
-						/*new Sphere(new Point3D(-78,-103.44,-82.33),12) //
+						new Sphere(new Point3D(-78,-103.44,-82.33),12) //
 						.setEmmission(new Color(139,69,19)) //
 						.setMaterial(mat.setKr(0)),
 						new Sphere(new Point3D(-78,-103.44,-92.33),5) //
@@ -203,16 +225,25 @@ public class MiniP {
 						.setMaterial(mat.setKr(0)))));*/
 		 
 		
-		scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-78,-150,-50)));
-		scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-100, -88, -50)));
-		scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-78, -120, -50)));
-		scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-78, -88, -85)));
+		//scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-78,-150,-50)));
+		//scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-100, -88, -50)));
+		//scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-78, -120, -50)));
+		scene.lights.add(new PointLight(new Color(255,255,255), new Point3D(-107,-56,-93)));
+		//
+		scene.lights.add(new SuperSpotLight(new Color(255,255,255), new Point3D(-107,-56,-93), new Vector(-75, -89, 93), 350));
+		//scene.lights.add(new SpotLight(new Color(255,255,255), new Point3D(-111,-56,-93), new Vector(0,-1,0)));
+		//scene.lights.add(new SpotLight(new Color(255,255,255), new Point3D(-103,-56,-93), new Vector(0,-1,0)));
+
+
 
 
 		Render render = new Render() //
 				.setImageWriter(new ImageWriter("Bearpo", 500, 500)) //
 				.setCamera(camera) //
 				.setRayTracerBasic(new RayTracerBasic(scene)).setMultithreading(3).setDebugPrint();
+		render.aSuperSamplingOn=true;
+		render.superSamplingOn=false;
+
 		render.renderImage();
 		render.writeToImage();
 	}
