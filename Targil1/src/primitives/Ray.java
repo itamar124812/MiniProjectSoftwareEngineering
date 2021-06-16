@@ -56,7 +56,9 @@ public class Ray {
 	}
 
 	public Point3D getPoint(double t) {
+		if(!Util.isZero(t))
 		return this.p0.add(this.dir.scale(t));
+		else return p0;
 	}
 
 	/**

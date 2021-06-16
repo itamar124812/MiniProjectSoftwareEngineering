@@ -22,6 +22,8 @@ public class Render {
     private int threadsCount = 0;
 	private static final int SPARE_THREADS = 2; // Spare threads if trying to use all the cores
 	private boolean print = false; // printing progress percentage
+	public boolean superSamplingOn=true;
+    public boolean aSuperSamplingOn=true;
 /**
 	 * Set debug printing on
 	 * 
@@ -191,8 +193,17 @@ public class Render {
       {for(int i=0;i<imageWriter.getNy();i++)
       {
         for(int j=0;j<imageWriter.getNx();j++)
-        {          
-                superSampling(j,i,null,1);            
+        {       if(superSamplingOn&&aSuperSamplingOn)   
+                superSampling(j,i,null,1);   
+				else if(!aSuperSamplingOn)
+				{
+					withoutAdptiveSuperSampling ( j,  i);
+				}
+				else
+				{
+					Ray ray=camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i);
+					imageWriter.writePixel(j, i, rayTracer.traceRay(ray));
+				}          
         }
       }}
       else renderImageThreaded();
@@ -211,15 +222,23 @@ public class Render {
         if(imageWriter.equals(null)) throw new MissingResourceException("The image writer is missed","renderer.ImageWriter",null);
         imageWriter.writeToImage();
     }
-    private void superSampling (int j, int i,List<Color> list,int fuckUs)
+	private void withoutAdptiveSuperSampling (int j, int i)
+	{
+		ArrayList<Color> list=new ArrayList<Color>();
+            for (Ray ray : camera.constructRayThroughPixelSuperSamplingWithoutAdaptive(imageWriter.getNx(),imageWriter.getNy(), j, i)) {
+                list.add(rayTracer.traceRay(ray));
+            }           
+        imageWriter.writePixel(j, i, Color.average(list));
+	}
+    private void superSampling (int j, int i,List<Color> list,int level)
     {       
             if(list==null) list=new ArrayList<Color>();
-            for (Ray ray : camera.constructRayThroughPixelSuperSampling(imageWriter.getNx(),imageWriter.getNy(), j, i,fuckUs)) {
+            for (Ray ray : camera.constructRayThroughPixelSuperSampling(imageWriter.getNx(),imageWriter.getNy(), j, i,level)) {
                 list.add(rayTracer.traceRay(ray));
             }
             if(Color.average(list)==list.get(0)||list.size()>SuperSamplingNum)                
         imageWriter.writePixel(j, i, Color.average(list));
-        else superSampling(j,i,list,++fuckUs);
+        else superSampling(j,i,list,++level);
     }
     /**
 	 * Cast ray from camera in order to color a pixel
