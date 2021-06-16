@@ -29,7 +29,7 @@ public class MiniP {
     @Test
     public void Bear()
     {
-    	
+    	 
     	Camera camera = new Camera(new Point3D(-122, -105, -1000), new Vector(0, 0, 1), new Vector(0, 1, 0)) //
 				.setViewPlaneSize(150, 150).setDistance(1000);
     	Material mat=new Material().setkD(0.4).setks(0.4).setnShininess(300).setKr(0);
