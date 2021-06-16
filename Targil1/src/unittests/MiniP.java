@@ -223,7 +223,7 @@ public class MiniP {
 		
 						new Cylinder(new Ray(new Point3D(-78, -117.44, -85.33),new Vector(0, 0, 35.33)), 12, 40.08).setEmmission(new Color(218,165,32)) //
 						.setMaterial(mat.setKr(0)))));*/
-		 
+		  
 		
 		//scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-78,-150,-50)));
 		//scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-100, -88, -50)));
