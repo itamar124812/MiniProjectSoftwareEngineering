@@ -214,11 +214,13 @@ public class LightsTests {
 		//scene3.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(75,60,-100)));
 
 		scene3.setbackground(new Color(java.awt.Color.cyan));
-		ImageWriter imageWriter = new ImageWriter("HBS", 500, 500);//java.awt.Color.CYAN
+		ImageWriter imageWriter = new ImageWriter("HBSWithoutA", 500, 500);//java.awt.Color.CYAN
 		Render render = new Render()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera2) //
-				.setRayTracerBasic(new RayTracerBasic(scene3)).setMultithreading(3).setDebugPrint();
+				.setRayTracerBasic(new RayTracerBasic(scene3)).setMultithreading(6).setDebugPrint();
+		render.aSuperSamplingOn=false;
+		render.superSamplingOn=true;
 		render.renderImage();
 		render.writeToImage();
 		camera2.rotateCamera(new Vector(1,0,0),Math.toRadians(45));//.moveCamara(new Point3D(0,0,-1000))

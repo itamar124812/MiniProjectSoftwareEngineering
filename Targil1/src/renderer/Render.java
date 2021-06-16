@@ -195,7 +195,7 @@ public class Render {
         for(int j=0;j<imageWriter.getNx();j++)
         {       if(superSamplingOn&&aSuperSamplingOn)   
                 superSampling(j,i,null,1);   
-				else if(!aSuperSamplingOn)
+				else if(!aSuperSamplingOn&&superSamplingOn)
 				{
 					withoutAdptiveSuperSampling ( j,  i);
 				}
@@ -248,7 +248,17 @@ public class Render {
 	 * @param row pixel's row number (pixel index in column)
 	 */
 	private void castRay(int nX, int nY, int col, int row) {
-		superSampling (col, row,null,1);
+		if(superSamplingOn&&aSuperSamplingOn)   
+                superSampling(col,row,null,1);   
+				else if(!aSuperSamplingOn&&superSamplingOn)
+				{
+					withoutAdptiveSuperSampling ( col,  row);
+				}
+				else
+				{
+					Ray ray=camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), col, row);
+					imageWriter.writePixel(col, row, rayTracer.traceRay(ray));
+				}    
 	}
  
 	/**

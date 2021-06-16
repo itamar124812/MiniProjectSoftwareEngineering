@@ -11,7 +11,7 @@ private Vector Vup;
 private double Distance;
 private double Width;
 private double Height;
-private double withoutAdaptiveSuperSmpling=10;
+private double withoutAdaptiveSuperSmpling=80;
 
 /**
  * 
