@@ -20,6 +20,7 @@ import elements.SpotLight;
 import geometries.Cylinder;
 import geometries.Intersectable;
 import geometries.Plane;
+import geometries.Polygon;
 import geometries.Sphere;
 public class MiniP {
 	private Scene scene = new Scene("Bear scene");
@@ -28,9 +29,9 @@ public class MiniP {
     public void Bear()
     {
     	
-    	Camera camera = new Camera(new Point3D(-78, -88, -1000), new Vector(0, 0, 1), new Vector(0, 1, 0)) //
+    	Camera camera = new Camera(new Point3D(-200, -105, -1200), new Vector(0, 0, 1), new Vector(0, 1, 0)) //
 				.setViewPlaneSize(150, 150).setDistance(1000);
-    	Material mat=new Material().setkD(0.4).setks(0.4).setnShininess(300).setKr(0.2);
+    	Material mat=new Material().setkD(0.4).setks(0.4).setnShininess(300).setKr(0);
 		scene.geometries.add(new ArrayList<Intersectable>(List.of( //
 				new Sphere(new Point3D(-78, -88, -50),16) //
 						.setEmmission(new Color(218,165,32)) //
@@ -120,37 +121,87 @@ public class MiniP {
 						.setMaterial(mat),
 						new Sphere(new Point3D(-74.82, -105.09, -60.2),3) //
 						.setEmmission(new Color(1,1,1)) //
-						.setMaterial(mat)
-						/*new Plane(new Point3D(-78, -120, -50),new Vector(0,-1,0)).setEmmission(new Color(64,224,228))
-						.setMaterial(mat.setKr(0.97).setKt(0)),
-						new Plane(new Point3D(-78, -88, -50),new Vector(0,0,-1)).setEmmission(new Color(1,1,1)
+						.setMaterial(mat),
+						new Plane(new Point3D(-182,-145,-186),new Vector(0,-1,0)).setEmmission(new Color(255,153,153))
+						.setMaterial(mat.setKr(0.97).setKt(0))
+						/*new Plane(new Point3D(-78, -88, -50),new Vector(0,0,-1)).setEmmission(new Color(1,1,1)
 								).setMaterial(mat.setKt(1).setKr(0))*/
 						)));
 		scene.geometries.add(new ArrayList<Intersectable>(List.of( //
-				new Sphere(new Point3D(-46.69279, -92.44859, -20),9) //
+				new Polygon(new Point3D(-40,-108,-130),new Point3D(-40,-108,0),new Point3D(-120,-108,0),new Point3D(-120,-108,-130)
+						).setEmmission(new Color(255,153,255)).setMaterial(mat),
+				new Polygon(new Point3D(-120,-136,-130),new Point3D(-120,-108,-130),new Point3D(-120,-108,0),new Point3D(-120,-136,0)
+						).setEmmission(new Color(255,153,255)).setMaterial(mat),
+				new Polygon(new Point3D(-120,-136,0),new Point3D(-120,-108,0),new Point3D(-40,-108,0),new Point3D(-40,-136,0)
+								).setEmmission(new Color(255,153,255)).setMaterial(mat),
+				new Polygon(new Point3D(-40,-136,0),new Point3D(-40,-108,0),new Point3D(-120,-108,-130),new Point3D(-120,-136,-130)
+						).setEmmission(new Color(255,153,255)).setMaterial(mat),
+				new Polygon(new Point3D(-40,-136,-130),new Point3D(-40,-108,-130),new Point3D(-40,-108,0),new Point3D(-40,-136,0)
+						).setEmmission(new Color(255,153,255)).setMaterial(mat),
+				new Polygon(new Point3D(-40,-136,-130),new Point3D(-40,-136,0),new Point3D(-120,-136,0),new Point3D(-120,-136,-130)
+						).setEmmission(new Color(255,153,255)).setMaterial(mat),
+				new Cylinder(new Ray(new Point3D(-40,-94,-130),new Vector(0, -1,0)), 5, 50).setEmmission(new Color(255,255,255)) //
+               ,new Cylinder(new Ray(new Point3D(-40,-94,0),new Vector(0, -1,0)), 5, 50).setEmmission(new Color(255,255,255)) //
+               ,new Cylinder(new Ray(new Point3D(-120,-94,0),new Vector(0, -1,0)), 5, 50).setEmmission(new Color(255,255,255)) //
+               ,new Cylinder(new Ray(new Point3D(-120,-94,-130),new Vector(0, -1,0)), 5, 50).setEmmission(new Color(255,255,255)) //
+              
+               , new Polygon(new Point3D(-55,-90,0),new Point3D(-55,-108,0),new Point3D(-105,-108,0),new Point3D(-105,-90,0)
+						).setEmmission(new Color(255,255,255)).setMaterial(mat),
+				new Polygon(new Point3D(-55,-90,0),new Point3D(-105,-90,0),new Point3D(-105,-90,-40),new Point3D(-55,-90,-40)
+								).setEmmission(new Color(255,255,255)).setMaterial(mat),
+				new Polygon(new Point3D(-105,-108,-40),new Point3D(-105,-90,-40),new Point3D(-55,-90,-40),new Point3D(-55,-108,-40)
+						).setEmmission(new Color(255,255,255)).setMaterial(mat),
+				new Polygon(new Point3D(-55,-108,0),new Point3D(-55,-90,0),new Point3D(-55,-90,-40),new Point3D(-55,-108,-40)
+						).setEmmission(new Color(255,255,255)).setMaterial(mat),
+				new Polygon(new Point3D(-105,-108,0),new Point3D(-105,-90,0),new Point3D(-105,-90,-40),new Point3D(-105,-108,-40)
+						).setEmmission(new Color(255,255,255)).setMaterial(mat),
+				
+				new Sphere(new Point3D(-40,-87,-130),7) //
+				.setEmmission(new Color(255,153,255)) //
+				.setMaterial(mat.setKt(0.2)),
+				new Sphere(new Point3D(-40,-87,0),7) //
+				.setEmmission(new Color(255,153,255)) //
+				.setMaterial(mat.setKt(0.2)),
+				new Sphere(new Point3D(-120,-87,0),7) //
+				.setEmmission(new Color(255,153,255)) //
+				.setMaterial(mat.setKt(0.2)),
+				new Sphere(new Point3D(-120,-87,-130),7) //
+				.setEmmission(new Color(255,153,255)) //
+				.setMaterial(mat.setKt(0.2)),
+				
+		new Polygon(new Point3D(-32,-44,0),new Point3D(-182,-44,0),new Point3D(-182,-145,0),new Point3D(-32,-145,0)
+						).setEmmission(new Color(255,204,255)).setMaterial(mat),
+		new Polygon(new Point3D(-32,-145,0),new Point3D(-32,-44,0),new Point3D(-32,-44,-186),new Point3D(-32,-145,-186)
+				).setEmmission(new Color(255,204,255)).setMaterial(mat),
+		new Polygon(new Point3D(-182,-145,0),new Point3D(-182,-44,0),new Point3D(-182,-44,-186),new Point3D(-182,-145,-186)
+				).setEmmission(new Color(255,204,255)).setMaterial(mat),
+		new Polygon(new Point3D(-32,-44,0),new Point3D(-182,-44,0),new Point3D(-182,-44,-186),new Point3D(-32,-44,-186)
+				).setEmmission(new Color(255,204,255)).setMaterial(mat)
+				)));
+
+		/*scene.geometries.add(new ArrayList<Intersectable>(List.of( //
+				new Sphere(new Point3D(-78, -117.44, -85.33),14) //
 						.setEmmission(new Color(218,165,32)) //
 						.setMaterial(mat.setKr(0)),
-						new Sphere(new Point3D(-57.14, -85.9, -20),4) //
+						new Sphere(new Point3D(-78,-103.44,-85.33),10) //
+						.setEmmission(new Color(218,165,32)) //
+						.setMaterial(mat.setKr(0)),
+						/*new Sphere(new Point3D(-78,-103.44,-82.33),12) //
 						.setEmmission(new Color(139,69,19)) //
 						.setMaterial(mat.setKr(0)),
-						new Sphere(new Point3D(-60.76, -83.6, -20),1) //
+						new Sphere(new Point3D(-78,-103.44,-92.33),5) //
+						.setEmmission(new Color(139,69,19)) //
+						.setMaterial(mat.setKr(0)),
+						new Sphere(new Point3D(-74.91, -96.16, -91.45),2) //
 						.setEmmission(new Color(1,1,1)) //
 						.setMaterial(mat.setKr(0)),
-						new Sphere(new Point3D(-53.96, -91.44, -14.78),2) //
+						new Sphere(new Point3D(-81.61, -96.7, -91.78),2) //
 						.setEmmission(new Color(1,1,1)) //
 						.setMaterial(mat.setKr(0)),
-						new Sphere(new Point3D(-51.49, -86.67, -15.04),2) //
-						.setEmmission(new Color(1,1,1)) //
-						.setMaterial(mat.setKr(0)),
-						new Sphere(new Point3D(-29.02, -103.79, -20),12) //
-						.setEmmission(new Color(218,165,32)) //
-						.setMaterial(mat.setKr(0)),
-						new Sphere(new Point3D(-29.02, -103.79, -20),12) //
-						.setEmmission(new Color(218,165,32)) //
-						.setMaterial(mat.setKr(0)),
-						new Cylinder(new Ray(new Point3D(-29.02, -103.79, -20),new Vector(33.82, -21.51, 0)), 12, 40.08).setEmmission(new Color(218,165,32)) //
-						.setMaterial(mat.setKr(0)))));
-						
+		
+						new Cylinder(new Ray(new Point3D(-78, -117.44, -85.33),new Vector(0, 0, 35.33)), 12, 40.08).setEmmission(new Color(218,165,32)) //
+						.setMaterial(mat.setKr(0)))));*/
+		 
 		
 		scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-78,-150,-50)));
 		scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-100, -88, -50)));
@@ -161,7 +212,7 @@ public class MiniP {
 		Render render = new Render() //
 				.setImageWriter(new ImageWriter("Bearpo", 500, 500)) //
 				.setCamera(camera) //
-				.setRayTracerBasic(new RayTracerBasic(scene));
+				.setRayTracerBasic(new RayTracerBasic(scene)).setMultithreading(3).setDebugPrint();
 		render.renderImage();
 		render.writeToImage();
 	}

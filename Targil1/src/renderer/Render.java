@@ -22,8 +22,8 @@ public class Render {
     private int threadsCount = 0;
 	private static final int SPARE_THREADS = 2; // Spare threads if trying to use all the cores
 	private boolean print = false; // printing progress percentage
-	public boolean superSamplingOn=true;
-    public boolean aSuperSamplingOn=true;
+	public boolean superSamplingOn=true;//a boolean value that charge on superSampling
+    public boolean aSuperSamplingOn=true;//a boolean value that charge on adaptive superSampling
 /**
 	 * Set debug printing on
 	 * 
