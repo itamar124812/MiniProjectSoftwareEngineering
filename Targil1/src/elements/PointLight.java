@@ -44,5 +44,8 @@ private Point3D position;
 		// TODO Auto-generated method stub
 		return position.distance(point);
 	}
-
+    public Point3D getPosition()
+	{
+		return position;
+	}
 }

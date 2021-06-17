@@ -25,6 +25,10 @@ public final class Point3D {
 	public double getZ() {
 		return z.coord;
 	}
+	public Point3D subtract(Vector a)
+	{
+		return this.add(a.scale(-1));
+	}
 	public Point3D(double x, double y, double z) {
 		super();
 		this.x = new Coordinate(x);

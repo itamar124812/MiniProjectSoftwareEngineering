@@ -10,7 +10,7 @@ import primitives.Ray;
 
 
 public class Render {  
-	private final double SuperSamplingNum=8;
+	private final double SuperSamplingNum=4;
     private ImageWriter imageWriter;
     private Camera camera;
     private RayTracerBasic rayTracer;
@@ -248,6 +248,7 @@ public class Render {
 	 * @param row pixel's row number (pixel index in column)
 	 */
 	private void castRay(int nX, int nY, int col, int row) {
+		
 		if(superSamplingOn&&aSuperSamplingOn)   
                 superSampling(col,row,null,1);   
 				else if(!aSuperSamplingOn&&superSamplingOn)
@@ -258,7 +259,9 @@ public class Render {
 				{
 					Ray ray=camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), col, row);
 					imageWriter.writePixel(col, row, rayTracer.traceRay(ray));
-				}    
+				} 
+			
+
 	}
  
 	/**

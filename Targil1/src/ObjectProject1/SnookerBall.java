@@ -1,5 +1,5 @@
 package ObjectProject1;
-import elements.Material;
+import primitives.Material;
 import geometries.Sphere;
 import primitives.Color;
 import primitives.Point3D;
@@ -50,8 +50,9 @@ public class SnookerBall extends Sphere {
      * @param vecLittleCircle-A vector that creates a ray from the center of the ball that creates a white color on the ball
      */
     public SnookerBall(Color emissionLight, double radius, Point3D center, Vector vecLittleCircle) {
-        super(emissionLight, radius, center);
-        this._material=new Material(0.8,0.2,200,0,0.2);
+        super( center, radius);
+        setEmmission(emissionLight);
+        setMaterial(new Material().setkD(0.8).setks(0.2).setnShininess(200).setKr(0.2));
         this.vecLittleCircle = vecLittleCircle.normalize();
         this.oneColor=true;
     }
@@ -63,7 +64,7 @@ public class SnookerBall extends Sphere {
      * @param gp - the geoPoint the function find the emission light.
      * @return get Emission Light
      */
-    @Override
+    
     public Color getEmissionLight(GeoPoint gp) {
 
         //for the ball without white big circles on his side.
@@ -71,15 +72,15 @@ public class SnookerBall extends Sphere {
         {
             //if the point is in the big white circle
             // angle between the vector vecBigCircle and the vector from the sphere center to the point is > COSBIGCIRCLE
-            if (gp.getPoint().subtract(this.getCenter()).normalize().dotProduct(vecBigCircle)>=this.COSBIGCIRCLE ||
-                    gp.getPoint().subtract(this.getCenter()).normalize().dotProduct(vecBigCircle.scale(-1))>=this.COSBIGCIRCLE)
+            if (gp.point.subtract(this.getCenter()).normalize().dotProduct(vecBigCircle)>=this.COSBIGCIRCLE ||
+                    gp.point.subtract(this.getCenter()).normalize().dotProduct(vecBigCircle.scale(-1))>=this.COSBIGCIRCLE)
                 return (new Color(225,223,170));//return almost white
         }
         //for the all balls -if the point is in the little white circle
         //if the angle between the vector vecLittleCircle and the vector from the sphere center to the point(gp) is > COSBIGCIRCLE
-        if(gp.getPoint().subtract(this.getCenter()).normalize().dotProduct(vecLittleCircle)>=this.COSLITTLECIRCLE||
-                gp.getPoint().subtract(this.getCenter()).normalize().dotProduct(vecLittleCircle.scale(-1))>=this.COSLITTLECIRCLE)
+        if(gp.point.subtract(this.getCenter()).normalize().dotProduct(vecLittleCircle)>=this.COSLITTLECIRCLE||
+                gp.point.subtract(this.getCenter()).normalize().dotProduct(vecLittleCircle.scale(-1))>=this.COSLITTLECIRCLE)
             return (new Color(225,223,170));//return almost white
-        return super.getEmissionLight();// return the color of the ball
+        return super.getEmmission();// return the color of the ball
     }
 }

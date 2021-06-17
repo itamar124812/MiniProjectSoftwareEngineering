@@ -42,14 +42,14 @@ public class Floor
             {
                 Point3D point2=point1.add(v1.scale(size));
                 Point3D point3=point2.add(v2.scale(size));
-                Point3D point4=point3.subtract(v1.scale(size));
+                Point3D point4=point3.add(v1.scale(-size));
                 //for piking a different color intermittently.(color1, color2)
                 if((i+j)%2==0)
                 {
-                    floorParts.add(new Polygon(color1, material, point1, point2, point3, point4));
+                    floorParts.add(new Polygon( point1, point2, point3, point4).setEmmission(color1).setMaterial(material));
                 }
                 else
-                    floorParts.add(new Polygon(color2,material,point1,point2,point3,point4));
+                    floorParts.add(new Polygon(point1,point2,point3,point4).setMaterial(material).setEmmission(color2));
 
                 point1=point4;
             }
