@@ -8,23 +8,23 @@ import elements.Camera;
 import primitives.Color;
 import primitives.Ray;
 
-
-public class Render {  
-	private final double SuperSamplingNum=4;
-    private ImageWriter imageWriter;
-    private Camera camera;
-    private RayTracerBasic rayTracer;
-    private static final String RESOURCE_ERROR = "Renderer resource not set";
+public class Render {
+	private final double SuperSamplingNum = 4;
+	private ImageWriter imageWriter;
+	private Camera camera;
+	private RayTracerBasic rayTracer;
+	private static final String RESOURCE_ERROR = "Renderer resource not set";
 	private static final String RENDER_CLASS = "Render";
 	private static final String IMAGE_WRITER_COMPONENT = "Image writer";
 	private static final String CAMERA_COMPONENT = "Camera";
 	private static final String RAY_TRACER_COMPONENT = "Ray tracer";
-    private int threadsCount = 0;
+	private int threadsCount = 0;
 	private static final int SPARE_THREADS = 2; // Spare threads if trying to use all the cores
 	private boolean print = false; // printing progress percentage
-	public boolean superSamplingOn=true;//a boolean value that charge on superSampling
-    public boolean aSuperSamplingOn=true;//a boolean value that charge on adaptive superSampling
-/**
+	public boolean superSamplingOn = true;// a boolean value that charge on superSampling
+	public boolean aSuperSamplingOn = true;// a boolean value that charge on adaptive superSampling
+
+	/**
 	 * Set debug printing on
 	 * 
 	 * @return the Render object itself
@@ -33,6 +33,7 @@ public class Render {
 		print = true;
 		return this;
 	}
+
 	/**
 	 * Set multi-threading <br>
 	 * - if the parameter is 0 - number of cores less 2 is taken
@@ -51,7 +52,8 @@ public class Render {
 		}
 		return this;
 	}
-    /**
+
+	/**
 	 * Pixel is an internal helper class whose objects are associated with a Render
 	 * object that they are generated in scope of. It is used for multithreading in
 	 * the Renderer and for follow up its progress.<br/>
@@ -172,102 +174,109 @@ public class Render {
 		}
 	}
 
-    
-    public Render setImageWriter(ImageWriter imageWriter) {
-        this.imageWriter = imageWriter;
-        return this;
-    }
-    public Render setCamera(Camera camera) {
-        this.camera = camera;
-        return this;
-    }
-    public Render setRayTracerBasic(RayTracerBasic rayTracerBasic) {
-        this.rayTracer = rayTracerBasic;
-        return this;
-    }
-    public void renderImage()
-     {
-         if(camera.equals(null)) throw new MissingResourceException("The camera is missed","elements.camera",null);
-         else if(imageWriter.equals(null)) throw new MissingResourceException("The image writer is missed","renderer.ImageWriter",null);
-       if(threadsCount==0) 
-      {for(int i=0;i<imageWriter.getNy();i++)
-      {
-        for(int j=0;j<imageWriter.getNx();j++)
-        {       if(superSamplingOn&&aSuperSamplingOn)   
-                superSampling(j,i,null,1);   
-				else if(!aSuperSamplingOn&&superSamplingOn)
-				{
-					withoutAdptiveSuperSampling ( j,  i);
-				}
-				else
-				{
-					Ray ray=camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i);
-					imageWriter.writePixel(j, i, rayTracer.traceRay(ray));
-				}          
-        }
-      }}
-      else renderImageThreaded();
-    }
-    public void printGrid(int interval, Color color)
-    {
-        if(camera.equals(null)) throw new MissingResourceException("The camera is missed","elements.camera",null);
-        else if(imageWriter.equals(null)) throw new MissingResourceException("The image writer is missed","renderer.ImageWriter",null);
-        	for(int i=0;i<this.imageWriter.getNx();i++)
-    			for(int j=0;j<this.imageWriter.getNy();j++) 
-    				if(i%interval==0||j%interval==0)
-    			    imageWriter.writePixel(i, j,color);	 	 									
-    }
-    public void writeToImage()
-    {
-        if(imageWriter.equals(null)) throw new MissingResourceException("The image writer is missed","renderer.ImageWriter",null);
-        imageWriter.writeToImage();
-    }
-	private void withoutAdptiveSuperSampling (int j, int i)
-	{
-		ArrayList<Color> list=new ArrayList<Color>();
-            for (Ray ray : camera.constructRayThroughPixelSuperSamplingWithoutAdaptive(imageWriter.getNx(),imageWriter.getNy(), j, i)) {
-                list.add(rayTracer.traceRay(ray));
-            }           
-        imageWriter.writePixel(j, i, Color.average(list));
+	public Render setImageWriter(ImageWriter imageWriter) {
+		this.imageWriter = imageWriter;
+		return this;
 	}
-    private void superSampling (int j, int i,List<Color> list,int level)
-    {       
-            if(list==null) list=new ArrayList<Color>();
-            for (Ray ray : camera.constructRayThroughPixelSuperSampling(imageWriter.getNx(),imageWriter.getNy(), j, i,level)) {
-                list.add(rayTracer.traceRay(ray));
-            }
-            if(Color.average(list)==list.get(0)||list.size()>SuperSamplingNum)                
-        imageWriter.writePixel(j, i, Color.average(list));
-        else superSampling(j,i,list,++level);
-    }
-    /**
+
+	public Render setCamera(Camera camera) {
+		this.camera = camera;
+		return this;
+	}
+
+	public Render setRayTracerBasic(RayTracerBasic rayTracerBasic) {
+		this.rayTracer = rayTracerBasic;
+		return this;
+	}
+
+	public void renderImage() {
+		if (camera.equals(null))
+			throw new MissingResourceException("The camera is missed", "elements.camera", null);
+		else if (imageWriter.equals(null))
+			throw new MissingResourceException("The image writer is missed", "renderer.ImageWriter", null);
+		if (threadsCount == 0) {
+			for (int i = 0; i < imageWriter.getNy(); i++) {
+				for (int j = 0; j < imageWriter.getNx(); j++) {
+					if (superSamplingOn && aSuperSamplingOn)
+						superSampling(j, i, null, 1);
+					else if (!aSuperSamplingOn && superSamplingOn) {
+						withoutAdptiveSuperSampling(j, i);
+					} else {
+						Ray ray = camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i);
+						imageWriter.writePixel(j, i, rayTracer.traceRay(ray));
+					}
+				}
+			}
+		} else
+			renderImageThreaded();
+	}
+
+	public void printGrid(int interval, Color color) {
+		if (camera.equals(null))
+			throw new MissingResourceException("The camera is missed", "elements.camera", null);
+		else if (imageWriter.equals(null))
+			throw new MissingResourceException("The image writer is missed", "renderer.ImageWriter", null);
+		for (int i = 0; i < this.imageWriter.getNx(); i++)
+			for (int j = 0; j < this.imageWriter.getNy(); j++)
+				if (i % interval == 0 || j % interval == 0)
+					imageWriter.writePixel(i, j, color);
+	}
+
+	public void writeToImage() {
+		if (imageWriter.equals(null))
+			throw new MissingResourceException("The image writer is missed", "renderer.ImageWriter", null);
+		imageWriter.writeToImage();
+	}
+
+	private void withoutAdptiveSuperSampling(int j, int i) {
+		ArrayList<Color> list = new ArrayList<Color>();
+		for (Ray ray : camera.constructRayThroughPixelSuperSamplingWithoutAdaptive(imageWriter.getNx(),
+				imageWriter.getNy(), j, i)) {
+			list.add(rayTracer.traceRay(ray));
+		}
+		imageWriter.writePixel(j, i, Color.average(list));
+	}
+
+	private void superSampling(int j, int i, List<Color> list, int level) {
+		if (list == null)
+			list = new ArrayList<Color>();
+		for (Ray ray : camera.constructRayThroughPixelSuperSampling(imageWriter.getNx(), imageWriter.getNy(), j, i,
+				level)) {
+			list.add(rayTracer.traceRay(ray));
+		}
+		if (Color.average(list) == list.get(0) || list.size() > SuperSamplingNum)
+			imageWriter.writePixel(j, i, Color.average(list));
+		else
+			superSampling(j, i, list, ++level);
+	}
+
+	/**
 	 * Cast ray from camera in order to color a pixel
-	 * @param nX resolution on X axis (number of pixels in row)
-	 * @param nY resolution on Y axis (number of pixels in column)
+	 * 
+	 * @param nX  resolution on X axis (number of pixels in row)
+	 * @param nY  resolution on Y axis (number of pixels in column)
 	 * @param col pixel's column number (pixel index in row)
 	 * @param row pixel's row number (pixel index in column)
 	 */
 	private void castRay(int nX, int nY, int col, int row) {
-		
-		if(superSamplingOn&&aSuperSamplingOn)   
-                superSampling(col,row,null,1);   
-				else if(!aSuperSamplingOn&&superSamplingOn)
-				{
-					withoutAdptiveSuperSampling ( col,  row);
-				}
-				else
-				{
-					Ray ray=camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), col, row);
-					imageWriter.writePixel(col, row, rayTracer.traceRay(ray));
-				} 
-			
 
+		if (superSamplingOn && aSuperSamplingOn)
+			superSampling(col, row, null, 1);
+		else if (!aSuperSamplingOn && superSamplingOn) {
+			withoutAdptiveSuperSampling(col, row);
+		} else {
+			Ray ray = camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), col, row);
+			imageWriter.writePixel(col, row, rayTracer.traceRay(ray));
+		}
 	}
- 
+
+	
+	
+
 	/**
 	 * This function renders image's pixel color map from the scene included with
 	 * the Renderer object - with multi-threading
-	 */
+	 **/
 	private void renderImageThreaded() {
 		final int nX = imageWriter.getNx();
 		final int nY = imageWriter.getNy();
@@ -292,11 +301,11 @@ public class Render {
 		for (Thread thread : threads)
 			try {
 				thread.join();
-			} catch (Exception e) {
-			}
+			} catch (Exception e) {}
+		
 
 		if (print)
 			System.out.print("\r100%");
 	}
-   
+
 }
