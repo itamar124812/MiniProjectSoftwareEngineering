@@ -16,7 +16,7 @@ import scene.Scene;
 public class MiniProject2Test {
 
     //The scene of a snooker table with depth of field
-    @Test
+  /*  @Test
     public void scene1DepthOfFieldTest() {
         double radius=3;
         Scene scene = new Scene("Test scene");
@@ -428,7 +428,7 @@ public class MiniProject2Test {
         render.renderImage();
 
         render.writeToImage();
-    }
+    }*/
 
     @Test
     public void mini_project2_side3() {

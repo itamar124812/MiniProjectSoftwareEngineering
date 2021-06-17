@@ -1,6 +1,6 @@
 package ObjectProject1;
 
-import elements.Material;
+import primitives.Material;
 import geometries.Geometries;
 import geometries.Polygon;
 import primitives.Color;
@@ -13,7 +13,7 @@ import primitives.Vector;
  */
 public class Floor
 {
-    Geometries floorParts=new Geometries();
+    Geometries floorParts=new Geometries(null);
 
 //************get*************
     public Geometries getFloorParts() {
