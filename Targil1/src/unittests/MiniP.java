@@ -123,7 +123,7 @@ public class MiniP {
 						.setMaterial(mat),
 						new Sphere(new Point3D(-74.82, -105.09, -60.2),3) //
 						.setEmmission(new Color(1,1,1)) //
-						.setMaterial(mat),
+						.setMaterial(mat)/*,
 						new Plane(new Point3D(-78, -880, -50),new Vector(0,-1,0)).setEmmission(new Color(255,153,153))
 						.setMaterial(mat.setKr(0.97).setKt(0))
 						/*new Plane(new Point3D(-78, -88, -50),new Vector(0,0,-1)).setEmmission(new Color(1,1,1)
