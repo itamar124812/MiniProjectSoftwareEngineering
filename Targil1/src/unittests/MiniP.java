@@ -213,11 +213,7 @@ public class MiniP {
 		
 						new Cylinder(new Ray(new Point3D(-78, -117.44, -85.33),new Vector(0, 0, 35.33)), 12, 40.08).setEmmission(new Color(218,165,32)) //
 						.setMaterial(mat.setKr(0)))));*/
-		 
-		//scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-78,-150,-50)));
-		//scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-100, -88, -50)));
-		//scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-78, -120, -50)));
-		//scene.lights.add(new PointLight(new Color(255,0,0), new Point3D(-78, -88, -85)));
+
 		scene.lights.add(new SpotLight(new Color(255,255,255), new Point3D(-78, 50, 1000),new Vector(78, -40, -930)).setkC(0.012).setkL(0.975).setkQ(0.88));
 		scene.lights.add(new SuperSpotLight(new Color(255,255,51), new Point3D(-145,-87,40),new Vector(40, 63, 510), 230));
 		scene.lights.add(new SuperSpotLight(new Color(255,255,51), new Point3D(-40,-87,-440),new Vector(40, 63, 510), 250));
